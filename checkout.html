@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('qrv_theme')||'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
@@ -23,25 +24,59 @@
         <span>&#128205; Av. Santos Dumont, 61 · Cumbica · Guarulhos - SP</span>
       </div>
       <div class="right">
+        <a href="bordados.html">Bordados</a>
         <a href="revendedor.html">Seja um Revendedor</a>
+        <a href="quem-somos.html">Quem Somos</a>
+        <a href="contato.html">Fale Conosco</a>
+        <button id="themeToggle" class="theme-toggle" aria-label="Alternar tema" title="Alternar tema">
+          <span class="theme-icon">☀️</span>
+        </button>
       </div>
     </div>
   </div>
 
   <header class="main">
     <div class="container">
-      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
-      <a href="index.html"><img src="assets/logo.png" alt="QRV Artigos Táticos" class="logo-img"></a>
-      <div class="header-actions">
-      <nav class="primary">
+      <div class="header-left">
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+        <a href="index.html" class="mini-logo">QRV</a>
+      </div>
+      <nav class="primary categories-nav">
         <ul>
-          <li><a href="produtos.html">Loja</a></li>
-          <li><a href="bordados.html">Bordados</a></li>
-          <li><a href="revendedor.html">Seja Revendedor</a></li>
-          <li><a href="quem-somos.html">Quem Somos</a></li>
-          <li><a href="contato.html">Fale Conosco</a></li>
+          <li class="has-mega">
+            <a href="produtos.html">Categorias</a>
+            <div class="mega-menu">
+            <div class="mega-col">
+              <a href="produtos.html?categoria=acessorios">Acessórios</a>
+              <a href="produtos.html?categoria=acessorios">Hidratação</a>
+              <a href="produtos.html?categoria=calcados">Calçados</a>
+              <a href="produtos.html?categoria=vestuario">Vestuário</a>
+            </div>
+            <div class="mega-col">
+              <a href="produtos.html?categoria=protecao">Munição</a>
+              <a href="produtos.html?categoria=mochilas">Mochilas</a>
+              <a href="produtos.html?categoria=acessorios">Lanternas</a>
+              <a href="produtos.html?categoria=facas">Cutelaria</a>
+            </div>
+            <div class="mega-col">
+              <a href="produtos.html?categoria=protecao">Armas</a>
+              <a href="produtos.html?categoria=insignias">Patches</a>
+              <a href="produtos.html?categoria=kits">Camping</a>
+              <a href="produtos.html?categoria=protecao">Coletes</a>
+            </div>
+          </div>
+          </li>
+          <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
+          <li><a href="produtos.html?categoria=calcados">Calçados</a></li>
+          <li><a href="produtos.html?categoria=facas">Cutelaria</a></li>
+          <li><a href="produtos.html?categoria=acessorios">Lanternas</a></li>
+          <li><a href="produtos.html?categoria=mochilas">Mochilas</a></li>
+          <li><a href="produtos.html?categoria=protecao">Munição</a></li>
+          <li><a href="produtos.html?categoria=vestuario">Vestuário</a></li>
+          <li><a href="produtos.html?categoria=acessorios">Hidratação</a></li>
         </ul>
       </nav>
+      <div class="header-actions">
         <a href="cart.html" class="cart-link" aria-label="Carrinho de compras">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
           <span class="cart-count" id="cartCount">0</span>
@@ -54,7 +89,13 @@
   <div class="mobile-drawer" id="mobileDrawer">
     <button class="drawer-close" id="drawerClose" aria-label="Fechar menu">&times;</button>
     <nav class="drawer-nav">
-      <a href="produtos.html">Loja</a>
+      <a href="produtos.html">Todos os Produtos</a>
+      <a href="produtos.html?categoria=acessorios">Acessórios</a>
+      <a href="produtos.html?categoria=calcados">Calçados</a>
+      <a href="produtos.html?categoria=facas">Cutelaria</a>
+      <a href="produtos.html?categoria=mochilas">Mochilas</a>
+      <a href="produtos.html?categoria=protecao">Munição</a>
+      <a href="produtos.html?categoria=vestuario">Vestuário</a>
       <a href="bordados.html">Bordados</a>
       <a href="revendedor.html">Seja Revendedor</a>
       <a href="quem-somos.html">Quem Somos</a>
@@ -183,6 +224,7 @@
   </footer>
 
 <script src="assets/site.js"></script>
+<script type="module" src="assets/theme.js"></script>
 <script type="module">
   import { getCart, getCartTotal, clearCart, buildWhatsappResumoCarrinho } from './assets/cart.js';
   import { formatBRL } from './assets/supabase-client.js';

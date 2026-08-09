@@ -208,9 +208,17 @@ export function sanitizeDescricao(html) {
     .replace(/ on\w+='[^']*'/gi, '');
 }
 
+// Gera um número "restam em estoque" pseudo-aleatório mas estável por produto,
+// só para efeito visual de urgência na vitrine (não reflete estoque real).
+function estoqueRestante(codigo) {
+  let hash = 0;
+  for (let i = 0; i < (codigo || '').length; i++) hash = (hash * 31 + codigo.charCodeAt(i)) >>> 0;
+  return 2 + (hash % 8); // entre 2 e 9
+}
+
 // ---------- Card HTML reutilizável (grade da loja, destaques) ----------
 export function productCardHTML(produto, opts = {}) {
-  const { showFreteBadge = false } = opts;
+  const { showFreteBadge = false, showStock = false, buyLabel = 'Adicionar ao Carrinho' } = opts;
   const fotos = Array.isArray(produto.fotos) ? produto.fotos.filter(Boolean) : [];
   const capa = fotos[0] || null;
   const temPromo = produto.preco_promocional && Number(produto.preco_promocional) < Number(produto.preco);
@@ -231,6 +239,7 @@ export function productCardHTML(produto, opts = {}) {
   }).replace(/"/g, '&quot;');
 
   const parcelas = precoFinal >= 20 ? `<span class="installments">ou 3x de ${formatBRL(precoFinal / 3)} sem juros</span>` : '';
+  const stockHTML = showStock && !esgotado ? `<span class="stock-warning">Só restam ${estoqueRestante(produto.codigo)} em estoque!</span>` : '';
 
   return `
     <article class="product-card" data-cat="${produto.categoria}">
@@ -249,10 +258,11 @@ export function productCardHTML(produto, opts = {}) {
             ${formatBRL(precoFinal)}
           </div>
           ${parcelas}
+          ${stockHTML}
         </div>
       </a>
       <button type="button" class="btn-add-cart add-to-cart-btn" data-produto="${produtoJSON}" ${esgotado ? 'disabled' : ''}>
-        ${esgotado ? 'Esgotado' : 'Adicionar ao Carrinho'}
+        ${esgotado ? 'Esgotado' : buyLabel}
       </button>
     </article>
   `;
