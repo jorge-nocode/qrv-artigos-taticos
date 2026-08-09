@@ -314,6 +314,9 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 }
 .promo-slide.active{opacity:1;z-index:2;pointer-events:auto;}
 .promo-slide .container{position:relative;z-index:2;width:100%;}
+/* Slides com arte finalizada (texto/CTA já embutidos na imagem) — sem gradiente escuro por cima */
+.promo-slide.image-ready{background:var(--slide-bg) center/cover no-repeat;}
+.promo-slide-link{position:absolute;inset:0;z-index:5;}
 .promo-content{max-width:520px;}
 .promo-eyebrow{color:var(--gold-light);letter-spacing:3px;font-size:.75rem;text-transform:uppercase;margin-bottom:14px;display:block;font-family:'Oswald',sans-serif;}
 .promo-content h1{font-size:2.6rem;font-weight:700;line-height:1.2;margin-bottom:6px;color:#fff;}
@@ -345,6 +348,9 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   background-size:cover;background-position:center;border:1px solid var(--border);
 }
 .category-tile::before{content:'';position:absolute;inset:0;background:linear-gradient(0deg, rgba(6,7,4,.88), rgba(6,7,4,.15));}
+.category-tile.image-ready::before{content:none;}
+.category-tile.image-ready{transition:transform .3s ease, box-shadow .3s ease;}
+.category-tile.image-ready:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.35);}
 .category-tile-content{position:relative;z-index:2;}
 .category-tile h3{font-size:1.4rem;font-weight:700;margin-bottom:4px;}
 .category-tile span{font-size:.75rem;color:var(--gold-light);letter-spacing:1px;text-transform:uppercase;}
