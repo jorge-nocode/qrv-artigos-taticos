@@ -305,8 +305,8 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .destaques-swiper .product-card, .produtos-swiper .product-card, .lancamentos-swiper .product-card, .similares-swiper .product-card{height:100%;}
 
 /* ---------- Banner promocional / carrossel automático (topo da home) ---------- */
-.promo-banner{position:relative;overflow:hidden;min-height:56vh;}
-.promo-slides{position:relative;width:100%;height:56vh;min-height:420px;}
+.promo-banner{position:relative;overflow:hidden;}
+.promo-slides{position:relative;width:100%;aspect-ratio:2.34/1;max-height:600px;}
 .promo-slide{
   position:absolute;inset:0;display:flex;align-items:center;opacity:0;z-index:1;
   background:linear-gradient(115deg, rgba(6,7,4,.88) 30%, rgba(6,7,4,.35) 75%), var(--slide-bg, url('hero-tatico.jpg')) center/cover no-repeat;
@@ -315,7 +315,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .promo-slide.active{opacity:1;z-index:2;pointer-events:auto;}
 .promo-slide .container{position:relative;z-index:2;width:100%;}
 /* Slides com arte finalizada (texto/CTA já embutidos na imagem) — sem gradiente escuro por cima */
-.promo-slide.image-ready{background:var(--slide-bg) center/cover no-repeat;}
+.promo-slide.image-ready{background-position:center;background-size:cover;background-repeat:no-repeat;}
 .promo-slide-link{position:absolute;inset:0;z-index:5;}
 .promo-content{max-width:520px;}
 .promo-eyebrow{color:var(--gold-light);letter-spacing:3px;font-size:.75rem;text-transform:uppercase;margin-bottom:14px;display:block;font-family:'Oswald',sans-serif;}
@@ -345,7 +345,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .category-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
 .category-tile{
   position:relative;height:220px;border-radius:8px;overflow:hidden;display:flex;align-items:flex-end;padding:26px;
-  background-size:cover;background-position:center;border:1px solid var(--border);
+  background-size:cover;background-position:center;background-repeat:no-repeat;border:1px solid var(--border);
 }
 .category-tile::before{content:'';position:absolute;inset:0;background:linear-gradient(0deg, rgba(6,7,4,.88), rgba(6,7,4,.15));}
 .category-tile.image-ready::before{content:none;}
