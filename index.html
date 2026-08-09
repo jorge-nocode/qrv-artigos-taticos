@@ -257,6 +257,7 @@
           <button class="car-btn" id="lancPrev">&#8592;</button>
           <button class="car-btn" id="lancNext">&#8594;</button>
         </div>
+        <div class="swiper-pagination" id="lancPagination"></div>
       </div>
     </div>
   </section>
@@ -531,16 +532,21 @@
   let lancamentosSwiper;
   function initLancamentosSwiper() {
     if (lancamentosSwiper) lancamentosSwiper.destroy(true, true);
+    const slideCount = document.querySelectorAll('#lancamentosTrack .swiper-slide').length;
     lancamentosSwiper = new Swiper('.lancamentos-swiper', {
-      effect: 'coverflow',
       grabCursor: true,
-      centeredSlides: true,
-      loop: true,
-      slidesPerView: 'auto',
-      spaceBetween: 20,
-      coverflowEffect: { rotate: 0, stretch: 0, depth: 160, modifier: 1.1, slideShadows: false },
+      centeredSlides: false,
+      loop: slideCount > 4,
+      slidesPerView: 1.15,
+      spaceBetween: 22,
+      breakpoints: {
+        640: { slidesPerView: 2, spaceBetween: 22 },
+        960: { slidesPerView: 3, spaceBetween: 24 },
+        1200: { slidesPerView: 4, spaceBetween: 26 },
+      },
       autoplay: { delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true },
       navigation: { nextEl: '#lancNext', prevEl: '#lancPrev' },
+      pagination: { el: '#lancPagination', clickable: true },
     });
   }
   window.initLancamentosSwiper = initLancamentosSwiper;

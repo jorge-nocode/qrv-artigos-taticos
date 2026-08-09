@@ -296,13 +296,25 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 }
 .car-btn:hover{background:var(--gold);color:#141210;border-color:var(--gold);transform:scale(1.08);}
 
-.destaques-swiper, .produtos-swiper, .lancamentos-swiper, .similares-swiper{width:100%;padding:20px 0 50px;}
-.destaques-swiper .swiper-slide, .produtos-swiper .swiper-slide, .lancamentos-swiper .swiper-slide, .similares-swiper .swiper-slide{
+.destaques-swiper, .produtos-swiper, .similares-swiper{width:100%;padding:20px 0 50px;}
+.destaques-swiper .swiper-slide, .produtos-swiper .swiper-slide, .similares-swiper .swiper-slide{
   width:min(76vw, 340px);max-width:340px;opacity:.4;filter:blur(1px) saturate(.75);
   transition:opacity .4s ease, filter .4s ease;
 }
-.destaques-swiper .swiper-slide-active, .produtos-swiper .swiper-slide-active, .lancamentos-swiper .swiper-slide-active, .similares-swiper .swiper-slide-active{opacity:1;filter:none;}
-.destaques-swiper .product-card, .produtos-swiper .product-card, .lancamentos-swiper .product-card, .similares-swiper .product-card{height:100%;}
+.destaques-swiper .swiper-slide-active, .produtos-swiper .swiper-slide-active, .similares-swiper .swiper-slide-active{opacity:1;filter:none;}
+.destaques-swiper .product-card, .produtos-swiper .product-card, .similares-swiper .product-card{height:100%;}
+
+/* Lançamentos: grade normal (sem blur/coverflow), cards no tamanho padrão do site */
+.lancamentos-swiper{width:100%;padding:6px 0 46px;}
+.lancamentos-swiper .swiper-slide{height:auto;opacity:1;filter:none;}
+.lancamentos-swiper .product-card{height:100%;display:flex;flex-direction:column;}
+.lancamentos-swiper .product-card > a{flex:1;display:flex;flex-direction:column;}
+.lancamentos-swiper .product-body{flex:1;display:flex;flex-direction:column;}
+#lancPagination.swiper-pagination{position:relative;margin-top:18px;display:flex;justify-content:center;gap:6px;}
+#lancPagination .swiper-pagination-bullet{background:var(--border);opacity:1;width:8px;height:8px;margin:0;}
+#lancPagination .swiper-pagination-bullet-active{background:var(--gold);}
+.lancamentos-swiper .btn-add-cart{background:#141210;border-color:#141210;color:#fff;}
+.lancamentos-swiper .btn-add-cart:hover{background:#000;border-color:#000;color:#fff;}
 
 /* ---------- Banner promocional / carrossel automático (topo da home) ---------- */
 .promo-banner{position:relative;overflow:hidden;}
