@@ -8,7 +8,7 @@
 <link rel="apple-touch-icon" href="assets/favicon-192.png">
 <link rel="shortcut icon" href="assets/favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fale Conosco | MCJ Capital Invest</title>
+<title>Alugar Imóveis de Alto Padrão | MCJ Capital Invest</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
@@ -39,9 +39,9 @@
         <ul>
           <li><a href="quem-somos.html">Quem somos</a></li>
           <li><a href="comprar.html">Comprar</a></li>
-          <li><a href="alugar.html">Alugar</a></li>
+          <li><a href="alugar.html" class="active">Alugar</a></li>
           <li><a href="anunciar.html">Anunciar</a></li>
-          <li><a href="contato.html" class="active">Fale Conosco</a></li>
+          <li><a href="contato.html">Fale Conosco</a></li>
         </ul>
       </nav>
     </div>
@@ -65,59 +65,53 @@
   </section>
 
   <section class="section tight">
-    <div class="container" style="max-width:1080px;">
+    <div class="container">
       <div class="gold-rule"></div>
-      <h1 class="section-title" style="text-align:left;">Fale com um Corretor</h1>
-      <p style="color:var(--text-muted);margin-bottom:36px;max-width:640px;">
-        Tem interesse em algum imóvel ou quer entender melhor o mercado de alto padrão? Preencha o formulário
-        e um de nossos corretores entra em contato com você.
-      </p>
+      <h2 class="section-title">Imóveis para Alugar</h2>
+      <p class="section-sub">Locações de alto padrão, residenciais e comerciais, prontas para você.</p>
 
-      <div class="detail-grid">
-        <div class="detail-main">
-          <div class="contact-card" style="max-width:none;">
-            <h4 style="text-align:left;">Envie sua Mensagem</h4>
-            <p class="sub" style="text-align:left;">Respondemos em até 1 dia útil</p>
-            <form id="contatoForm">
-              <div class="form-group">
-                <div class="field"><label>Nome *</label><input type="text" name="nome" placeholder="Seu nome" required></div>
-              </div>
-              <div class="form-row form-group">
-                <div class="field"><label>E-mail *</label><input type="email" name="email" placeholder="seu@email.com" required></div>
-                <div class="field"><label>Telefone / WhatsApp *</label><input type="tel" name="telefone" placeholder="(11) 90000-0000" required></div>
-              </div>
-              <div class="form-group">
-                <div class="field"><label>Mensagem *</label><textarea name="mensagem" placeholder="Como podemos ajudar?" required></textarea></div>
-              </div>
-              <button type="submit" class="btn-gold" id="submitBtn">Enviar Mensagem</button>
-              <a href="https://wa.me/5511999990542" target="_blank" rel="noopener" class="btn-whatsapp">
-                <svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor"><path d="M16.02 3C9.4 3 4 8.38 4 15c0 2.36.7 4.55 1.9 6.4L4 29l7.8-1.85A11.9 11.9 0 0 0 16.02 27C22.65 27 28 21.62 28 15S22.65 3 16.02 3zm0 21.7c-1.98 0-3.83-.55-5.4-1.5l-.39-.23-4.63 1.1 1.1-4.5-.25-.4A9.63 9.63 0 0 1 5 15c0-6.07 5-11 11.02-11S27 8.93 27 15s-4.98 9.7-10.98 9.7z"/></svg>
-                Ou fale pelo WhatsApp
-              </a>
-              <p id="contatoStatus" style="font-size:.8rem;color:var(--gold-light);margin-top:14px;display:none;"></p>
-            </form>
+      <div class="property-grid" id="propertyGrid">
+        <article class="property-card example-card">
+          <div class="property-photo"><span class="badge op">Locação</span>
+            <div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div>
           </div>
-        </div>
-
-        <aside>
-          <div class="contact-card">
-            <h4>Nosso Escritório</h4>
-            <p class="sub">Av. Paulista, 1159 · Conj. 1005<br>Bela Vista · São Paulo - SP</p>
-            <p style="color:var(--text-muted);font-size:.82rem;line-height:1.7;margin-bottom:18px;">
-              Segunda a Sexta-feira, das 09h às 18h (BRT)<br>
-              <strong style="color:var(--gold-light);">E-mail:</strong> marciocjorge@terra.com.br
-            </p>
-            <a href="https://wa.me/5511999990542" target="_blank" rel="noopener" class="btn-whatsapp">
-              <svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor"><path d="M16.02 3C9.4 3 4 8.38 4 15c0 2.36.7 4.55 1.9 6.4L4 29l7.8-1.85A11.9 11.9 0 0 0 16.02 27C22.65 27 28 21.62 28 15S22.65 3 16.02 3zm0 21.7c-1.98 0-3.83-.55-5.4-1.5l-.39-.23-4.63 1.1 1.1-4.5-.25-.4A9.63 9.63 0 0 1 5 15c0-6.07 5-11 11.02-11S27 8.93 27 15s-4.98 9.7-10.98 9.7z"/></svg>
-              Fale pelo WhatsApp
-            </a>
+          <div class="property-body">
+            <h3>Fly Mall Santana</h3>
+            <p class="loc">Av. Braz Leme · 5.017m² de área comercial</p>
+            <div class="property-meta"><span>&#128663; 52 Vagas</span><span>&#127970; Localização Estratégica</span></div>
+            <div class="property-price">Consulte valores</div>
           </div>
-        </aside>
+        </article>
+        <article class="property-card example-card">
+          <div class="property-photo"><span class="badge op">Locação</span>
+            <div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div>
+          </div>
+          <div class="property-body">
+            <h3>Imóvel Comercial Premium na Penha</h3>
+            <p class="loc">Localização Estratégica · 412m²</p>
+            <div class="property-meta"><span>&#127970; Alto Potencial Corporativo</span></div>
+            <div class="property-price">R$ 125.000,00</div>
+          </div>
+        </article>
+        <article class="property-card example-card">
+          <div class="property-photo"><span class="badge op">Locação</span>
+            <div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div>
+          </div>
+          <div class="property-body">
+            <h3>Prédio Comercial na Rua Henrique Schaumann</h3>
+            <p class="loc">1.803m² · 8 andares</p>
+            <div class="property-meta"><span>&#127970; Localização Estratégica</span></div>
+            <div class="property-price">R$ 93.000,00</div>
+          </div>
+        </article>
+      </div>
+      <div class="empty-list" id="emptyList" style="display:none;text-align:center;color:var(--text-muted);padding:60px 20px;">
+        Nenhum imóvel para alugar cadastrado no momento. Volte em breve!
       </div>
     </div>
   </section>
 
-  <footer id="contato-footer">
+  <footer id="contato">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">
@@ -176,37 +170,30 @@
 <script src="assets/site.js"></script>
 <script type="module" src="assets/theme.js"></script>
 <script type="module">
-  import { submitMensagemContato } from './assets/supabase-client.js';
+  import { fetchImoveis, propertyCardHTML } from './assets/supabase-client.js';
 
-  const contatoForm = document.getElementById('contatoForm');
-  const submitBtn = document.getElementById('submitBtn');
-  const contatoStatus = document.getElementById('contatoStatus');
+  const params = new URLSearchParams(window.location.search);
 
-  contatoForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Enviando...';
-
-    const fd = new FormData(contatoForm);
-    try {
-      await submitMensagemContato({
-        nome: fd.get('nome').trim(),
-        email: fd.get('email').trim(),
-        telefone: fd.get('telefone').trim(),
-        mensagem: fd.get('mensagem').trim(),
-      });
-      contatoForm.reset();
-      contatoStatus.style.display = 'block';
-      contatoStatus.textContent = 'Mensagem enviada! Em breve entraremos em contato.';
-    } catch (err) {
-      contatoStatus.style.display = 'block';
-      contatoStatus.style.color = '#e88';
-      contatoStatus.textContent = 'Não foi possível enviar agora. Tente novamente em instantes.';
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Enviar Mensagem';
+  async function loadImoveis() {
+    const imoveis = await fetchImoveis({
+      finalidade: 'alugar',
+      tipo: params.get('tipo') || undefined,
+      bairro: params.get('bairro') || undefined,
+      quartosMin: params.get('quartos') || undefined,
+      valorMax: params.get('valor_max') || undefined,
+      codigo: params.get('codigo') || undefined,
+    });
+    const grid = document.getElementById('propertyGrid');
+    const emptyList = document.getElementById('emptyList');
+    grid.querySelectorAll('.example-card').forEach(el => el.remove());
+    if (imoveis.length > 0) {
+      grid.insertAdjacentHTML('beforeend', imoveis.map(propertyCardHTML).join(''));
+    } else if (emptyList) {
+      emptyList.style.display = 'block';
+      emptyList.textContent = 'Nenhum imóvel encontrado com os filtros selecionados.';
     }
-  });
+  }
+  loadImoveis();
 </script>
 </body>
 </html>
