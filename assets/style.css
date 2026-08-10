@@ -76,9 +76,11 @@ img{max-width:100%;display:block;}
 .container{max-width:1200px;margin:0 auto;padding:0 24px;}
 ul{list-style:none;}
 
-/* Top bar */
-.topbar{background:var(--topbar-bg);border-bottom:1px solid var(--border);font-size:.8rem;color:#a3a396;}
-.topbar .container{display:flex;justify-content:space-between;align-items:center;height:42px;flex-wrap:wrap;}
+/* Top bar — tamanho fixo em px (não usa rem) pra não crescer junto com o
+   aumento geral da fonte do site; essa linha continua compacta e numa
+   linha só, como era antes. */
+.topbar{background:var(--topbar-bg);border-bottom:1px solid var(--border);font-size:12.8px;color:#a3a396;}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;height:42px;flex-wrap:nowrap;}
 .topbar .left{display:flex;gap:24px;}
 .topbar .left span{display:flex;align-items:center;gap:6px;}
 .topbar .right{display:flex;gap:18px;align-items:center;}
@@ -102,10 +104,10 @@ header.main{
   position:sticky;top:0;z-index:50;
   transition:background .25s ease;
 }
-header.main .container{display:flex;align-items:center;justify-content:space-between;height:104px;gap:16px;}
+header.main .container{display:flex;align-items:center;justify-content:space-between;height:150px;gap:16px;}
 .header-left{display:flex;align-items:center;gap:12px;flex:0 0 auto;}
 .mini-logo{display:flex;align-items:center;white-space:nowrap;}
-.mini-logo img{height:80px;width:80px;border-radius:50%;object-fit:cover;display:block;}
+.mini-logo img{height:116px;width:116px;border-radius:50%;object-fit:cover;display:block;}
 .logo{font-family:'Oswald',sans-serif;font-size:1.5rem;letter-spacing:2px;font-weight:600;color:var(--text);text-transform:uppercase;}
 .logo span{color:var(--gold);}
 .logo small{display:block;font-family:'Poppins',sans-serif;font-size:.55rem;letter-spacing:3px;color:var(--text-muted);font-weight:400;text-transform:uppercase;}
@@ -664,8 +666,8 @@ footer h4{color:var(--gold-light);}
   .topbar .right{width:100%;justify-content:center;flex-wrap:wrap;gap:10px 14px;padding:6px 0;}
   .topbar .right a{font-size:.7rem;}
   .logo-img{height:48px;}
-  header.main .container{height:82px;}
-  .mini-logo img{height:60px;width:60px;}
+  header.main .container{height:112px;}
+  .mini-logo img{height:88px;width:88px;}
   .car-btn{width:38px;height:38px;font-size:1rem;}
   .carousel-nav{padding:0 2px;}
 
