@@ -59,6 +59,9 @@
 }
 :root[data-theme="light"] .badge.op{color:var(--text);border-color:rgba(24,24,27,.2);background:rgba(255,255,255,.75);}
 
+/* Fonte base maior em todo o site — a maioria dos tamanhos abaixo usa rem,
+   então subir a base aumenta proporcionalmente o texto inteiro da loja. */
+html{font-size:18.5px;}
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:'Poppins',sans-serif;
@@ -99,17 +102,17 @@ header.main{
   position:sticky;top:0;z-index:50;
   transition:background .25s ease;
 }
-header.main .container{display:flex;align-items:center;justify-content:space-between;height:76px;gap:16px;}
+header.main .container{display:flex;align-items:center;justify-content:space-between;height:104px;gap:16px;}
 .header-left{display:flex;align-items:center;gap:12px;flex:0 0 auto;}
 .mini-logo{display:flex;align-items:center;white-space:nowrap;}
-.mini-logo img{height:46px;width:46px;border-radius:50%;object-fit:cover;display:block;}
+.mini-logo img{height:80px;width:80px;border-radius:50%;object-fit:cover;display:block;}
 .logo{font-family:'Oswald',sans-serif;font-size:1.5rem;letter-spacing:2px;font-weight:600;color:var(--text);text-transform:uppercase;}
 .logo span{color:var(--gold);}
 .logo small{display:block;font-family:'Poppins',sans-serif;font-size:.55rem;letter-spacing:3px;color:var(--text-muted);font-weight:400;text-transform:uppercase;}
 .header-actions{flex:0 0 auto;display:flex;align-items:center;gap:26px;min-width:0;}
 nav.primary{min-width:0;flex:1;display:flex;justify-content:center;}
 nav.primary ul{display:flex;gap:clamp(12px,1.6vw,26px);flex-wrap:nowrap;white-space:nowrap;align-items:center;}
-nav.primary a{font-size:.78rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);transition:color .2s;white-space:nowrap;font-family:'Oswald',sans-serif;}
+nav.primary a{font-size:.92rem;letter-spacing:1px;text-transform:uppercase;color:var(--text-muted);transition:color .2s;white-space:nowrap;font-family:'Oswald',sans-serif;}
 nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;}
 .menu-toggle span{width:26px;height:2px;background:var(--gold);}
@@ -259,9 +262,9 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .badge.esgotado{left:auto;right:14px;top:auto;bottom:14px;background:rgba(165,50,42,.85);color:#fff;border:none;}
 .badge.frete{background:linear-gradient(135deg,var(--olive-light),var(--olive));color:#fff;}
 .product-body{padding:14px 0 0;}
-.product-body h3{font-family:'Oswald',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:4px;text-transform:none;letter-spacing:.2px;}
+.product-body h3{font-family:'Oswald',sans-serif;font-size:1.25rem;font-weight:600;margin-bottom:4px;text-transform:none;letter-spacing:.2px;}
 .product-body .loc{font-size:.76rem;color:var(--gold-light);margin-bottom:12px;letter-spacing:.4px;display:none;}
-.product-price{font-size:1.15rem;font-weight:700;color:var(--gold-light);font-family:'Oswald',sans-serif;margin-top:6px;display:block;}
+.product-price{font-size:1.35rem;font-weight:700;color:var(--gold-light);font-family:'Oswald',sans-serif;margin-top:6px;display:block;}
 .price-old{display:block;font-size:.8rem;color:var(--text-muted);text-decoration:line-through;font-weight:400;font-family:'Poppins',sans-serif;}
 .installments{display:block;font-size:.72rem;color:var(--text-muted);margin-top:4px;}
 .stock-warning{display:none;}
@@ -661,6 +664,8 @@ footer h4{color:var(--gold-light);}
   .topbar .right{width:100%;justify-content:center;flex-wrap:wrap;gap:10px 14px;padding:6px 0;}
   .topbar .right a{font-size:.7rem;}
   .logo-img{height:48px;}
+  header.main .container{height:82px;}
+  .mini-logo img{height:60px;width:60px;}
   .car-btn{width:38px;height:38px;font-size:1rem;}
   .carousel-nav{padding:0 2px;}
 

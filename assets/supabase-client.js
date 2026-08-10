@@ -12,7 +12,7 @@ export const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 export const FOTOS_BUCKET = 'produtos-fotos';
 
 // ⚠️ SUBSTITUA pelo número de WhatsApp da loja (com DDI+DDD, só números).
-export const WHATSAPP_NUMERO = '5511998703836';
+export const WHATSAPP_NUMERO = '5511993217675';
 
 // ---------- Formatação ----------
 export function formatBRL(value) {

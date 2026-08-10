@@ -24,7 +24,7 @@
 // Cole sua chave na linha abaixo:
 const GEMINI_API_KEY = 'COLE_SUA_CHAVE_DO_GEMINI_AQUI';
 
-const WHATSAPP_NUMERO = '5511998703836'; // (11) 99870-3836
+const WHATSAPP_NUMERO = '5511993217675'; // (11) 99321-7675
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMERO}`;
 
 const MODEL_CANDIDATES = ['gemini-flash-latest', 'gemini-2.5-flash', 'gemini-1.5-flash'];
@@ -39,7 +39,7 @@ Responda sempre em português do Brasil, em mensagens curtas e objetivas (isto �
 • Envios: frete e entrega para todo o Brasil.
 • Parcelamento: até 3x sem juros no cartão.
 • Bordados: fazem bordados personalizados sob encomenda (nome de guerra, tipo sanguíneo, insígnias, revenda).
-• Contato direto / WhatsApp: (11) 99870-3836 | e-mail contato@qrvartigostaticos.com.br
+• Contato direto / WhatsApp: (11) 99321-7675 | e-mail contato@qrvartigostaticos.com.br
 • Catálogo / destaques: jaquetas impermeáveis, camisas combat ripstop, mochilas assault e paraquedista, coturnos em couro/cordura, óculos solares táticos Focus, calçados e cutelaria.
 
 === DIRECIONAMENTO PARA O WHATSAPP ===
