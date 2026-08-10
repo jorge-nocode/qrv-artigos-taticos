@@ -44,6 +44,22 @@ export function whatsappLink(produto) {
   return `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(texto)}`;
 }
 
+// ---------- Configurações do site (tabela site_config: chave/valor) ----------
+// Usado para guardar a chave da API do Gemini do chat "Recruta QRV" — assim
+// ela é editável direto no Admin (aba de produtos) sem precisar mexer em
+// código nem fazer commit/redeploy. A tabela tem leitura pública (o widget
+// de chat roda em páginas públicas, sem login) e escrita restrita ao admin
+// via RLS — rode supabase-site-config.sql uma vez no SQL Editor para criá-la.
+export async function getSiteConfig(chave) {
+  const { data, error } = await supabase.from('site_config').select('valor').eq('chave', chave).maybeSingle();
+  if (error || !data) return '';
+  return data.valor || '';
+}
+
+export async function setSiteConfig(chave, valor) {
+  return supabase.from('site_config').upsert({ chave, valor }, { onConflict: 'chave' });
+}
+
 // ---------- Busca lista de produtos ativos (com filtros opcionais) ----------
 export async function fetchProdutos({ categoria, corporacao, destaque, limit, precoMax, busca, codigo } = {}) {
   let query = supabase.from('produtos').select('*').eq('status', 'ativo').order('created_at', { ascending: false });

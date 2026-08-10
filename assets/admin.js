@@ -1,4 +1,4 @@
-import { supabase, FOTOS_BUCKET, formatBRL, descricaoToHTML, sanitizeDescricao, labelCategoria } from './supabase-client.js';
+import { supabase, FOTOS_BUCKET, formatBRL, descricaoToHTML, sanitizeDescricao, labelCategoria, getSiteConfig, setSiteConfig } from './supabase-client.js';
 import { getGeminiKey, setGeminiKey, generateProdutoFromText } from './gemini-ai.js';
 import { PRODUTOS_CATALOGO_SEED } from './produtos-catalogo-seed.js';
 
@@ -118,6 +118,44 @@ function applyAIResult(d) {
 }
 
 refreshApiKeyStatus();
+
+// ---------- Chave do Gemini usada pelo chat público "Recruta QRV" ----------
+// Ao contrário da chave acima (só neste navegador), esta fica salva na
+// tabela site_config do Supabase e é lida por assets/chatbot.js em
+// qualquer página pública, para qualquer visitante — sem precisar editar
+// código. Requer ter rodado supabase-site-config.sql uma vez no projeto.
+const chatGeminiApiKeyInput = document.getElementById('chatGeminiApiKey');
+const saveChatApiKeyBtn = document.getElementById('saveChatApiKeyBtn');
+const chatApiKeyStatus = document.getElementById('chatApiKeyStatus');
+
+async function refreshChatApiKeyStatus() {
+  try {
+    const key = await getSiteConfig('chatbot_gemini_key');
+    chatGeminiApiKeyInput.value = key || '';
+    chatApiKeyStatus.textContent = key ? 'Chave salva ✓' : '';
+  } catch {
+    chatApiKeyStatus.textContent = '';
+  }
+}
+
+if (saveChatApiKeyBtn) {
+  saveChatApiKeyBtn.addEventListener('click', async () => {
+    const key = chatGeminiApiKeyInput.value.trim();
+    if (!key) {
+      showToast('Cole uma chave válida antes de salvar.', true);
+      return;
+    }
+    const { error } = await setSiteConfig('chatbot_gemini_key', key);
+    if (error) {
+      showToast('Erro ao salvar (rode supabase-site-config.sql no Supabase se ainda não rodou): ' + error.message, true);
+      return;
+    }
+    chatApiKeyStatus.textContent = 'Chave salva ✓';
+    showToast('Chave do chat salva! Já vale para todos os visitantes do site.');
+  });
+}
+
+refreshChatApiKeyStatus();
 
 // ---------- Auth ----------
 async function checkSession() {

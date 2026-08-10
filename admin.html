@@ -69,6 +69,16 @@
         <p class="ai-key-hint">Sua chave fica salva somente neste navegador. Gere uma gratuita em <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>.</p>
       </div>
 
+      <div class="ai-key-box">
+        <label for="chatGeminiApiKey">Chave da API do Google Gemini (usada pelo chat "Recruta QRV" no site)</label>
+        <div class="ai-key-row">
+          <input type="password" id="chatGeminiApiKey" placeholder="Cole a chave aqui (ex: AIza... ou AQ...)">
+          <button type="button" class="btn-sm" id="saveChatApiKeyBtn">Salvar</button>
+          <span class="ai-key-status" id="chatApiKeyStatus"></span>
+        </div>
+        <p class="ai-key-hint">Diferente da chave acima, esta fica salva no banco de dados e vale para TODOS os visitantes que conversarem com o chat — não precisa mexer em código nem no GitHub. Recomendo gerar uma chave dedicada só para o chat em <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>.</p>
+      </div>
+
       <div class="admin-tabs">
         <button class="admin-tab-btn active" id="tabList">Todos os Produtos</button>
         <button class="admin-tab-btn" id="tabNew">+ Novo Produto</button>

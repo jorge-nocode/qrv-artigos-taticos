@@ -4,11 +4,18 @@
 // =====================================================================
 //
 // IMPORTANTE SOBRE A CHAVE DE API (leia antes de publicar):
-// Este é um site 100% estático, sem backend — qualquer chave colocada
-// aqui embaixo fica visível para QUALQUER visitante que abrir o
-// código-fonte da página (Ctrl+U) ou inspecionar as requisições de rede.
-// Isso significa que, em teoria, alguém poderia copiar essa chave e
-// gerar cobranças na sua conta do Google.
+// Este é um site 100% estático, sem backend — qualquer chave usada aqui
+// fica visível para QUALQUER visitante que inspecionar as requisições
+// de rede. Isso significa que, em teoria, alguém poderia copiar essa
+// chave e gerar cobranças na sua conta do Google.
+//
+// Por isso a chave NÃO fica mais escrita neste arquivo (evita também o
+// bloqueio de "secret scanning" do GitHub que você viu ao commitar).
+// Ela agora é cadastrada pelo Admin (painel do site → campo "Chave da
+// API do Gemini do Chat"), salva na tabela `site_config` do Supabase
+// (rode supabase-site-config.sql uma vez para criar essa tabela) e lida
+// aqui em tempo real. Pra trocar a chave no futuro, basta colar uma
+// nova no Admin e salvar — sem editar código, sem commit, sem redeploy.
 //
 // Para publicar com segurança, faça isto no Google AI Studio / Google
 // Cloud Console (é rápido, uma vez só):
@@ -20,9 +27,9 @@
 //      o domínio do site (ex: https://qrv-artigos-taticos.vercel.app/*)
 //      pra chave só funcionar quando chamada a partir do seu site.
 //   4. Defina uma cota diária baixa nessa chave, como trava de segurança.
-//
-// Cole sua chave na linha abaixo:
-const GEMINI_API_KEY = 'COLE_SUA_CHAVE_DO_GEMINI_AQUI';
+import { getSiteConfig } from './supabase-client.js';
+
+let GEMINI_API_KEY = '';
 
 const WHATSAPP_NUMERO = '5511993217675'; // (11) 99321-7675
 const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMERO}`;
@@ -135,6 +142,13 @@ async function callGeminiChat(history) {
 function initChatWidget() {
   document.body.insertAdjacentHTML('beforeend', buildWidgetHTML());
 
+  // Busca a chave salva pelo Admin assim que a página carrega (não bloqueia
+  // a exibição do widget — só precisa estar pronta até o visitante mandar
+  // a primeira mensagem).
+  getSiteConfig('chatbot_gemini_key')
+    .then(key => { GEMINI_API_KEY = key || ''; })
+    .catch(() => { GEMINI_API_KEY = ''; });
+
   const fab = document.getElementById('qrvChatFab');
   const win = document.getElementById('qrvChatWindow');
   const closeBtn = document.getElementById('qrvChatClose');
@@ -190,7 +204,12 @@ function initChatWidget() {
     const text = input.value.trim();
     if (!text || sending) return;
 
-    if (!GEMINI_API_KEY || GEMINI_API_KEY === 'COLE_SUA_CHAVE_DO_GEMINI_AQUI') {
+    if (!GEMINI_API_KEY) {
+      // Pode ser que a busca da chave ainda esteja em andamento (rede lenta) —
+      // tenta buscar de novo uma vez antes de desistir.
+      GEMINI_API_KEY = await getSiteConfig('chatbot_gemini_key').catch(() => '');
+    }
+    if (!GEMINI_API_KEY) {
       addMessage('user', text);
       input.value = '';
       addMessage('error', `Positivo, mas ainda não estou com o rádio conectado (chave da API não configurada). Fala direto com a equipe pelo WhatsApp: ${WHATSAPP_LINK}`);
