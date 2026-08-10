@@ -33,33 +33,28 @@ Analise o texto abaixo e retorne SOMENTE um objeto JSON válido (sem markdown, s
   "cores": array de strings com as cores mencionadas (array vazio se não houver),
   "preco": number (apenas números, sem "R$" ou pontos de milhar),
   "personalizavel": boolean (true se o produto permite/exige bordado de nome de guerra, tipo sanguíneo ou identificação personalizada),
-  "descricao": string em MARKDOWN (não HTML) — siga ESTRITAMENTE as instruções de tom, estilo e estrutura descritas abaixo.
+  "descricao": string em HTML puro (não Markdown) — siga ESTRITAMENTE as instruções de tom, estilo e estrutura descritas abaixo.
 }
 
 ============================================================
 INSTRUÇÕES OBRIGATÓRIAS PARA O CAMPO "descricao"
 ============================================================
 
-Tom de voz: técnico, direto e confiável — texto de e-commerce especializado em equipamentos táticos e militares, para um público que entende do assunto (policiais, militares, recrutas, colecionadores, entusiastas). Nunca use tom informal excessivo nem linguagem de marketing genérica; foque em material, funcionalidade, resistência e uso prático. Reescreva e enriqueça o conteúdo mesmo que o texto original seja curto, sem inventar especificações técnicas que não foram informadas.
+Tom de voz: técnico, direto e confiável — texto de e-commerce especializado em equipamentos táticos e militares, para um público que entende do assunto (policiais, militares, recrutas, colecionadores, entusiastas). Nunca use tom informal excessivo nem linguagem de marketing genérica; foque em material, funcionalidade, resistência e uso prático/operacional. Reescreva e enriqueça o conteúdo mesmo que o texto original seja curto, sem inventar especificações técnicas que não foram informadas.
 
-Formate a resposta em MARKDOWN simples, seguindo exatamente esta sintaxe (o site converte isso em HTML automaticamente):
-- Use "### Nome do Título" para cada título de seção.
-- Use "---" (três traços sozinhos em uma linha) como linha divisória entre cada seção.
-- Use "**palavra**" para negrito nas características de maior impacto (ex: "**Ripstop 100% poliéster**", "**resistente a rasgos**").
-- Use "•" no início da linha para cada item de lista.
-- Não use HTML, não use blocos de código, não use markdown de outros tipos.
+Formate a resposta em HTML puro, usando SOMENTE estas tags: <p>, <h3>, <strong>, <ul>, <li>, <hr>. Nada de markdown (sem "###", sem "**", sem "•"), nada de <html>/<head>/<body>, nada de classes ou estilos inline, nada de texto fora dessas tags.
 
 Estrutura obrigatória, exatamente nesta ordem:
 
-1. "### Sobre o Produto" seguido de um parágrafo direto apresentando o produto, seu uso principal e para quem é indicado.
+1. Um único <p> abrindo com o nome do produto em <strong> seguido de um parágrafo introdutório marcante, direto, que já comunica a proposta de valor do equipamento (ex: "<p><strong>Combat Shirt Ripstop Multicam</strong> foi desenvolvida para quem não pode falhar em campo...</p>").
 
-2. "---" e depois "### Características Técnicas" seguido de uma lista de tópicos com "•" (material, tecido/liga, resistência, compatibilidade com fardamento, país/corporação de referência quando aplicável).
+2. <hr> e depois <h3>Construção e Materiais de Alta Resistência</h3> seguido de um <ul> com <li> destacando em <strong> os termos técnicos de maior impacto (ex: "<li><strong>Tecido Ripstop</strong>: resistente a rasgos e cortes, essencial para o uso diário em campo.</li>", também cobrindo Cordura, costuras reforçadas/travadas, tratamento hidrorrepelente, ferragens e fivelas, conforme o que se aplicar ao produto).
 
-3. "---" e depois "### Diferenciais" seguido de uma lista de tópicos com "•" destacando pontos fortes (durabilidade, conforto, acabamento, praticidade).
+3. <hr> e depois <h3>Ergonomia e Funcionalidade Operacional</h3> seguido de um <ul> com <li> em <strong> sobre caimento, ajuste, mobilidade, bolsos/compartimentos, ventilação, compatibilidade com colete/fardamento — o que fizer sentido para o produto.
 
-4. "---" e depois "### Informações Adicionais" seguido de uma lista de tópicos com "•" resumindo: Categoria, Corporação (se houver), Tamanhos disponíveis (se houver), Personalização (se aplicável). Use exatamente os dados fornecidos no texto original — não invente valores.
+4. <hr> e depois <h3>Diferenciais do Equipamento</h3> seguido de um <ul> com <li> focados em uso tático, missões, rotina operacional, EDC (everyday carry) e durabilidade a longo prazo.
 
-Regra adicional: se alguma informação necessária para uma seção não existir no texto original, escreva a seção mesmo assim de forma genérica e coerente (sem inventar fatos específicos), nunca omita uma seção da estrutura.
+Regra adicional: se alguma informação necessária para uma seção não existir no texto original, escreva a seção mesmo assim de forma genérica e coerente para a categoria do produto (sem inventar especificações técnicas específicas, como medidas ou composições exatas, que não foram informadas), nunca omita uma seção da estrutura.
 
 Se alguma informação não estiver no texto, use "" para textos e array vazio para listas nos outros campos do JSON (fora da descrição) — nunca invente dados factuais que não estejam no texto original.
 
