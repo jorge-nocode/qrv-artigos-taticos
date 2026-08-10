@@ -218,7 +218,7 @@ function estoqueRestante(codigo) {
 
 // ---------- Card HTML reutilizável (grade da loja, destaques) ----------
 export function productCardHTML(produto, opts = {}) {
-  const { showFreteBadge = false, showStock = false, buyLabel = 'Adicionar ao Carrinho' } = opts;
+  const { showFreteBadge = false, showStock = false, buyLabel = 'Comprar' } = opts;
   const fotos = Array.isArray(produto.fotos) ? produto.fotos.filter(Boolean) : [];
   const capa = fotos[0] || null;
   const temPromo = produto.preco_promocional && Number(produto.preco_promocional) < Number(produto.preco);
