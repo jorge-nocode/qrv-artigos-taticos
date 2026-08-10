@@ -748,25 +748,40 @@ footer .footer-grid ul a, footer .footer-about p{color:var(--text-muted);}
 footer h4{color:var(--text);font-weight:700;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr 1.3fr;gap:32px;margin-bottom:36px;}
 .footer-grid-4{grid-template-columns:1.3fr 1fr 1.3fr 1.1fr;}
-/* Formas de pagamento — grid compacto de 2 linhas, ícones coloridos (cores
-   de marca, em SVG próprio, fundo transparente) dentro de um badge branco
-   com contorno sutil — não reproduz a arte oficial pixel a pixel das
-   bandeiras, só a identidade de cor/forma pra reconhecimento rápido. */
-.payment-icons{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:260px;}
+/* Formas de pagamento — grid de 5 colunas x 2 linhas, cada bandeira num
+   card branco arredondado com sombra leve (estilo "selo"), ícones coloridos
+   próprios (cores/formas de marca, não a arte oficial pixel a pixel). */
+.payment-icons{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;max-width:290px;}
 .pay-badge{
-  display:inline-flex;align-items:center;justify-content:center;height:34px;border-radius:6px;
-  background:#FFFFFF;border:1px solid var(--border);padding:4px 6px;
+  display:inline-flex;align-items:center;justify-content:center;height:36px;border-radius:8px;
+  background:#FFFFFF;border:1px solid rgba(29,29,31,.08);padding:5px 4px;
+  box-shadow:0 2px 6px rgba(20,20,15,.08);
 }
-.pay-badge svg{width:100%;height:100%;max-width:44px;}
-.security-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;}
+.pay-badge svg{width:100%;height:100%;max-width:40px;}
+@media (max-width:420px){.payment-icons{grid-template-columns:repeat(4,1fr);max-width:230px;}}
+
+/* Selos de segurança — cartão branco com sombra, ícone grande à esquerda,
+   texto em duas linhas (título forte + subtítulo pequeno), estilo selo
+   oficial de loja segura. */
+.security-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px;}
 .sec-badge{
-  display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:5px;
-  font-size:.7rem;font-weight:600;border:1px solid var(--border);color:var(--text-muted);
-  background:#FFFFFF;
+  display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:6px;
+  border:1px solid rgba(29,29,31,.08);background:#FFFFFF;box-shadow:0 2px 6px rgba(20,20,15,.08);
 }
-.sec-badge svg{width:16px;height:16px;flex:0 0 auto;}
-.sec-badge.protegida{color:#1a8a4a;border-color:rgba(26,138,74,.3);}
-.sec-badge.ssl{color:#1a6fb0;border-color:rgba(26,111,176,.3);}
+.sec-badge svg{width:26px;height:26px;flex:0 0 auto;}
+.sec-badge-text{display:flex;flex-direction:column;line-height:1.2;}
+.sec-badge-text strong{font-size:.72rem;font-weight:800;letter-spacing:.01em;}
+.sec-badge-text span{font-size:.6rem;color:var(--text-muted);font-weight:600;}
+.sec-badge.protegida svg{color:#1a8a4a;}
+.sec-badge.protegida .sec-badge-text strong{color:#1a8a4a;}
+.sec-badge.ssl svg{color:#6b6b62;}
+.sec-badge.ssl .sec-badge-text strong{color:#3d3d35;}
+.footer-contact-info{font-size:.68rem;line-height:1.6;color:var(--text-muted);margin-top:12px;}
+.footer-contact-info strong{color:var(--text);font-weight:700;}
+/* Lista "Atendimento ao Cliente" (cart/checkout/contato) — fonte reduzida
+   para ficar discreta, no padrão do resto do rodapé. */
+.footer-grid ul.contact-details li{font-size:.72rem;line-height:1.6;color:var(--text-muted);}
+.footer-grid ul.contact-details li strong{color:var(--text);font-weight:700;}
 .footer-grid h4{font-size:.82rem;color:var(--text);font-weight:700;margin-bottom:18px;}
 .footer-grid ul li{margin-bottom:11px;}
 .footer-grid ul a{color:var(--text-muted);font-size:.86rem;transition:color .2s;}
