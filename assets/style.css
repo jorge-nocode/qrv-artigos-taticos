@@ -25,9 +25,8 @@
   --card-shadow:0 14px 34px rgba(20,20,15,.08);
   --topbar-bg:#ffffff;
   --header-bg:#ffffff;
-  --footer-bg:#F8F9FA;
+  --footer-bg:#FFFFFF;
 }
-:root[data-theme="light"] header.main{border-bottom:1px solid rgba(0,0,0,.08);}
 :root[data-theme="light"] nav.primary a{color:#3d3d35;}
 :root[data-theme="light"] .product-card, :root[data-theme="light"] .feature-card,
 :root[data-theme="light"] .contact-card, :root[data-theme="light"] .cart-summary,
@@ -41,7 +40,7 @@
 :root[data-theme="light"] .field select, :root[data-theme="light"] .field input, :root[data-theme="light"] .field textarea{background:#fafaf7;}
 :root[data-theme="light"] .search-panel{background:rgba(255,255,255,.92);}
 :root[data-theme="light"] .promo-banner{background-blend-mode:normal;}
-:root[data-theme="light"] .trust-bar{background:#f6f6f3;}
+:root[data-theme="light"] .trust-bar{background:#FFFFFF;}
 :root[data-theme="light"] .quote-band{background:linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.96)), url('hero-tatico.jpg') center 20% / cover no-repeat;color:var(--text);}
 :root[data-theme="light"] .lightbox{background:#fff;}
 
@@ -98,7 +97,7 @@ ul{list-style:none;}
 header.main{
   background:var(--header-bg);
   backdrop-filter:blur(6px);
-  border-bottom:1px solid var(--border);
+  border-bottom:none;
   position:sticky;top:0;z-index:50;
   transition:background .25s ease;
 }
@@ -317,7 +316,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .product-card > a{display:flex;flex-direction:column;flex:1;color:inherit;}
 .product-photo{
   position:relative;height:auto;aspect-ratio:1/1;overflow:hidden;background:#FFFFFF;
-  border:1px solid var(--border);border-radius:14px;padding:15px;box-sizing:border-box;
+  border:1px solid var(--border);border-radius:14px;padding:12px;box-sizing:border-box;
   display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:.75rem;}
 .product-photo svg{width:34px;height:34px;opacity:.35;margin-bottom:8px;}
 .product-photo .ph-wrap{text-align:center;}
@@ -451,7 +450,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .promo-dots span.active{background:var(--gold);transform:scale(1.2);}
 
 /* ---------- Barra de confiança (frete / parcelamento / dúvidas / segurança) ---------- */
-.trust-bar{background:#F9F9F9;border-bottom:1px solid var(--border);}
+.trust-bar{background:#FFFFFF;border-bottom:none;}
 .trust-bar .container{
   display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:34px 24px;
 }
@@ -500,12 +499,15 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .category-mosaic{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:22px;align-items:stretch;}
 .mosaic-tile{
   position:relative;height:280px;border-radius:20px;overflow:hidden;
-  display:block;
-  background-size:cover;background-position:center;background-repeat:no-repeat;
-  color:#fff;transition:transform .3s ease, box-shadow .3s ease;
-  box-shadow:var(--card-shadow);
+  display:block;background-color:#FFFFFF;
+  background-size:contain;background-position:center;background-repeat:no-repeat;
+  color:#fff;transition:transform .3s ease;
 }
-.mosaic-tile:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.2);}
+/* As artes já trazem o card arredondado + sombra desenhados sobre fundo
+   branco (não são full-bleed) — por isso usamos 'contain' em vez de 'cover':
+   assim a arte inteira aparece dentro do tile, sem cortar o texto
+   ("MOCHILAS", "CUTELARIA" etc.) nas bordas, e sem esticar a imagem. */
+.mosaic-tile:hover{transform:translateY(-4px);}
 @media (max-width:760px){
   .category-mosaic{grid-template-columns:1fr;}
   .mosaic-tile{height:220px;}
@@ -741,40 +743,36 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .price-table td:last-child{color:var(--gold-light);font-weight:600;text-align:right;}
 
 /* Footer */
-footer{background:var(--footer-bg);border-top:1px solid var(--border);padding:56px 0 24px;color:var(--text);}
+footer{background:var(--footer-bg);border-top:none;padding:56px 0 24px;color:var(--text);}
 footer .footer-grid ul a, footer .footer-about p{color:var(--text-muted);}
 footer h4{color:var(--text);font-weight:700;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr 1.3fr;gap:32px;margin-bottom:36px;}
 .footer-grid-4{grid-template-columns:1.3fr 1fr 1.3fr 1.1fr;}
-/* Formas de pagamento — grid compacto de 2 linhas, badges coloridos por
-   bandeira (cores de marca, sem reproduzir a arte oficial dos logos). */
-.payment-icons{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:250px;}
+/* Formas de pagamento — grid compacto de 2 linhas, ícones coloridos (cores
+   de marca, em SVG próprio, fundo transparente) dentro de um badge branco
+   com contorno sutil — não reproduz a arte oficial pixel a pixel das
+   bandeiras, só a identidade de cor/forma pra reconhecimento rápido. */
+.payment-icons{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:260px;}
 .pay-badge{
-  display:inline-flex;align-items:center;justify-content:center;height:32px;border-radius:6px;
-  font-size:.6rem;font-weight:800;letter-spacing:.02em;text-transform:uppercase;
-  color:#fff;background:#6b6b62;text-align:center;
+  display:inline-flex;align-items:center;justify-content:center;height:34px;border-radius:6px;
+  background:#FFFFFF;border:1px solid var(--border);padding:4px 6px;
 }
-.pay-badge.visa{background:#1A1F71;}
-.pay-badge.mastercard{background:linear-gradient(90deg,#EB001B 50%,#F79E1B 50%);}
-.pay-badge.elo{background:#000000;color:#FFCB05;}
-.pay-badge.hipercard{background:#B3131B;}
-.pay-badge.amex{background:#2E77BC;}
-.pay-badge.pix{background:#32BCAD;}
-.pay-badge.boleto{background:#3d3d3d;}
+.pay-badge svg{width:100%;height:100%;max-width:44px;}
 .security-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;}
 .sec-badge{
   display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:5px;
   font-size:.7rem;font-weight:600;border:1px solid var(--border);color:var(--text-muted);
+  background:#FFFFFF;
 }
-.sec-badge svg{width:15px;height:15px;flex:0 0 auto;}
-.sec-badge.protegida{color:#3ba55d;border-color:rgba(59,165,93,.35);}
-.sec-badge.ssl{color:#4a9fd8;border-color:rgba(74,159,216,.35);}
+.sec-badge svg{width:16px;height:16px;flex:0 0 auto;}
+.sec-badge.protegida{color:#1a8a4a;border-color:rgba(26,138,74,.3);}
+.sec-badge.ssl{color:#1a6fb0;border-color:rgba(26,111,176,.3);}
 .footer-grid h4{font-size:.82rem;color:var(--text);font-weight:700;margin-bottom:18px;}
 .footer-grid ul li{margin-bottom:11px;}
 .footer-grid ul a{color:var(--text-muted);font-size:.86rem;transition:color .2s;}
 .footer-grid ul a:hover{color:var(--red);}
-.footer-logo-slot{height:60px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;width:100%;}
-.footer-logo-slot img{max-height:100%;width:auto;}
+.footer-logo-slot{margin-bottom:16px;display:flex;align-items:center;justify-content:flex-start;width:100%;}
+.footer-logo-slot img{max-width:140px;width:100%;height:auto;}
 .footer-about p{color:var(--text-muted);font-size:.86rem;max-width:280px;margin-bottom:18px;}
 .newsletter{display:flex;border:1px solid var(--border);border-radius:4px;overflow:hidden;max-width:280px;}
 .newsletter input{flex:1;background:transparent;border:none;padding:11px 14px;color:var(--text);font-size:.82rem;}
