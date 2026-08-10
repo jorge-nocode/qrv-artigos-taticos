@@ -232,16 +232,17 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 }
 .cat-pill.active, .cat-pill:hover{background:var(--olive);border-color:var(--olive-light);color:var(--text);}
 
-/* Product grid */
+/* Product grid — sem "cartão": nada de fundo, borda ou sombra ao redor, só a
+   foto cheia (sem cantos cortados), nome e preço, igual à loja de referência. */
 .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
 .product-card{
-  background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden;
-  transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  background:transparent;border:none;border-radius:0;box-shadow:none;
+  transition:opacity .25s ease;
 }
-.product-card:hover{transform:translateY(-6px);border-color:rgba(194,166,73,.5);box-shadow:0 20px 45px rgba(0,0,0,.5), 0 0 26px rgba(194,166,73,.1);}
+.product-card:hover{transform:none;box-shadow:none;border-color:transparent;}
 .product-card > a{display:block;color:inherit;}
 .product-photo{
-  position:relative;height:230px;overflow:hidden;background:linear-gradient(135deg,#20221a,#14150f);
+  position:relative;height:auto;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(135deg,#20221a,#14150f);
   display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:.75rem;letter-spacing:1px;text-transform:uppercase;
 }
 .product-photo svg{width:34px;height:34px;opacity:.35;margin-bottom:8px;}
@@ -251,30 +252,31 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   position:absolute;top:14px;left:14px;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#141210;
   font-size:.62rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;padding:6px 12px;border-radius:20px;z-index:3;
   box-shadow:0 6px 16px rgba(0,0,0,.35);font-family:'Oswald',sans-serif;
+  display:none;
 }
 .badge.op{left:auto;right:14px;background:rgba(8,8,6,.7);backdrop-filter:blur(6px);color:var(--gold-light);border:1px solid rgba(194,166,73,.4);}
 .badge.esgotado{left:auto;right:14px;top:auto;bottom:14px;background:rgba(165,50,42,.85);color:#fff;border:none;}
 .badge.frete{background:linear-gradient(135deg,var(--olive-light),var(--olive));color:#fff;}
-.product-body{padding:20px;}
+.product-body{padding:14px 0 0;}
 .product-body h3{font-family:'Oswald',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:4px;text-transform:none;letter-spacing:.2px;}
-.product-body .loc{font-size:.76rem;color:var(--gold-light);margin-bottom:12px;letter-spacing:.4px;}
+.product-body .loc{font-size:.76rem;color:var(--gold-light);margin-bottom:12px;letter-spacing:.4px;display:none;}
 .product-price{font-size:1.15rem;font-weight:700;color:var(--gold-light);font-family:'Oswald',sans-serif;margin-top:6px;display:block;}
 .price-old{display:block;font-size:.8rem;color:var(--text-muted);text-decoration:line-through;font-weight:400;font-family:'Poppins',sans-serif;}
 .installments{display:block;font-size:.72rem;color:var(--text-muted);margin-top:4px;}
-.stock-warning{display:block;font-size:.72rem;color:var(--red);margin-top:6px;font-weight:600;}
+.stock-warning{display:none;}
 .hidden{display:none !important;}
 .center-btn{text-align:center;margin-top:50px;}
 
-/* Botão "Adicionar ao Carrinho" nos cards de produto */
+/* Botão preto nos cards de produto — mesmo padrão em toda a loja */
 .btn-add-cart{
-  display:block;width:calc(100% - 40px);margin:0 20px 20px;background:transparent;border:1px solid var(--gold);
-  color:var(--gold-light);padding:11px 14px;border-radius:4px;font-size:.74rem;letter-spacing:1px;text-transform:uppercase;
+  display:block;width:100%;margin:10px 0 0;background:#141210;border:1px solid #141210;
+  color:#fff;padding:11px 14px;border-radius:4px;font-size:.74rem;letter-spacing:1px;text-transform:uppercase;
   cursor:pointer;transition:all .2s;font-family:'Oswald',sans-serif;
 }
-.btn-add-cart:hover{background:var(--gold);color:#141210;}
+.btn-add-cart:hover{background:#000;border-color:#000;color:#fff;}
 .btn-add-cart.added{background:var(--olive-light);border-color:var(--olive-light);color:#fff;}
-.btn-add-cart:disabled{opacity:.4;cursor:not-allowed;border-color:var(--border);color:var(--text-muted);}
-.btn-add-cart:disabled:hover{background:transparent;color:var(--text-muted);}
+.btn-add-cart:disabled{opacity:.4;cursor:not-allowed;border-color:var(--border);color:var(--text-muted);background:var(--panel);}
+.btn-add-cart:disabled:hover{background:var(--panel);color:var(--text-muted);}
 
 /* Toast de item adicionado ao carrinho */
 .cart-mini-toast{
@@ -317,24 +319,17 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .destaques-swiper .product-card, .produtos-swiper .product-card, .similares-swiper .product-card{height:100%;}
 
 /* Lançamentos: grade normal (sem blur/coverflow), cards no tamanho padrão do site.
-   Sem "cartão" (sem fundo, borda ou sombra) — só a foto cheia, nome e preço,
-   igual à loja de referência que o cliente está modelando. */
+   O visual "sem cartão" (fundo/borda/sombra, foto cheia, sem badge, sem
+   estoque, botão preto) agora é o padrão em .product-card / .btn-add-cart,
+   então aqui só ficam os ajustes específicos do carrossel. */
 .lancamentos-swiper{width:100%;padding:6px 0 46px;}
 .lancamentos-swiper .swiper-slide{height:auto;opacity:1;filter:none;}
-.lancamentos-swiper .product-card{
-  height:100%;display:flex;flex-direction:column;
-  background:transparent;border:none;border-radius:0;box-shadow:none;
-}
-.lancamentos-swiper .product-card:hover{transform:none;box-shadow:none;border-color:transparent;}
+.lancamentos-swiper .product-card{height:100%;display:flex;flex-direction:column;}
 .lancamentos-swiper .product-card > a{flex:1;display:flex;flex-direction:column;}
-.lancamentos-swiper .product-photo{height:auto;aspect-ratio:3/4;border-radius:0;}
-.lancamentos-swiper .badge, .lancamentos-swiper .product-body .loc, .lancamentos-swiper .stock-warning{display:none;}
-.lancamentos-swiper .product-body{flex:1;display:flex;flex-direction:column;padding:14px 0 0;}
+.lancamentos-swiper .product-body{flex:1;display:flex;flex-direction:column;}
 #lancPagination.swiper-pagination{position:relative;margin-top:18px;display:flex;justify-content:center;gap:6px;}
 #lancPagination .swiper-pagination-bullet{background:var(--border);opacity:1;width:8px;height:8px;margin:0;}
 #lancPagination .swiper-pagination-bullet-active{background:var(--gold);}
-.lancamentos-swiper .btn-add-cart{width:100%;margin:10px 0 0;background:#141210;border-color:#141210;color:#fff;}
-.lancamentos-swiper .btn-add-cart:hover{background:#000;border-color:#000;color:#fff;}
 
 /* ---------- Banner promocional / carrossel automático (topo da home) ---------- */
 .promo-banner{position:relative;overflow:hidden;}
@@ -642,7 +637,6 @@ footer h4{color:var(--gold-light);}
   .btn-gold{padding:12px 34px;}
   .search-footer{padding-bottom:4px;}
 
-  .product-photo{height:220px;}
   .product-price{font-size:1.25rem;}
 }
 @media (max-width:640px){
