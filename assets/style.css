@@ -316,16 +316,24 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .destaques-swiper .swiper-slide-active, .produtos-swiper .swiper-slide-active, .similares-swiper .swiper-slide-active{opacity:1;filter:none;}
 .destaques-swiper .product-card, .produtos-swiper .product-card, .similares-swiper .product-card{height:100%;}
 
-/* Lançamentos: grade normal (sem blur/coverflow), cards no tamanho padrão do site */
+/* Lançamentos: grade normal (sem blur/coverflow), cards no tamanho padrão do site.
+   Sem "cartão" (sem fundo, borda ou sombra) — só a foto cheia, nome e preço,
+   igual à loja de referência que o cliente está modelando. */
 .lancamentos-swiper{width:100%;padding:6px 0 46px;}
 .lancamentos-swiper .swiper-slide{height:auto;opacity:1;filter:none;}
-.lancamentos-swiper .product-card{height:100%;display:flex;flex-direction:column;}
+.lancamentos-swiper .product-card{
+  height:100%;display:flex;flex-direction:column;
+  background:transparent;border:none;border-radius:0;box-shadow:none;
+}
+.lancamentos-swiper .product-card:hover{transform:none;box-shadow:none;border-color:transparent;}
 .lancamentos-swiper .product-card > a{flex:1;display:flex;flex-direction:column;}
-.lancamentos-swiper .product-body{flex:1;display:flex;flex-direction:column;}
+.lancamentos-swiper .product-photo{height:auto;aspect-ratio:3/4;border-radius:0;}
+.lancamentos-swiper .badge, .lancamentos-swiper .product-body .loc, .lancamentos-swiper .stock-warning{display:none;}
+.lancamentos-swiper .product-body{flex:1;display:flex;flex-direction:column;padding:14px 0 0;}
 #lancPagination.swiper-pagination{position:relative;margin-top:18px;display:flex;justify-content:center;gap:6px;}
 #lancPagination .swiper-pagination-bullet{background:var(--border);opacity:1;width:8px;height:8px;margin:0;}
 #lancPagination .swiper-pagination-bullet-active{background:var(--gold);}
-.lancamentos-swiper .btn-add-cart{background:#141210;border-color:#141210;color:#fff;}
+.lancamentos-swiper .btn-add-cart{width:100%;margin:10px 0 0;background:#141210;border-color:#141210;color:#fff;}
 .lancamentos-swiper .btn-add-cart:hover{background:#000;border-color:#000;color:#fff;}
 
 /* ---------- Banner promocional / carrossel automático (topo da home) ---------- */

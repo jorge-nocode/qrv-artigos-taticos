@@ -560,7 +560,7 @@
     if (lancamentos.length > 0) {
       const track = document.getElementById('lancamentosTrack');
       track.querySelectorAll('.example-card').forEach(el => el.remove());
-      track.insertAdjacentHTML('beforeend', lancamentos.map(p => `<div class="swiper-slide">${productCardHTML(p, { showStock: true, buyLabel: 'Comprar' })}</div>`).join(''));
+      track.insertAdjacentHTML('beforeend', lancamentos.map(p => `<div class="swiper-slide">${productCardHTML(p, { showStock: false, buyLabel: 'Comprar' })}</div>`).join(''));
       window.initLancamentosSwiper();
     }
   }
