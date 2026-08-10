@@ -316,11 +316,12 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
    embaixo (margin-top:auto), não importa se o título tem 1 ou 3 linhas. */
 .product-card > a{display:flex;flex-direction:column;flex:1;color:inherit;}
 .product-photo{
-  position:relative;height:auto;aspect-ratio:3/4;overflow:hidden;background:linear-gradient(135deg,#f1f1ec,#e6e6df);
+  position:relative;height:auto;aspect-ratio:1/1;overflow:hidden;background:#FFFFFF;
+  border:1px solid var(--border);border-radius:14px;padding:15px;box-sizing:border-box;
   display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:.75rem;}
 .product-photo svg{width:34px;height:34px;opacity:.35;margin-bottom:8px;}
 .product-photo .ph-wrap{text-align:center;}
-.product-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.product-photo img{position:relative;width:100%;height:100%;object-fit:contain;display:block;}
 .badge{
   position:absolute;top:14px;left:14px;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#141210;
   font-size:.62rem;font-weight:700;padding:6px 12px;border-radius:20px;z-index:3;
@@ -331,7 +332,11 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .badge.esgotado{left:auto;right:14px;top:auto;bottom:14px;background:rgba(165,50,42,.85);color:#fff;border:none;}
 .badge.frete{background:linear-gradient(135deg,var(--olive-light),var(--olive));color:#fff;}
 .product-body{padding:14px 0 0;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
-.product-body h3{font-size:1.25rem;font-weight:600;margin-bottom:4px;text-transform:none;}
+.product-body h3{
+  font-size:1.25rem;font-weight:600;margin-bottom:4px;text-transform:none;
+  min-height:2.8em;line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
 .product-body .loc{font-size:.76rem;color:var(--gold-light);margin-bottom:12px;display:none;}
 .product-price{font-size:1.35rem;font-weight:700;color:var(--green);margin-top:6px;display:block;}
 .price-old{display:block;font-size:.8rem;color:var(--text-muted);text-decoration:line-through;font-weight:400;font-family:'Inter',sans-serif;}
@@ -492,29 +497,18 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
    Réplica do mosaico da Feel ("Ouça mais com AirPods" / "Novos Relógios Watch" /
    "Mais Performance MacBook"): duas colunas estreitas à esquerda + uma larga à
    direita, todas na mesma altura, cantos arredondados. */
-.category-mosaic{display:grid;grid-template-columns:1fr 1fr 2fr;gap:22px;}
+.category-mosaic{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:22px;align-items:stretch;}
 .mosaic-tile{
-  position:relative;height:260px;border-radius:18px;overflow:hidden;padding:28px;
-  display:flex;flex-direction:column;justify-content:flex-end;gap:6px;
+  position:relative;height:280px;border-radius:20px;overflow:hidden;
+  display:block;
   background-size:cover;background-position:center;background-repeat:no-repeat;
   color:#fff;transition:transform .3s ease, box-shadow .3s ease;
+  box-shadow:var(--card-shadow);
 }
 .mosaic-tile:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.2);}
-.mosaic-tile h3{font-size:1.6rem;font-weight:700;color:#fff;}
-.mosaic-eyebrow{font-size:.8rem;opacity:.85;}
-.mosaic-tile.tile-dark{background-color:#1D1D1F;}
-.mosaic-tile.tile-yellow{background-color:#F5C518;color:#1D1D1F;}
-.mosaic-tile.tile-yellow h3{color:#1D1D1F;}
-.mosaic-tile.tile-red{background-color:var(--red);background-blend-mode:multiply;}
-.mosaic-tile .tile-conferir{
-  align-self:flex-start;margin-top:8px;padding:8px 18px;border-radius:20px;
-  background:#fff;color:#1D1D1F;font-size:.78rem;font-weight:600;border:none;
-}
-.mosaic-tile.tile-yellow .tile-conferir{background:#1D1D1F;color:#fff;}
-.mosaic-tile:hover .tile-conferir{background:var(--red);color:#fff;}
 @media (max-width:760px){
   .category-mosaic{grid-template-columns:1fr;}
-  .mosaic-tile{height:200px;}
+  .mosaic-tile{height:220px;}
 }
 
 /* ---------- Últimas do Blog ---------- */
@@ -752,15 +746,21 @@ footer .footer-grid ul a, footer .footer-about p{color:var(--text-muted);}
 footer h4{color:var(--text);font-weight:700;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr 1.3fr;gap:32px;margin-bottom:36px;}
 .footer-grid-4{grid-template-columns:1.3fr 1fr 1.3fr 1.1fr;}
-/* Formas de pagamento — badges padronizados, monocromáticos e com o mesmo
-   tamanho (sem reproduzir logos exatos das bandeiras), estilo Feel: só
-   texto discreto numa pilula com contorno, sem blocos coloridos. */
-.payment-icons{display:flex;gap:8px;flex-wrap:wrap;}
+/* Formas de pagamento — grid compacto de 2 linhas, badges coloridos por
+   bandeira (cores de marca, sem reproduzir a arte oficial dos logos). */
+.payment-icons{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:250px;}
 .pay-badge{
-  display:inline-flex;align-items:center;justify-content:center;padding:7px 12px;border-radius:6px;
-  font-size:.68rem;font-weight:600;color:var(--text-muted);background:transparent;
-  border:1px solid var(--border);min-width:56px;text-align:center;
+  display:inline-flex;align-items:center;justify-content:center;height:32px;border-radius:6px;
+  font-size:.6rem;font-weight:800;letter-spacing:.02em;text-transform:uppercase;
+  color:#fff;background:#6b6b62;text-align:center;
 }
+.pay-badge.visa{background:#1A1F71;}
+.pay-badge.mastercard{background:linear-gradient(90deg,#EB001B 50%,#F79E1B 50%);}
+.pay-badge.elo{background:#000000;color:#FFCB05;}
+.pay-badge.hipercard{background:#B3131B;}
+.pay-badge.amex{background:#2E77BC;}
+.pay-badge.pix{background:#32BCAD;}
+.pay-badge.boleto{background:#3d3d3d;}
 .security-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;}
 .sec-badge{
   display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:5px;
