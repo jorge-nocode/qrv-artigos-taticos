@@ -135,18 +135,13 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .mega-col a:hover{color:var(--gold-light);}
 
 /* Busca / conta / carrinho no header */
-.header-search-toggle{
-  display:flex;align-items:center;justify-content:center;background:none;border:none;color:var(--text-muted);
-  cursor:pointer;padding:4px;transition:color .2s;flex:0 0 auto;
-}
-.header-search-toggle:hover{color:var(--gold-light);}
+/* Barra de busca sempre visível no header, estilo Feel (pílula cinza claro) */
 .header-search-box{
-  display:flex;align-items:center;gap:0;max-width:0;overflow:hidden;opacity:0;
-  transition:max-width .28s ease, opacity .2s ease;background:var(--panel);border:1px solid var(--border);border-radius:30px;
+  display:flex;align-items:center;gap:0;
+  background:var(--bg-alt);border:1px solid var(--border);border-radius:30px;
 }
-.header-search-box.open{max-width:240px;opacity:1;}
 .header-search-box input{
-  background:none;border:none;color:var(--text);font-size:.82rem;padding:9px 4px 9px 16px;width:190px;
+  background:none;border:none;color:var(--text);font-size:.82rem;padding:9px 4px 9px 16px;width:170px;
   font-family:'Inter',sans-serif;
 }
 .header-search-box input:focus{outline:none;}
@@ -157,7 +152,6 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .cart-link{position:relative;display:flex;align-items:center;justify-content:center;color:var(--text-muted);flex:0 0 auto;transition:color .2s;}
 .cart-link:hover{color:var(--gold-light);}
 @media (max-width:640px){
-  .header-search-box.open{max-width:150px;}
   .header-search-box input{width:100px;}
 }
 .cart-count{
@@ -414,7 +408,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
    fundo do site) e o banner em si fica menor, com cantos arredondados e sombra
    — como sobra uma margem escura igual ao fundo da loja em volta da imagem,
    o produto parece "flutuar" fora do quadro, tipo composição 3D. */
-.promo-banner{position:relative;overflow:hidden;background:#F2F2F7;padding:26px 26px 44px;}
+.promo-banner{position:relative;overflow:hidden;background:#FFFFFF;padding:26px 26px 44px;}
 .promo-slides{
   position:relative;width:100%;max-width:1440px;margin:0 auto;aspect-ratio:2.34/1;max-height:760px;
   border-radius:20px;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.12);
@@ -452,7 +446,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .promo-dots span.active{background:var(--gold);transform:scale(1.2);}
 
 /* ---------- Barra de confiança (frete / parcelamento / dúvidas / segurança) ---------- */
-.trust-bar{background:#0f100c;border-bottom:1px solid var(--border);}
+.trust-bar{background:#F9F9F9;border-bottom:1px solid var(--border);}
 .trust-bar .container{
   display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:34px 24px;
 }
@@ -757,21 +751,16 @@ footer{background:var(--footer-bg);border-top:1px solid var(--border);padding:56
 footer .footer-grid ul a, footer .footer-about p{color:var(--text-muted);}
 footer h4{color:var(--text);font-weight:700;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr 1.3fr;gap:32px;margin-bottom:36px;}
-/* Formas de pagamento — badges genéricos (sem reproduzir logos exatos das
-   bandeiras), só pra comunicar visualmente quais formas são aceitas. */
+.footer-grid-4{grid-template-columns:1.3fr 1fr 1.3fr 1.1fr;}
+/* Formas de pagamento — badges padronizados, monocromáticos e com o mesmo
+   tamanho (sem reproduzir logos exatos das bandeiras), estilo Feel: só
+   texto discreto numa pilula com contorno, sem blocos coloridos. */
 .payment-icons{display:flex;gap:8px;flex-wrap:wrap;}
 .pay-badge{
-  display:inline-flex;align-items:center;justify-content:center;padding:6px 10px;border-radius:5px;
-  font-size:.66rem;font-weight:700;color:#fff;
-  min-width:44px;text-align:center;
+  display:inline-flex;align-items:center;justify-content:center;padding:7px 12px;border-radius:6px;
+  font-size:.68rem;font-weight:600;color:var(--text-muted);background:transparent;
+  border:1px solid var(--border);min-width:56px;text-align:center;
 }
-.pay-badge.visa{background:#1a1f71;}
-.pay-badge.mastercard{background:linear-gradient(90deg,#eb001b 50%,#f79e1b 50%);color:#141210;text-shadow:0 1px 2px rgba(255,255,255,.5);}
-.pay-badge.elo{background:#111;color:#ffd23f;}
-.pay-badge.hipercard{background:#b6121b;}
-.pay-badge.amex{background:#2557a7;}
-.pay-badge.pix{background:#0d9488;}
-.pay-badge.boleto{background:#3a3a34;}
 .security-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;}
 .sec-badge{
   display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:5px;
