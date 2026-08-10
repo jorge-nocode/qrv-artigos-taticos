@@ -101,7 +101,8 @@ header.main{
 }
 header.main .container{display:flex;align-items:center;justify-content:space-between;height:76px;gap:16px;}
 .header-left{display:flex;align-items:center;gap:12px;flex:0 0 auto;}
-.mini-logo{font-family:'Oswald',sans-serif;font-size:1.15rem;letter-spacing:2px;font-weight:700;color:var(--gold);text-transform:uppercase;white-space:nowrap;}
+.mini-logo{display:flex;align-items:center;white-space:nowrap;}
+.mini-logo img{height:46px;width:46px;border-radius:50%;object-fit:cover;display:block;}
 .logo{font-family:'Oswald',sans-serif;font-size:1.5rem;letter-spacing:2px;font-weight:600;color:var(--text);text-transform:uppercase;}
 .logo span{color:var(--gold);}
 .logo small{display:block;font-family:'Poppins',sans-serif;font-size:.55rem;letter-spacing:3px;color:var(--text-muted);font-weight:400;text-transform:uppercase;}
@@ -333,7 +334,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 
 /* ---------- Banner promocional / carrossel automático (topo da home) ---------- */
 .promo-banner{position:relative;overflow:hidden;}
-.promo-slides{position:relative;width:100%;aspect-ratio:2.34/1;max-height:600px;}
+.promo-slides{position:relative;width:100%;aspect-ratio:2.34/1;max-height:860px;}
 .promo-slide{
   position:absolute;inset:0;display:flex;align-items:center;opacity:0;z-index:1;
   background:linear-gradient(115deg, rgba(6,7,4,.88) 30%, rgba(6,7,4,.35) 75%), var(--slide-bg, url('hero-tatico.jpg')) center/cover no-repeat;
@@ -343,6 +344,9 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .promo-slide .container{position:relative;z-index:2;width:100%;}
 /* Slides com arte finalizada (texto/CTA já embutidos na imagem) — sem gradiente escuro por cima */
 .promo-slide.image-ready{background-position:center;background-size:cover;background-repeat:no-repeat;}
+/* O banner de Bordado tem proporção mais "quadrada" que os outros dois — ancora
+   no topo pra não cortar o título, já que o resto da imagem sobra embaixo. */
+.promo-slide.image-ready[data-i="2"]{background-position:center top;}
 .promo-slide-link{position:absolute;inset:0;z-index:5;}
 .promo-content{max-width:520px;}
 .promo-eyebrow{color:var(--gold-light);letter-spacing:3px;font-size:.75rem;text-transform:uppercase;margin-bottom:14px;display:block;font-family:'Oswald',sans-serif;}
@@ -382,6 +386,17 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .category-tile h3{font-size:1.4rem;font-weight:700;margin-bottom:4px;}
 .category-tile span{font-size:.75rem;color:var(--gold-light);letter-spacing:1px;text-transform:uppercase;}
 .category-tile:hover h3{color:var(--gold-light);}
+
+/* Botão "conferir" real em HTML — o texto já vem gravado na imagem, mas
+   pequeno demais pra ler; este botão fica por cima, legível, no mesmo lugar. */
+.tile-conferir{
+  position:relative;z-index:3;display:inline-block;
+  padding:8px 18px;border:1px solid var(--gold-light);border-radius:4px;
+  background:rgba(6,7,4,.55);backdrop-filter:blur(2px);
+  color:var(--gold-light);font-size:.8rem;letter-spacing:.5px;text-transform:lowercase;
+  font-family:'Oswald',sans-serif;transition:background .2s ease, color .2s ease;
+}
+.category-tile.image-ready:hover .tile-conferir{background:var(--gold-light);color:#141210;}
 
 /* ---------- Grade de destaques (sem carrossel) ---------- */
 .destaques-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
