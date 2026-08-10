@@ -1,5 +1,6 @@
 import { supabase, FOTOS_BUCKET, formatBRL, descricaoToHTML, sanitizeDescricao, labelCategoria } from './supabase-client.js';
 import { getGeminiKey, setGeminiKey, generateProdutoFromText } from './gemini-ai.js';
+import { PRODUTOS_CATALOGO_SEED } from './produtos-catalogo-seed.js';
 
 // ---------- Elementos ----------
 const loginWrap = document.getElementById('loginWrap');
@@ -652,6 +653,33 @@ async function loadMessages() {
       await supabase.from('mensagens_contato').delete().eq('id', btn.dataset.deleteMsg);
       loadMessages();
     });
+  });
+}
+
+// ---------- Importar Catálogo (upsert em lote dos produtos do print) ----------
+const importCatalogoBtn = document.getElementById('importCatalogoBtn');
+if (importCatalogoBtn) {
+  importCatalogoBtn.addEventListener('click', async () => {
+    const total = PRODUTOS_CATALOGO_SEED.length;
+    if (!confirm(`Importar ${total} produtos do catálogo (patches, breves, kits, calçados, etc.)?\n\nProdutos com o mesmo código já cadastrado serão atualizados, os demais serão criados.`)) return;
+
+    importCatalogoBtn.disabled = true;
+    importCatalogoBtn.textContent = 'Importando...';
+    try {
+      const { data, error } = await supabase
+        .from('produtos')
+        .upsert(PRODUTOS_CATALOGO_SEED, { onConflict: 'codigo' })
+        .select('id');
+      if (error) throw error;
+      showToast(`${data?.length ?? total} produtos importados com sucesso!`);
+      loadProdutos();
+      refreshBadgeCounts();
+    } catch (err) {
+      showToast('Erro ao importar catálogo: ' + err.message, true);
+    } finally {
+      importCatalogoBtn.disabled = false;
+      importCatalogoBtn.textContent = 'Importar Catálogo';
+    }
   });
 }
 
