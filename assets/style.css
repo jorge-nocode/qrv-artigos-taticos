@@ -395,15 +395,42 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .newsletter-band .newsletter input{color:#fff;}
 .newsletter-band .newsletter input::placeholder{color:rgba(255,255,255,.6);}
 
-.instagram-band{padding:60px 0;text-align:center;}
+.instagram-band{padding:60px 0 0;text-align:center;}
 .instagram-band .ig-handle{display:inline-flex;align-items:center;gap:8px;color:var(--gold-light);font-size:.9rem;margin-bottom:26px;}
 .instagram-band .ig-handle svg{width:20px;height:20px;}
+
+/* Faixa "Siga nosso Instagram" — foto de fundo em largura total, com o
+   print real do perfil (esmaecido) se mesclando do lado esquerdo, texto
+   grande em cima e botão branco "Seguir", no padrão de referência. */
 .instagram-cta{
-  border-radius:10px;padding:52px 32px;text-align:center;
-  background:linear-gradient(135deg, rgba(75,83,32,.5), rgba(11,12,9,.85)), url('hero-tatico.jpg') center/cover no-repeat;
-  border:1px solid var(--border);
+  position:relative;overflow:hidden;
+  min-height:340px;
+  display:flex;align-items:center;
+  background:linear-gradient(100deg, rgba(11,12,9,.4) 0%, rgba(11,12,9,.75) 45%, rgba(75,83,32,.55) 100%), url('banner-categoria-calcados.jpg') center 30%/cover no-repeat;
 }
-.instagram-cta h2{font-size:2rem;margin-bottom:22px;}
+.instagram-preview{
+  position:absolute;top:0;left:0;height:100%;width:52%;object-fit:cover;object-position:top left;
+  opacity:.5;filter:grayscale(.15) contrast(1.05);
+  -webkit-mask-image:linear-gradient(90deg,#000 55%,transparent 100%);
+  mask-image:linear-gradient(90deg,#000 55%,transparent 100%);
+}
+.instagram-cta-overlay{
+  position:relative;z-index:2;width:100%;text-align:center;padding:32px 24px;
+}
+.instagram-cta-overlay h2{
+  font-size:clamp(1.9rem,4.2vw,3rem);line-height:1.05;color:#fff;margin-bottom:26px;
+  text-shadow:0 4px 20px rgba(0,0,0,.5);
+}
+.btn-ig-seguir{
+  display:inline-block;background:#fff;color:#141210;padding:14px 40px;border-radius:6px;
+  font-weight:700;letter-spacing:.5px;font-size:.95rem;font-family:'Oswald',sans-serif;text-transform:none;
+  transition:transform .2s ease, background .2s ease;
+}
+.btn-ig-seguir:hover{background:var(--gold-light);transform:translateY(-2px);}
+@media (max-width:768px){
+  .instagram-preview{width:100%;opacity:.35;-webkit-mask-image:linear-gradient(180deg,#000 40%,transparent 90%);mask-image:linear-gradient(180deg,#000 40%,transparent 90%);}
+  .instagram-cta{min-height:300px;}
+}
 
 /* Ícones de pagamento no rodapé */
 .payment-icons{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
