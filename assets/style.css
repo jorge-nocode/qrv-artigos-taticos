@@ -693,3 +693,118 @@ footer h4{color:var(--gold-light);}
   .footer-logo-slot{margin:0 auto 16px;}
   .price-table th, .price-table td{padding:10px 12px;font-size:.8rem;}
 }
+
+/* =====================================================================
+   Atendente Virtual Tático — "Recruta QRV" (widget de chat com Gemini)
+   Visual fixo em dark mode (independe do tema claro/escuro do site),
+   conforme especificação: fundo #121212, bordas douradas/oliva.
+   ===================================================================== */
+.qrv-chat-fab{
+  position:fixed;right:26px;bottom:96px;z-index:400;
+  width:60px;height:60px;border-radius:50%;
+  background:linear-gradient(150deg,#1a1c14,#0d0e0a);
+  border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.55), 0 0 0 4px rgba(194,166,73,.08);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.qrv-chat-fab:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 34px rgba(0,0,0,.6), 0 0 0 6px rgba(194,166,73,.12);}
+.qrv-chat-fab svg{width:28px;height:28px;color:var(--gold-light);}
+.qrv-chat-fab .qrv-chat-fab-dot{
+  position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:50%;
+  background:#3ba55d;border:2px solid #0d0e0a;
+}
+.qrv-chat-fab.hidden-while-open{transform:scale(0);opacity:0;pointer-events:none;}
+
+.qrv-chat-window{
+  position:fixed;right:24px;bottom:24px;z-index:401;
+  width:360px;max-width:calc(100vw - 32px);
+  height:520px;max-height:calc(100vh - 100px);
+  background:#121212;border:1px solid rgba(194,166,73,.4);border-radius:14px;
+  display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,.6);
+  transform:translateY(16px) scale(.97);opacity:0;pointer-events:none;
+  transition:transform .22s ease, opacity .22s ease;
+  font-family:'Poppins',sans-serif;
+}
+.qrv-chat-window.open{transform:translateY(0) scale(1);opacity:1;pointer-events:auto;}
+
+.qrv-chat-header{
+  display:flex;align-items:center;gap:12px;padding:16px 16px;
+  background:linear-gradient(135deg,#1a1c14,#0d0e0a);
+  border-bottom:1px solid rgba(194,166,73,.35);
+  flex:0 0 auto;
+}
+.qrv-chat-avatar{
+  width:38px;height:38px;border-radius:50%;flex:0 0 auto;
+  background:radial-gradient(circle at 35% 30%, var(--olive-light), var(--olive) 70%);
+  border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+}
+.qrv-chat-avatar svg{width:20px;height:20px;color:var(--gold-light);}
+.qrv-chat-header-info{flex:1;min-width:0;}
+.qrv-chat-header-info strong{display:block;font-family:'Oswald',sans-serif;font-size:.9rem;letter-spacing:.3px;color:#f4f4f2;text-transform:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.qrv-chat-status{display:flex;align-items:center;gap:6px;font-size:.72rem;color:#8fbf8f;margin-top:2px;}
+.qrv-chat-status .dot{width:7px;height:7px;border-radius:50%;background:#3ba55d;box-shadow:0 0 0 0 rgba(59,165,93,.6);animation:qrvPulse 1.8s infinite;}
+@keyframes qrvPulse{
+  0%{box-shadow:0 0 0 0 rgba(59,165,93,.55);}
+  70%{box-shadow:0 0 0 6px rgba(59,165,93,0);}
+  100%{box-shadow:0 0 0 0 rgba(59,165,93,0);}
+}
+.qrv-chat-close{
+  background:none;border:none;color:#a3a396;font-size:1.4rem;line-height:1;cursor:pointer;
+  padding:4px 6px;flex:0 0 auto;transition:color .15s ease;
+}
+.qrv-chat-close:hover{color:var(--gold-light);}
+
+.qrv-chat-messages{
+  flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;
+  background:#121212;scrollbar-width:thin;scrollbar-color:rgba(194,166,73,.4) transparent;
+}
+.qrv-chat-messages::-webkit-scrollbar{width:6px;}
+.qrv-chat-messages::-webkit-scrollbar-thumb{background:rgba(194,166,73,.35);border-radius:3px;}
+
+.qrv-chat-msg{max-width:84%;padding:10px 13px;border-radius:12px;font-size:.85rem;line-height:1.5;word-wrap:break-word;}
+.qrv-chat-msg a{color:var(--gold-light);text-decoration:underline;}
+.qrv-chat-msg.bot{
+  align-self:flex-start;background:#1c1d16;border:1px solid rgba(194,166,73,.25);
+  color:#f0f0ec;border-bottom-left-radius:3px;
+}
+.qrv-chat-msg.user{
+  align-self:flex-end;background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  color:#141210;font-weight:500;border-bottom-right-radius:3px;
+}
+.qrv-chat-msg.error{align-self:flex-start;background:rgba(165,50,42,.18);border:1px solid rgba(165,50,42,.5);color:#f0b3ae;}
+
+.qrv-chat-typing{align-self:flex-start;display:flex;gap:4px;padding:12px 14px;background:#1c1d16;border:1px solid rgba(194,166,73,.25);border-radius:12px;border-bottom-left-radius:3px;}
+.qrv-chat-typing span{width:6px;height:6px;border-radius:50%;background:var(--gold-light);opacity:.5;animation:qrvTypingBounce 1.1s infinite;}
+.qrv-chat-typing span:nth-child(2){animation-delay:.15s;}
+.qrv-chat-typing span:nth-child(3){animation-delay:.3s;}
+@keyframes qrvTypingBounce{
+  0%,60%,100%{opacity:.35;transform:translateY(0);}
+  30%{opacity:1;transform:translateY(-3px);}
+}
+
+.qrv-chat-input-row{
+  flex:0 0 auto;display:flex;gap:8px;padding:12px;
+  background:#161611;border-top:1px solid rgba(194,166,73,.3);
+}
+.qrv-chat-input-row input{
+  flex:1;min-width:0;background:#0d0e0a;border:1px solid rgba(194,166,73,.3);border-radius:20px;
+  padding:10px 16px;color:#f4f4f2;font-size:.85rem;font-family:'Poppins',sans-serif;
+}
+.qrv-chat-input-row input::placeholder{color:#71715f;}
+.qrv-chat-input-row input:focus{outline:none;border-color:var(--gold);}
+.qrv-chat-send{
+  flex:0 0 auto;width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#141210;
+  display:flex;align-items:center;justify-content:center;transition:transform .15s ease;
+}
+.qrv-chat-send:hover{transform:scale(1.06);}
+.qrv-chat-send:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.qrv-chat-send svg{width:17px;height:17px;}
+
+@media (max-width:480px){
+  .qrv-chat-window{right:12px;left:12px;bottom:12px;width:auto;height:70vh;}
+  .qrv-chat-fab{right:18px;bottom:88px;width:52px;height:52px;}
+}
