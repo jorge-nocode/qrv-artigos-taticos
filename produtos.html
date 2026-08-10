@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Loja | QRV Artigos Táticos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -40,31 +40,15 @@
         <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
         <a href="index.html" class="mini-logo"><img src="assets/logo.png" alt="QRV Artigos Táticos"></a>
       </div>
-      <nav class="primary categories-nav">
+      <nav class="primary categories-nav inline-cats">
         <ul>
-          <li class="has-mega">
-            <a href="produtos.html">Categorias</a>
-            <div class="mega-menu">
-            <div class="mega-col">
-              <a href="produtos.html?categoria=acessorios">Acessórios</a>
-              <a href="produtos.html?categoria=acessorios">Hidratação</a>
-              <a href="produtos.html?categoria=calcados">Calçados</a>
-              <a href="produtos.html?categoria=vestuario">Vestuário</a>
-            </div>
-            <div class="mega-col">
-              <a href="produtos.html?categoria=protecao">Munição</a>
-              <a href="produtos.html?categoria=mochilas">Mochilas</a>
-              <a href="produtos.html?categoria=acessorios">Lanternas</a>
-              <a href="produtos.html?categoria=facas">Cutelaria</a>
-            </div>
-            <div class="mega-col">
-              <a href="produtos.html?categoria=protecao">Armas</a>
-              <a href="produtos.html?categoria=insignias">Patches</a>
-              <a href="produtos.html?categoria=kits">Camping</a>
-              <a href="produtos.html?categoria=protecao">Coletes</a>
-            </div>
-          </div>
-          </li>
+          <li><a href="produtos.html">Loja QRV</a></li>
+          <li><a href="produtos.html?categoria=vestuario">Equipamentos</a></li>
+          <li><a href="produtos.html?categoria=calcados">Coturnos</a></li>
+          <li><a href="bordados.html">Bordados</a></li>
+          <li><a href="produtos.html?categoria=facas">Cutelaria</a></li>
+          <li><a href="produtos.html?categoria=kits">Kits</a></li>
+          <li><a href="produtos.html?categoria=acessorios">Acessórios</a></li>
         </ul>
       </nav>
       <div class="header-actions">
@@ -153,11 +137,21 @@
             <h4>Código do Produto</h4>
             <input type="text" id="filtroCodigo" class="sidebar-select" placeholder="Insira o código">
           </div>
+          <div class="sidebar-block">
+            <h4>Filtrar por Preço</h4>
+            <input type="range" id="filtroPrecoMax" class="price-range-slider" min="10" max="5000" step="10" value="5000">
+            <div class="price-range-value">R$10 — R$<span id="filtroPrecoMaxLabel">5000</span></div>
+          </div>
         </aside>
 
         <div class="shop-main">
           <div class="shop-toolbar">
             <span class="results-count" id="resultsCount"></span>
+            <select id="ordenacao" class="sort-select">
+              <option value="default">Ordenar por: Padrão</option>
+              <option value="menor-preco">Menor Preço</option>
+              <option value="maior-preco">Maior Preço</option>
+            </select>
           </div>
 
           <div class="product-grid" id="productGrid">
@@ -251,6 +245,7 @@
           <div class="empty-list" id="emptyList" style="display:none;text-align:center;color:var(--text-muted);padding:60px 20px;">
             Nenhum produto encontrado com os filtros selecionados.
           </div>
+          <div class="pagination" id="pagination"></div>
         </div>
       </div>
     </div>
@@ -343,10 +338,66 @@
   const emptyList = document.getElementById('emptyList');
   const resultsCount = document.getElementById('resultsCount');
   const catPills = document.querySelectorAll('.cat-pill');
+  const ordenacaoSelect = document.getElementById('ordenacao');
+  const precoMaxInput = document.getElementById('filtroPrecoMax');
+  const precoMaxLabel = document.getElementById('filtroPrecoMaxLabel');
+  const paginationEl = document.getElementById('pagination');
+  const PRODUTOS_POR_PAGINA = 9;
+  let paginaAtual = 1;
 
   function updateResultsCount(n) {
     if (!resultsCount) return;
     resultsCount.textContent = n > 0 ? `${n} produto${n === 1 ? '' : 's'} encontrado${n === 1 ? '' : 's'}` : '';
+  }
+
+  function precoEfetivo(p) {
+    const promo = Number(p.preco_promocional);
+    const preco = Number(p.preco);
+    return promo && promo < preco ? promo : preco;
+  }
+
+  function ordenarProdutos(lista) {
+    const modo = ordenacaoSelect ? ordenacaoSelect.value : 'default';
+    if (modo === 'menor-preco') return [...lista].sort((a, b) => precoEfetivo(a) - precoEfetivo(b));
+    if (modo === 'maior-preco') return [...lista].sort((a, b) => precoEfetivo(b) - precoEfetivo(a));
+    return lista;
+  }
+
+  function renderPagination(totalItens) {
+    if (!paginationEl) return;
+    const totalPaginas = Math.ceil(totalItens / PRODUTOS_POR_PAGINA);
+    if (totalPaginas <= 1) { paginationEl.innerHTML = ''; return; }
+    let html = '';
+    for (let i = 1; i <= totalPaginas; i++) {
+      html += `<button type="button" class="page-btn ${i === paginaAtual ? 'active' : ''}" data-page="${i}">${i}</button>`;
+    }
+    if (paginaAtual < totalPaginas) html += `<button type="button" class="page-btn page-next" data-page="${paginaAtual + 1}" aria-label="Próxima página">→</button>`;
+    paginationEl.innerHTML = html;
+    paginationEl.querySelectorAll('.page-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        paginaAtual = Number(btn.dataset.page);
+        renderPageItems();
+        window.scrollTo({ top: grid.offsetTop - 160, behavior: 'smooth' });
+      });
+    });
+  }
+
+  let ultimosProdutos = [];
+  let ultimosSaoReais = false;
+
+  function renderPageItems() {
+    const ordenados = ordenarProdutos(ultimosProdutos);
+    const inicio = (paginaAtual - 1) * PRODUTOS_POR_PAGINA;
+    const pagina = ordenados.slice(inicio, inicio + PRODUTOS_POR_PAGINA);
+    if (pagina.length > 0) {
+      grid.innerHTML = ultimosSaoReais ? pagina.map(productCardHTML).join('') : pagina.map(c => c.html).join('');
+      emptyList.style.display = 'none';
+    } else {
+      grid.innerHTML = '';
+      emptyList.style.display = 'block';
+    }
+    updateResultsCount(ordenados.length);
+    renderPagination(ordenados.length);
   }
 
   // Guarda os cards de exemplo originais (usados como fallback enquanto o
@@ -355,6 +406,8 @@
   const exampleCards = [...grid.querySelectorAll('.example-card')].map(el => ({
     categoria: el.dataset.cat,
     texto: el.textContent.toLowerCase(),
+    preco: Number((el.querySelector('.product-price')?.textContent || '0').replace(/[^\d,]/g, '').replace(',', '.')) || 0,
+    preco_promocional: null,
     html: el.outerHTML,
   }));
 
@@ -370,13 +423,21 @@
       categoriaAtual = btn.dataset.cat;
       catPills.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      paginaAtual = 1;
       loadProdutos();
     });
   });
 
-  document.getElementById('filtroCorporacao').addEventListener('change', loadProdutos);
-  document.getElementById('filtroBusca').addEventListener('input', debounce(loadProdutos, 400));
-  document.getElementById('filtroCodigo').addEventListener('input', debounce(loadProdutos, 400));
+  document.getElementById('filtroCorporacao').addEventListener('change', () => { paginaAtual = 1; loadProdutos(); });
+  document.getElementById('filtroBusca').addEventListener('input', debounce(() => { paginaAtual = 1; loadProdutos(); }, 400));
+  document.getElementById('filtroCodigo').addEventListener('input', debounce(() => { paginaAtual = 1; loadProdutos(); }, 400));
+  if (precoMaxInput) {
+    precoMaxInput.addEventListener('input', () => {
+      if (precoMaxLabel) precoMaxLabel.textContent = Number(precoMaxInput.value).toLocaleString('pt-BR');
+    });
+    precoMaxInput.addEventListener('change', () => { paginaAtual = 1; loadProdutos(); });
+  }
+  if (ordenacaoSelect) ordenacaoSelect.addEventListener('change', () => { paginaAtual = 1; renderPageItems(); });
 
   function debounce(fn, ms) {
     let t;
@@ -385,26 +446,24 @@
 
   function renderFallback(corporacao, busca, codigo) {
     const termo = (busca || codigo || '').toLowerCase();
+    const precoMax = precoMaxInput ? Number(precoMaxInput.value) : Infinity;
     const filtrados = exampleCards.filter(c => {
       if (categoriaAtual && c.categoria !== categoriaAtual) return false;
       if (corporacao && !c.texto.includes(corporacao.toLowerCase())) return false;
       if (termo && !c.texto.includes(termo)) return false;
+      if (c.preco > precoMax) return false;
       return true;
     });
-    if (filtrados.length > 0) {
-      grid.innerHTML = filtrados.map(c => c.html).join('');
-      emptyList.style.display = 'none';
-    } else {
-      grid.innerHTML = '';
-      emptyList.style.display = 'block';
-    }
-    updateResultsCount(filtrados.length);
+    ultimosProdutos = filtrados;
+    ultimosSaoReais = false;
+    renderPageItems();
   }
 
   async function loadProdutos() {
     const corporacao = document.getElementById('filtroCorporacao').value;
     const busca = document.getElementById('filtroBusca').value.trim();
     const codigo = document.getElementById('filtroCodigo').value.trim();
+    const precoMax = precoMaxInput ? Number(precoMaxInput.value) : Infinity;
 
     const produtos = await fetchProdutos({
       categoria: categoriaAtual || undefined,
@@ -413,10 +472,12 @@
       codigo: codigo || undefined,
     });
 
+    const filtrados = produtos.filter(p => precoEfetivo(p) <= precoMax);
+
     if (produtos.length > 0) {
-      grid.innerHTML = produtos.map(productCardHTML).join('');
-      emptyList.style.display = 'none';
-      updateResultsCount(produtos.length);
+      ultimosProdutos = filtrados;
+      ultimosSaoReais = true;
+      renderPageItems();
     } else {
       // Sem dados reais (Supabase ainda não configurado, ou catálogo vazio
       // para esse filtro): cai para os cards de exemplo, filtrados do mesmo jeito.
