@@ -68,6 +68,16 @@
         </ul>
       </nav>
       <div class="header-actions">
+        <button type="button" class="header-search-toggle" id="headerSearchToggle" aria-label="Buscar produtos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="20" height="20"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+        <form class="header-search-box" id="headerSearchBox" action="produtos.html" method="get">
+          <input type="text" name="busca" placeholder="Pesquisar..." aria-label="Pesquisar produtos">
+          <button type="submit" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+        </form>
+        <a href="contato.html" class="account-link" aria-label="Minha conta / Fale conosco">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="21" height="21"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.6-4 5-6 8-6s6.4 2 8 6"/></svg>
+        </a>
         <a href="cart.html" class="cart-link" aria-label="Carrinho de compras">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
           <span class="cart-count" id="cartCount">0</span>
@@ -105,24 +115,26 @@
       <h2 class="section-title">Loja</h2>
       <p class="section-sub">Filtre por categoria, corporação ou busque pelo nome do produto.</p>
 
-      <div class="cat-pills" id="catPills">
-        <button class="cat-pill active" data-cat="">Todos</button>
-        <button class="cat-pill" data-cat="vestuario">Vestuário</button>
-        <button class="cat-pill" data-cat="calcados">Calçados</button>
-        <button class="cat-pill" data-cat="mochilas">Mochilas</button>
-        <button class="cat-pill" data-cat="insignias">Brevês/Insígnias</button>
-        <button class="cat-pill" data-cat="protecao">Proteção</button>
-        <button class="cat-pill" data-cat="facas">Facas</button>
-        <button class="cat-pill" data-cat="kits">Kits</button>
-        <button class="cat-pill" data-cat="acessorios">Acessórios</button>
-        <button class="cat-pill" data-cat="replicas">Réplicas</button>
-      </div>
-
-      <div class="search-panel" style="margin-bottom:40px;">
-        <div class="search-grid" style="grid-template-columns:repeat(3,1fr);">
-          <div class="field">
-            <label>Corporação</label>
-            <select id="filtroCorporacao">
+      <div class="shop-layout">
+        <aside class="shop-sidebar">
+          <div class="sidebar-block">
+            <h4>Categorias</h4>
+            <div class="cat-pills cat-pills-vertical" id="catPills">
+              <button class="cat-pill active" data-cat="">Todos</button>
+              <button class="cat-pill" data-cat="vestuario">Vestuário</button>
+              <button class="cat-pill" data-cat="calcados">Calçados</button>
+              <button class="cat-pill" data-cat="mochilas">Mochilas</button>
+              <button class="cat-pill" data-cat="insignias">Brevês/Insígnias</button>
+              <button class="cat-pill" data-cat="protecao">Proteção</button>
+              <button class="cat-pill" data-cat="facas">Facas</button>
+              <button class="cat-pill" data-cat="kits">Kits</button>
+              <button class="cat-pill" data-cat="acessorios">Acessórios</button>
+              <button class="cat-pill" data-cat="replicas">Réplicas</button>
+            </div>
+          </div>
+          <div class="sidebar-block">
+            <h4>Corporação</h4>
+            <select id="filtroCorporacao" class="sidebar-select">
               <option value="">Todas</option>
               <option>Exército Brasileiro</option>
               <option>Marinha do Brasil</option>
@@ -133,18 +145,22 @@
               <option>Geral</option>
             </select>
           </div>
-          <div class="field">
-            <label>Buscar por Nome</label>
-            <input type="text" id="filtroBusca" placeholder="Ex: coturno, brevê, mochila...">
+          <div class="sidebar-block">
+            <h4>Buscar por Nome</h4>
+            <input type="text" id="filtroBusca" class="sidebar-select" placeholder="Ex: coturno, brevê, mochila...">
           </div>
-          <div class="field">
-            <label>Código do Produto</label>
-            <input type="text" id="filtroCodigo" placeholder="Insira o código">
+          <div class="sidebar-block">
+            <h4>Código do Produto</h4>
+            <input type="text" id="filtroCodigo" class="sidebar-select" placeholder="Insira o código">
           </div>
-        </div>
-      </div>
+        </aside>
 
-      <div class="product-grid" id="productGrid">
+        <div class="shop-main">
+          <div class="shop-toolbar">
+            <span class="results-count" id="resultsCount"></span>
+          </div>
+
+          <div class="product-grid" id="productGrid">
         <article class="product-card example-card" data-cat="calcados">
           <div class="product-photo"><span class="badge">Calçados</span>
             <div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div>
@@ -232,8 +248,10 @@
           </div>
         </article>
       </div>
-      <div class="empty-list" id="emptyList" style="display:none;text-align:center;color:var(--text-muted);padding:60px 20px;">
-        Nenhum produto encontrado com os filtros selecionados.
+          <div class="empty-list" id="emptyList" style="display:none;text-align:center;color:var(--text-muted);padding:60px 20px;">
+            Nenhum produto encontrado com os filtros selecionados.
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -267,6 +285,23 @@
             <li><a href="produtos.html?categoria=insignias">Brevês e Insígnias</a></li>
             <li><a href="produtos.html?categoria=kits">Kits Especializados</a></li>
           </ul>
+        </div>
+        <div>
+          <h4>Formas de Pagamento</h4>
+          <div class="payment-icons">
+            <span class="pay-badge visa">VISA</span>
+            <span class="pay-badge mastercard">Master</span>
+            <span class="pay-badge elo">elo</span>
+            <span class="pay-badge hipercard">Hiper</span>
+            <span class="pay-badge amex">Amex</span>
+            <span class="pay-badge pix">Pix</span>
+            <span class="pay-badge boleto">Boleto</span>
+          </div>
+          <h4 style="margin-top:24px;">Selos de Segurança</h4>
+          <div class="security-badges">
+            <span class="sec-badge protegida"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>Loja Protegida</span>
+            <span class="sec-badge ssl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Site Seguro SSL</span>
+          </div>
         </div>
         <div>
           <h4>Atendimento ao Cliente</h4>
@@ -306,7 +341,13 @@
   const params = new URLSearchParams(window.location.search);
   const grid = document.getElementById('productGrid');
   const emptyList = document.getElementById('emptyList');
+  const resultsCount = document.getElementById('resultsCount');
   const catPills = document.querySelectorAll('.cat-pill');
+
+  function updateResultsCount(n) {
+    if (!resultsCount) return;
+    resultsCount.textContent = n > 0 ? `${n} produto${n === 1 ? '' : 's'} encontrado${n === 1 ? '' : 's'}` : '';
+  }
 
   // Guarda os cards de exemplo originais (usados como fallback enquanto o
   // Supabase não estiver configurado, ou enquanto o catálogo real ainda não
@@ -357,6 +398,7 @@
       grid.innerHTML = '';
       emptyList.style.display = 'block';
     }
+    updateResultsCount(filtrados.length);
   }
 
   async function loadProdutos() {
@@ -374,6 +416,7 @@
     if (produtos.length > 0) {
       grid.innerHTML = produtos.map(productCardHTML).join('');
       emptyList.style.display = 'none';
+      updateResultsCount(produtos.length);
     } else {
       // Sem dados reais (Supabase ainda não configurado, ou catálogo vazio
       // para esse filtro): cai para os cards de exemplo, filtrados do mesmo jeito.

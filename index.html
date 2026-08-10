@@ -69,6 +69,16 @@
         </ul>
       </nav>
       <div class="header-actions">
+        <button type="button" class="header-search-toggle" id="headerSearchToggle" aria-label="Buscar produtos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="20" height="20"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+        <form class="header-search-box" id="headerSearchBox" action="produtos.html" method="get">
+          <input type="text" name="busca" placeholder="Pesquisar..." aria-label="Pesquisar produtos">
+          <button type="submit" aria-label="Buscar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="16" height="16"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+        </form>
+        <a href="contato.html" class="account-link" aria-label="Minha conta / Fale conosco">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="21" height="21"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.6-4 5-6 8-6s6.4 2 8 6"/></svg>
+        </a>
         <a href="cart.html" class="cart-link" aria-label="Carrinho de compras">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="22" height="22"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
           <span class="cart-count" id="cartCount">0</span>
@@ -408,15 +418,53 @@
     </div>
   </section>
 
+  <!-- Últimas do Blog -->
+  <section class="section tight">
+    <div class="container">
+      <div class="gold-rule"></div>
+      <h2 class="section-title">Últimas do Blog</h2>
+      <p class="section-sub">Dicas, novidades e conteúdo tático direto da QRV.</p>
+
+      <div class="blog-grid">
+        <article class="blog-card">
+          <a href="contato.html" class="blog-card-photo" style="background-image:url('assets/banner-categoria-cutelaria.jpg');"></a>
+          <div class="blog-card-body">
+            <span class="blog-card-date">05 de agosto de 2026</span>
+            <h3><a href="contato.html">Como escolher a faca tática certa para o seu dia a dia</a></h3>
+            <p>Lâmina fixa ou dobrável? Aço inox ou carbono? Te ajudamos a decidir antes da próxima compra.</p>
+          </div>
+        </article>
+        <article class="blog-card">
+          <a href="contato.html" class="blog-card-photo" style="background-image:url('assets/banner-categoria-mochilas.jpg');"></a>
+          <div class="blog-card-body">
+            <span class="blog-card-date">28 de julho de 2026</span>
+            <h3><a href="contato.html">Mochilas táticas: qual litragem escolher para cada missão</a></h3>
+            <p>De um treino de fim de semana a uma operação de vários dias — veja o tamanho ideal pra cada uso.</p>
+          </div>
+        </article>
+        <article class="blog-card">
+          <a href="bordados.html" class="blog-card-photo" style="background-image:url('assets/banner-categoria-calcados.jpg');"></a>
+          <div class="blog-card-body">
+            <span class="blog-card-date">14 de julho de 2026</span>
+            <h3><a href="bordados.html">Bordado personalizado: tudo que você precisa saber antes de pedir</a></h3>
+            <p>Nome de guerra, tipo sanguíneo e insígnias — entenda como funciona o processo na QRV.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="newsletter-band">
     <div class="container">
-      <div>
-        <h3>Newsletter</h3>
-        <p>Quer receber nossas ofertas? Cadastre-se e comece a recebê-las!</p>
-      </div>
-      <div class="newsletter">
-        <input type="email" placeholder="Seu e-mail">
-        <button>Enviar</button>
+      <div class="newsletter-card">
+        <div class="newsletter-card-text">
+          <h3>Receba Todas<br>as Novidades</h3>
+          <p>Cadastre-se para receber ofertas exclusivas e lançamentos em primeira mão.</p>
+        </div>
+        <form class="newsletter" id="newsletterForm">
+          <input type="email" placeholder="Digite seu e-mail" required>
+          <button type="submit">Inscreva-se</button>
+        </form>
       </div>
     </div>
   </section>
@@ -466,6 +514,23 @@
             <li><a href="produtos.html?categoria=insignias">Brevês e Insígnias</a></li>
             <li><a href="produtos.html?categoria=kits">Kits Especializados</a></li>
           </ul>
+        </div>
+        <div>
+          <h4>Formas de Pagamento</h4>
+          <div class="payment-icons">
+            <span class="pay-badge visa">VISA</span>
+            <span class="pay-badge mastercard">Master</span>
+            <span class="pay-badge elo">elo</span>
+            <span class="pay-badge hipercard">Hiper</span>
+            <span class="pay-badge amex">Amex</span>
+            <span class="pay-badge pix">Pix</span>
+            <span class="pay-badge boleto">Boleto</span>
+          </div>
+          <h4 style="margin-top:24px;">Selos de Segurança</h4>
+          <div class="security-badges">
+            <span class="sec-badge protegida"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>Loja Protegida</span>
+            <span class="sec-badge ssl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Site Seguro SSL</span>
+          </div>
         </div>
         <div>
           <h4>Atendimento ao Cliente</h4>
