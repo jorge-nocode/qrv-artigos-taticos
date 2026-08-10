@@ -13,7 +13,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 </head>
 <body>
 
@@ -130,275 +129,81 @@
     </div>
   </section>
 
-  <section class="search-section" style="margin-top:0;padding-top:44px;">
-    <div class="container">
-      <div class="search-panel">
-        <div class="search-grid">
-          <div class="field">
-            <label>Categoria</label>
-            <select id="searchCategoria">
-              <option value="">Todas</option>
-              <option value="vestuario">Vestuário e Fardamento</option>
-              <option value="calcados">Calçados Militares</option>
-              <option value="mochilas">Mochilas e Bolsas</option>
-              <option value="insignias">Brevês e Insígnias</option>
-              <option value="protecao">Proteção e Defesa</option>
-              <option value="facas">Facas e Canivetes</option>
-              <option value="kits">Kits Especializados</option>
-              <option value="acessorios">Acessórios Táticos</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Corporação</label>
-            <select id="searchCorporacao">
-              <option value="">Todas</option>
-              <option>Exército Brasileiro</option>
-              <option>Marinha do Brasil</option>
-              <option>Aeronáutica</option>
-              <option>PMESP</option>
-              <option>Polícia Militar</option>
-              <option>Bombeiros</option>
-              <option>Geral</option>
-            </select>
-          </div>
-          <div class="field">
-            <label>Código do Produto</label>
-            <input type="text" id="searchCodigo" placeholder="Insira o código">
-          </div>
-          <div class="field">
-            <label>Buscar por Nome</label>
-            <input type="text" id="searchNome" placeholder="Ex: coturno, brevê...">
-          </div>
-        </div>
-        <div class="search-footer">
-          <button class="btn-gold" id="searchFiltrarBtn">Buscar Produtos</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Lançamentos -->
+  <!-- Produtos Recentes — uma única fileira de 4 cards, igual à Feel -->
   <section class="section tight">
     <div class="container">
-      <div class="gold-rule"></div>
-      <h2 class="section-title">Lançamentos</h2>
-      <p class="section-sub">Os itens mais recentes do catálogo da QRV.</p>
+      <h2 class="section-title">Produtos Recentes</h2>
+      <p class="section-sub">Confira nossas novidades</p>
 
-      <div class="destaques-wrap">
-        <div class="swiper lancamentos-swiper">
-          <div class="swiper-wrapper" id="lancamentosTrack">
-            <div class="swiper-slide example-card">
-              <article class="product-card">
-                <div class="product-photo"><span class="badge">Vestuário</span><img src="assets/produto-camiseta.jpg" alt="Camisa Combat Concept Alpha" loading="lazy"></div>
-                <div class="product-body">
-                  <h3>Camisa Combat Concept Alpha</h3>
-                  <p class="loc">Geral</p>
-                  <div class="product-price">R$130,00</div>
-                  <span class="stock-warning">Só restam 4 em estoque!</span>
-                </div>
-              </article>
-              <button type="button" class="btn-add-cart" onclick="window.location.href='produtos.html'">Comprar</button>
-            </div>
-            <div class="swiper-slide example-card">
-              <article class="product-card">
-                <div class="product-photo"><span class="badge">Vestuário</span><img src="assets/produto-camiseta.jpg" alt="Camisa Combat Concept Ripstop Ferrugem" loading="lazy"></div>
-                <div class="product-body">
-                  <h3>Camisa Combat Concept Ripstop Ferrugem</h3>
-                  <p class="loc">Geral</p>
-                  <div class="product-price">R$130,00</div>
-                  <span class="stock-warning">Só restam 6 em estoque!</span>
-                </div>
-              </article>
-              <button type="button" class="btn-add-cart" onclick="window.location.href='produtos.html'">Comprar</button>
-            </div>
-            <div class="swiper-slide example-card">
-              <article class="product-card">
-                <div class="product-photo"><span class="badge">Mochilas</span><div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div></div>
-                <div class="product-body">
-                  <h3>Mochila Militar Paraquedista 55L</h3>
-                  <p class="loc">Exército Brasileiro</p>
-                  <div class="product-price">R$429,00</div>
-                  <span class="stock-warning">Só restam 3 em estoque!</span>
-                </div>
-              </article>
-              <button type="button" class="btn-add-cart" onclick="window.location.href='produtos.html'">Comprar</button>
-            </div>
-            <div class="swiper-slide example-card">
-              <article class="product-card">
-                <div class="product-photo"><span class="badge">Ins&iacute;gnias</span>
-                  <div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div>
-                </div>
-                <div class="product-body">
-                  <h3>Brevê Metálico Águia — Fixação</h3>
-                  <p class="loc">Aeronáutica</p>
-                  <div class="product-price">R$45,00</div>
-                  <span class="stock-warning">Só restam 8 em estoque!</span>
-                </div>
-              </article>
-              <button type="button" class="btn-add-cart" onclick="window.location.href='produtos.html'">Comprar</button>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-nav">
-          <button class="car-btn" id="lancPrev">&#8592;</button>
-          <button class="car-btn" id="lancNext">&#8594;</button>
-        </div>
-        <div class="swiper-pagination" id="lancPagination"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Banners de categoria -->
-  <section class="section tight">
-    <div class="container">
-      <div class="category-tiles">
-        <a class="category-tile image-ready" href="produtos.html?categoria=mochilas" aria-label="Ver produtos de Mochilas" style="background-image:url('assets/banner-categoria-mochilas.jpg');"><span class="tile-conferir">conferir</span></a>
-        <a class="category-tile image-ready" href="produtos.html?categoria=facas" aria-label="Ver produtos de Cutelaria" style="background-image:url('assets/banner-categoria-cutelaria.jpg');"><span class="tile-conferir">conferir</span></a>
-        <a class="category-tile image-ready" href="produtos.html?categoria=calcados" aria-label="Ver produtos de Calçados" style="background-image:url('assets/banner-categoria-calcados.jpg');"><span class="tile-conferir">conferir</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Destaques -->
-  <section class="section">
-    <div class="container">
-      <div class="gold-rule"></div>
-      <h2 class="section-title">Destaques</h2>
-      <p class="section-sub">Seleção dos itens mais procurados da loja.</p>
-
-      <div class="destaques-grid" id="destaquesGrid">
-        <article class="example-card product-card">
-          <a href="produtos.html?categoria=mochilas">
-            <div class="product-photo"><span class="badge frete">Frete Grátis</span><div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div></div>
-            <div class="product-body">
-              <h3>Mochila Tática Assault Camuflado</h3>
-              <p class="loc">Geral · Disponível</p>
-              <div class="product-price">R$420,00</div>
-              <span class="installments">ou 3x de R$140,00 sem juros</span>
-            </div>
-          </a>
-        </article>
-        <article class="example-card product-card">
-          <a href="produtos.html?categoria=mochilas">
-            <div class="product-photo"><span class="badge frete">Frete Grátis</span><div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div></div>
-            <div class="product-body">
-              <h3>Mochila Duster Coyote Invictus</h3>
-              <p class="loc">Geral · Disponível</p>
-              <div class="product-price">R$540,00</div>
-              <span class="installments">ou 3x de R$180,00 sem juros</span>
-            </div>
-          </a>
-        </article>
+      <div class="product-grid product-grid-4" id="recentesGrid">
         <article class="example-card product-card">
           <a href="produtos.html?categoria=vestuario">
-            <div class="product-photo"><span class="badge frete">Frete Grátis</span>
-              <div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div>
-            </div>
+            <div class="product-photo"><img src="assets/produto-camiseta.jpg" alt="Camisa Combat Concept Alpha" loading="lazy"></div>
             <div class="product-body">
-              <h3>Jaqueta Corta-Vento Impermeável Feminina</h3>
+              <h3>Camisa Combat Concept Alpha</h3>
               <p class="loc">Geral · Disponível</p>
-              <div class="product-price">R$620,00</div>
-              <span class="installments">ou 3x de R$206,67 sem juros</span>
+              <div class="product-price">R$130,00</div>
             </div>
           </a>
+          <button type="button" class="btn-add-cart" onclick="window.location.href='produtos.html'">Comprar</button>
         </article>
         <article class="example-card product-card">
           <a href="produtos.html?categoria=mochilas">
-            <div class="product-photo"><span class="badge frete">Frete Grátis</span><div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div></div>
+            <div class="product-photo"><div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div></div>
             <div class="product-body">
-              <h3>Mochila Assault Urbana Preta Invictus</h3>
-              <p class="loc">Geral · Disponível</p>
-              <div class="product-price">R$470,00</div>
-              <span class="installments">ou 3x de R$156,67 sem juros</span>
+              <h3>Mochila Militar Paraquedista 55L</h3>
+              <p class="loc">Exército Brasileiro · Disponível</p>
+              <div class="product-price">R$429,00</div>
             </div>
           </a>
+          <button type="button" class="btn-add-cart" onclick="window.location.href='produtos.html'">Comprar</button>
+        </article>
+        <article class="example-card product-card">
+          <a href="produtos.html?categoria=facas">
+            <div class="product-photo"><div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div></div>
+            <div class="product-body">
+              <h3>Faca Tática Lâmina Fixa c/ Bainha</h3>
+              <p class="loc">Geral · Disponível</p>
+              <div class="product-price">R$129,90</div>
+            </div>
+          </a>
+          <button type="button" class="btn-add-cart" onclick="window.location.href='produtos.html'">Comprar</button>
+        </article>
+        <article class="example-card product-card">
+          <a href="produtos.html?categoria=insignias">
+            <div class="product-photo"><div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div></div>
+            <div class="product-body">
+              <h3>Brevê Metálico Águia — Fixação</h3>
+              <p class="loc">Aeronáutica · Disponível</p>
+              <div class="product-price">R$45,00</div>
+            </div>
+          </a>
+          <button type="button" class="btn-add-cart" onclick="window.location.href='produtos.html'">Comprar</button>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Promoções -->
+  <!-- Mosaico de categorias — 3 cards (escuro / amarelo / vermelho), igual à Feel -->
   <section class="section tight">
     <div class="container">
-      <div class="gold-rule"></div>
-      <h2 class="section-title">Promoções</h2>
-      <p class="section-sub">Ofertas por tempo limitado, direto do estoque da QRV.</p>
-
-      <div class="destaques-grid" id="promocoesGrid">
-        <article class="example-card product-card">
-          <a href="produtos.html?categoria=acessorios">
-            <div class="product-photo"><img src="assets/produto-oculos.jpg" alt="Óculos Solar Tático Focus — Verde" loading="lazy"></div>
-            <div class="product-body">
-              <h3>Óculos Solar Tático Focus — Verde</h3>
-              <p class="loc">Geral · Disponível</p>
-              <div class="product-price"><span class="price-old">R$250,00</span>R$180,00</div>
-            </div>
-          </a>
-        </article>
-        <article class="example-card product-card">
-          <a href="produtos.html?categoria=acessorios">
-            <div class="product-photo"><img src="assets/produto-oculos.jpg" alt="Óculos Solar Tático Focus — Coyote" loading="lazy"></div>
-            <div class="product-body">
-              <h3>Óculos Solar Tático Focus — Coyote</h3>
-              <p class="loc">Geral · Disponível</p>
-              <div class="product-price"><span class="price-old">R$250,00</span>R$180,00</div>
-            </div>
-          </a>
-        </article>
-        <article class="example-card product-card">
-          <a href="produtos.html?categoria=acessorios">
-            <div class="product-photo"><img src="assets/produto-oculos.jpg" alt="Óculos Solar Tático Focus — Preto" loading="lazy"></div>
-            <div class="product-body">
-              <h3>Óculos Solar Tático Focus — Preto</h3>
-              <p class="loc">Geral · Disponível</p>
-              <div class="product-price"><span class="price-old">R$250,00</span>R$180,00</div>
-            </div>
-          </a>
-        </article>
-        <article class="example-card product-card">
-          <a href="produtos.html?categoria=vestuario">
-            <div class="product-photo">
-              <div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div>
-            </div>
-            <div class="product-body">
-              <h3>Bermuda Invictus Veterano Woodland</h3>
-              <p class="loc">Geral · Disponível</p>
-              <div class="product-price">R$280,00</div>
-            </div>
-          </a>
-        </article>
+      <div class="category-mosaic">
+        <a class="mosaic-tile tile-dark" href="produtos.html?categoria=mochilas" aria-label="Ver Mochilas">
+          <span class="mosaic-eyebrow">Equipe-se com</span>
+          <h3>Mochilas</h3>
+          <span class="tile-conferir">Conferir</span>
+        </a>
+        <a class="mosaic-tile tile-yellow" href="produtos.html?categoria=calcados" aria-label="Ver Coturnos">
+          <span class="mosaic-eyebrow">Novos</span>
+          <h3>Coturnos</h3>
+          <span class="tile-conferir">Conferir</span>
+        </a>
+        <a class="mosaic-tile tile-red" href="produtos.html?categoria=facas" aria-label="Ver Cutelaria" style="background-image:url('assets/banner-categoria-cutelaria.jpg');">
+          <span class="mosaic-eyebrow">Mais</span>
+          <h3>Cutelaria</h3>
+          <span class="tile-conferir">Conferir</span>
+        </a>
       </div>
-    </div>
-  </section>
-
-  <section class="section tight">
-    <div class="container">
-      <div class="gold-rule"></div>
-      <h2 class="section-title">Por que comprar na QRV</h2>
-      <div class="features">
-        <div class="feature-card accent">
-          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v8l9 5 9-5V8"/></svg>
-          <h3>Envio para Todo o Brasil</h3>
-          <p>Compra 100% online com envio rápido e rastreado para qualquer estado.</p>
-        </div>
-        <div class="feature-card">
-          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5L12 2z"/></svg>
-          <h3>Bordado Personalizado</h3>
-          <p>Nome de guerra, tipo sanguíneo e insígnias bordados sob encomenda.</p>
-        </div>
-        <div class="feature-card">
-          <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 3H8a2 2 0 00-2 2v16l6-4 6 4V5a2 2 0 00-2-2z"/></svg>
-          <h3>Seja um Revendedor</h3>
-          <p>Condições especiais para lojistas e revendedores em todo o país.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="quote-band">
-    <div class="container">
-      <p>Equipando você para o combate</p>
-      <a href="produtos.html">Ver Catálogo Completo →</a>
     </div>
   </section>
 
@@ -449,22 +254,6 @@
           <input type="email" placeholder="Digite seu e-mail" required>
           <button type="submit">Inscreva-se</button>
         </form>
-      </div>
-    </div>
-  </section>
-
-  <section class="instagram-band">
-    <div class="container">
-      <div class="ig-handle">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
-        Siga-nos no @qrv_artigostaticos
-      </div>
-    </div>
-    <div class="instagram-cta">
-      <img class="instagram-preview" src="assets/instagram-preview.jpg" alt="Perfil @qrv_artigostaticos no Instagram">
-      <div class="instagram-cta-overlay">
-        <h2>Siga Nosso<br>Instagram</h2>
-        <a href="https://instagram.com/qrv_artigostaticos" target="_blank" rel="noopener" class="btn-ig-seguir">Seguir</a>
       </div>
     </div>
   </section>
@@ -572,83 +361,19 @@
     });
   })();
 </script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-  let lancamentosSwiper;
-  function initLancamentosSwiper() {
-    if (lancamentosSwiper) lancamentosSwiper.destroy(true, true);
-    const slideCount = document.querySelectorAll('#lancamentosTrack .swiper-slide').length;
-    lancamentosSwiper = new Swiper('.lancamentos-swiper', {
-      grabCursor: true,
-      centeredSlides: false,
-      loop: slideCount > 4,
-      slidesPerView: 1.15,
-      spaceBetween: 22,
-      breakpoints: {
-        640: { slidesPerView: 2, spaceBetween: 22 },
-        960: { slidesPerView: 3, spaceBetween: 24 },
-        1200: { slidesPerView: 4, spaceBetween: 26 },
-      },
-      autoplay: { delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true },
-      navigation: { nextEl: '#lancNext', prevEl: '#lancPrev' },
-      pagination: { el: '#lancPagination', clickable: true },
-    });
-  }
-  window.initLancamentosSwiper = initLancamentosSwiper;
-  initLancamentosSwiper();
-</script>
 <script type="module">
   import { fetchProdutos, productCardHTML } from './assets/supabase-client.js';
 
-  async function loadLancamentos() {
-    const lancamentos = await fetchProdutos({ limit: 8 });
-    if (lancamentos.length > 0) {
-      const track = document.getElementById('lancamentosTrack');
-      track.querySelectorAll('.example-card').forEach(el => el.remove());
-      track.insertAdjacentHTML('beforeend', lancamentos.map(p => `<div class="swiper-slide">${productCardHTML(p, { showStock: false, buyLabel: 'Comprar' })}</div>`).join(''));
-      window.initLancamentosSwiper();
+  // "Produtos Recentes" — uma única fileira com exatamente 4 produtos, igual à Feel
+  async function loadProdutosRecentes() {
+    const recentes = await fetchProdutos({ limit: 4 });
+    if (recentes.length > 0) {
+      const grid = document.getElementById('recentesGrid');
+      grid.innerHTML = recentes.map(p => productCardHTML(p)).join('');
     }
   }
 
-  async function loadDestaques() {
-    const destaques = await fetchProdutos({ destaque: true, limit: 8 });
-    if (destaques.length > 0) {
-      const grid = document.getElementById('destaquesGrid');
-      grid.innerHTML = destaques.map(p => productCardHTML(p, { showFreteBadge: true })).join('');
-    }
-  }
-
-  async function loadPromocoes() {
-    const todos = await fetchProdutos({ limit: 30 });
-    const promocoes = todos.filter(p => p.preco_promocional && Number(p.preco_promocional) < Number(p.preco)).slice(0, 4);
-    if (promocoes.length > 0) {
-      const grid = document.getElementById('promocoesGrid');
-      grid.innerHTML = promocoes.map(p => productCardHTML(p)).join('');
-    }
-  }
-
-  loadLancamentos();
-  loadDestaques();
-  loadPromocoes();
-</script>
-<script>
-  const searchFiltrarBtn = document.getElementById('searchFiltrarBtn');
-  if (searchFiltrarBtn) {
-    searchFiltrarBtn.addEventListener('click', () => {
-      const categoria = document.getElementById('searchCategoria').value;
-      const corporacao = document.getElementById('searchCorporacao').value;
-      const codigo = document.getElementById('searchCodigo').value.trim();
-      const nome = document.getElementById('searchNome').value.trim();
-
-      const params = new URLSearchParams();
-      if (categoria) params.set('categoria', categoria);
-      if (corporacao) params.set('corporacao', corporacao);
-      if (codigo) params.set('codigo', codigo);
-      if (nome) params.set('busca', nome);
-
-      window.location.href = `produtos.html?${params.toString()}`;
-    });
-  }
+  loadProdutosRecentes();
 </script>
 </body>
 </html>

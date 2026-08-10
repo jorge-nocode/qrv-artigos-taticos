@@ -457,7 +457,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:34px 24px;
 }
 .trust-item{display:flex;align-items:center;gap:16px;}
-.trust-item svg{width:34px;height:34px;color:var(--gold);flex:0 0 auto;}
+.trust-item svg{width:34px;height:34px;color:var(--red);flex:0 0 auto;}
 .trust-item strong{display:block;font-size:.82rem;}
 .trust-item span{display:block;font-size:.74rem;color:var(--text-muted);}
 
@@ -488,6 +488,40 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 
 /* ---------- Grade de destaques (sem carrossel) ---------- */
 .destaques-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:stretch;}
+
+/* "Produtos Recentes" — fileira única de 4 cards, igual à Feel */
+.product-grid-4{grid-template-columns:repeat(4,1fr);}
+@media (max-width:900px){ .product-grid-4{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:520px){ .product-grid-4{grid-template-columns:1fr;} }
+
+/* ---------- Mosaico de categorias (3 cards: escuro / amarelo / vermelho) ----------
+   Réplica do mosaico da Feel ("Ouça mais com AirPods" / "Novos Relógios Watch" /
+   "Mais Performance MacBook"): duas colunas estreitas à esquerda + uma larga à
+   direita, todas na mesma altura, cantos arredondados. */
+.category-mosaic{display:grid;grid-template-columns:1fr 1fr 2fr;gap:22px;}
+.mosaic-tile{
+  position:relative;height:260px;border-radius:18px;overflow:hidden;padding:28px;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:6px;
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  color:#fff;transition:transform .3s ease, box-shadow .3s ease;
+}
+.mosaic-tile:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.2);}
+.mosaic-tile h3{font-size:1.6rem;font-weight:700;color:#fff;}
+.mosaic-eyebrow{font-size:.8rem;opacity:.85;}
+.mosaic-tile.tile-dark{background-color:#1D1D1F;}
+.mosaic-tile.tile-yellow{background-color:#F5C518;color:#1D1D1F;}
+.mosaic-tile.tile-yellow h3{color:#1D1D1F;}
+.mosaic-tile.tile-red{background-color:var(--red);background-blend-mode:multiply;}
+.mosaic-tile .tile-conferir{
+  align-self:flex-start;margin-top:8px;padding:8px 18px;border-radius:20px;
+  background:#fff;color:#1D1D1F;font-size:.78rem;font-weight:600;border:none;
+}
+.mosaic-tile.tile-yellow .tile-conferir{background:#1D1D1F;color:#fff;}
+.mosaic-tile:hover .tile-conferir{background:var(--red);color:#fff;}
+@media (max-width:760px){
+  .category-mosaic{grid-template-columns:1fr;}
+  .mosaic-tile{height:200px;}
+}
 
 /* ---------- Últimas do Blog ---------- */
 .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
