@@ -514,6 +514,10 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   padding:9px 22px;border-radius:30px;transition:transform .2s ease, background .2s ease, color .2s ease;
 }
 .mosaic-tile:hover .mosaic-conferir{background:var(--red);color:#fff;}
+/* A coluna larga (Mochilas) revela mais da lateral esquerda da foto, onde
+   fotos antigas ainda tinham texto gravado — zoom extra + posição bem à
+   direita evita mostrar esse texto residual até as artes serem trocadas. */
+.mosaic-tile-wide{background-size:cover, 165% auto;background-position:center, 88% center;}
 @media (max-width:760px){
   .category-mosaic{grid-template-columns:1fr;}
   .mosaic-tile{height:220px;}
@@ -524,7 +528,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .blog-card{display:block;}
 .blog-card-photo{
   display:block;height:200px;border-radius:12px;background-size:cover;background-position:center;
-  margin-bottom:18px;border:1px solid var(--border);
+  margin-bottom:18px;border:1px dashed var(--border);background-color:var(--bg-alt);
 }
 .blog-card-date{font-size:.72rem;color:var(--gold-light);}
 .blog-card-body h3{font-size:1.08rem;font-weight:700;margin:8px 0 10px;line-height:1.3;}
