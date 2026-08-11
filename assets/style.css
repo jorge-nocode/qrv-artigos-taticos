@@ -450,8 +450,17 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .promo-dots{display:none;}
 @media (max-width:640px){
   .promo-banner{padding:14px 14px 30px;}
-  .promo-slides{border-radius:14px;height:270px;max-height:270px;}
-  .promo-dots{bottom:44px;}
+  /* Artes próprias pro mobile (1:1), redesenhadas do zero — por isso a
+     altura fixa vira aspect-ratio quadrado, acompanhando a proporção real
+     dessas imagens em vez da altura estreita usada nas artes do desktop. */
+  .promo-slides{border-radius:14px;height:auto;max-height:none;aspect-ratio:1/1;}
+  .promo-dots{bottom:16px;}
+  /* Troca pelas artes específicas do mobile (uma por slide, mesmo conteúdo,
+     redesenhadas em 1:1). !important necessário pois o desktop define o
+     background-image inline em cada slide via style="". */
+  .promo-slide[data-i="0"]{background-image:url('hero-artigos-taticos-mobile.png') !important;}
+  .promo-slide[data-i="1"]{background-image:url('hero-protecao-defesa-mobile.png') !important;}
+  .promo-slide[data-i="2"]{background-image:url('hero-bordado-mobile.png') !important;}
 }
 .promo-dots span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:background .2s, transform .2s;}
 .promo-dots span.active{background:var(--gold);transform:scale(1.2);}
@@ -600,11 +609,14 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   text-transform:none;
 }
 @media (max-width:640px){
-  /* No mobile a largura encolhe muito e o aspect-ratio fixo + o padding-left
-     extra do texto sobravam pouquíssimo espaço, quebrando "Receba Todas as
-     Novidades" no meio da palavra. Solta a altura fixa e zera esse padding
-     extra pra caber direito. */
-  .newsletter-card{padding:34px 26px;border-radius:16px;aspect-ratio:auto;min-height:340px;flex-direction:column;text-align:center;justify-content:center;}
+  /* Arte própria pro mobile (retrato 4:5), redesenhada do zero — troca a
+     proporção larga do desktop (2.34:1) pela proporção real dessa imagem
+     nova, e zera o padding-left extra que quebrava o texto no meio. */
+  .newsletter-card{
+    padding:34px 26px;border-radius:16px;aspect-ratio:4/5;min-height:0;
+    flex-direction:column;text-align:center;justify-content:flex-end;
+    background-image:url('banner-militar-mobile.png');
+  }
   .newsletter-card-text{padding-left:0;max-width:100%;}
   .newsletter-card .newsletter{margin:0 auto;}
 }
@@ -639,6 +651,14 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .btn-ig-seguir:hover{background:var(--gold-light);transform:translateY(-2px);}
 @media (max-width:768px){
   .instagram-cta{min-height:300px;border-radius:14px;}
+}
+@media (max-width:640px){
+  /* Arte própria pro mobile (retrato 4:5), redesenhada do zero. */
+  .instagram-cta{
+    min-height:0;aspect-ratio:4/5;
+    background-image:linear-gradient(180deg, rgba(11,12,9,.15) 0%, rgba(11,12,9,.55) 100%), url('banner-instagram-composto-mobile.png');
+    background-size:cover;background-position:center;background-repeat:no-repeat;
+  }
 }
 
 @media (max-width:960px){
