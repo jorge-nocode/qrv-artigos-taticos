@@ -543,8 +543,15 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 }
 
 /* ---------- Últimas do Blog ---------- */
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
-.blog-card{display:block;}
+/* Carrossel de uma fileira só, com setas — nunca quebra pra segunda linha,
+   nem no desktop (3 cards visíveis por vez) nem no mobile (1 card por vez). */
+.blog-carousel{position:relative;display:flex;align-items:center;gap:8px;}
+.blog-grid{
+  display:flex;gap:26px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding-bottom:4px;flex:1;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.blog-grid::-webkit-scrollbar{display:none;}
+.blog-card{display:block;flex:0 0 calc((100% - 52px) / 3);scroll-snap-align:start;}
 .blog-card-photo{
   display:block;height:200px;border-radius:12px;background-size:cover;background-position:center;
   margin-bottom:18px;border:1px dashed var(--border);background-color:var(--bg-alt);
@@ -554,7 +561,17 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .blog-card-body h3 a{color:var(--text);}
 .blog-card-body h3 a:hover{color:var(--gold-light);}
 .blog-card-body p{color:var(--text-muted);font-size:.865rem;line-height:1.5;}
-@media (max-width:900px){.blog-grid{grid-template-columns:1fr;}}
+.blog-carousel-arrow{
+  flex:0 0 auto;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);
+  background:var(--bg);color:var(--text);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .2s ease, color .2s ease, border-color .2s ease;
+}
+.blog-carousel-arrow svg{width:18px;height:18px;}
+.blog-carousel-arrow:hover{background:var(--red);border-color:var(--red);color:#fff;}
+.blog-carousel-arrow:disabled{opacity:.35;cursor:default;}
+.blog-carousel-arrow:disabled:hover{background:var(--bg);border-color:var(--border);color:var(--text);}
+@media (max-width:900px){.blog-card{flex:0 0 calc((100% - 26px) / 2);}}
+@media (max-width:640px){.blog-card{flex:0 0 100%;} .blog-carousel-arrow{width:34px;height:34px;}}
 
 /* ---------- Newsletter (card com foto arredondada, no padrão de referência) ---------- */
 .newsletter-band{padding:70px 0;}
@@ -583,7 +600,13 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   text-transform:none;
 }
 @media (max-width:640px){
-  .newsletter-card{padding:34px 26px;border-radius:16px;}
+  /* No mobile a largura encolhe muito e o aspect-ratio fixo + o padding-left
+     extra do texto sobravam pouquíssimo espaço, quebrando "Receba Todas as
+     Novidades" no meio da palavra. Solta a altura fixa e zera esse padding
+     extra pra caber direito. */
+  .newsletter-card{padding:34px 26px;border-radius:16px;aspect-ratio:auto;min-height:340px;flex-direction:column;text-align:center;justify-content:center;}
+  .newsletter-card-text{padding-left:0;max-width:100%;}
+  .newsletter-card .newsletter{margin:0 auto;}
 }
 
 .instagram-band{padding:60px 0 0;text-align:center;}
