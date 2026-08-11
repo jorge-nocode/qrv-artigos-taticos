@@ -707,11 +707,11 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 
 /* Product gallery */
 .pgallery{margin-bottom:0;}
-.pgallery-main{width:100%;aspect-ratio:4/3;max-height:600px;border-radius:8px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(135deg,#20221a,#14150f);cursor:zoom-in;}
+.pgallery-main{width:100%;aspect-ratio:4/3;max-height:600px;border-radius:20px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(135deg,#20221a,#14150f);cursor:zoom-in;}
 .pgallery-main img{width:100%;height:100%;object-fit:cover;display:block;}
 .pgallery-thumbs{display:flex;gap:10px;margin-top:14px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
 .pgallery-thumbs::-webkit-scrollbar{display:none;}
-.pgallery-thumbs img{width:84px;height:84px;flex:0 0 auto;object-fit:cover;border-radius:6px;cursor:pointer;opacity:.55;border:2px solid transparent;transition:opacity .2s, border-color .2s;}
+.pgallery-thumbs img{width:84px;height:84px;flex:0 0 auto;object-fit:cover;border-radius:12px;cursor:pointer;opacity:.55;border:2px solid transparent;transition:opacity .2s, border-color .2s;}
 .pgallery-thumbs img.active{opacity:1;border-color:var(--gold);}
 .pgallery-thumbs img:hover{opacity:1;}
 
@@ -738,7 +738,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .detail-buy-col{padding-top:2px;}
 .detail-code{color:var(--gold-light);font-size:.78rem;margin-bottom:8px;}
 .detail-purpose{color:var(--text-muted);font-size:.85rem;margin-bottom:6px;}
-.detail-title{font-size:1.9rem;font-weight:700;margin-bottom:10px;line-height:1.2;}
+.detail-title{font-size:2.5rem;font-weight:700;margin-bottom:20px;line-height:1.2;}
 .detail-location{color:var(--text-muted);font-size:.95rem;margin-bottom:22px;font-family:'Inter',sans-serif;text-transform:none;letter-spacing:normal;}
 .detail-meta{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:30px;padding-bottom:26px;border-bottom:1px solid var(--border);}
 .detail-meta .item{display:flex;align-items:center;gap:8px;font-size:.86rem;color:var(--text-muted);}
@@ -765,7 +765,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 }
 .product-tabs-nav .tab-btn:hover{color:var(--text);}
 .product-tabs-nav .tab-btn.active{color:var(--red);border-bottom-color:var(--red);}
-.product-tab-panel{display:none;border:1px solid var(--border);border-radius:8px;padding:28px 32px;}
+.product-tab-panel{display:none;border:1px solid var(--border);border-radius:20px;padding:24px;}
 .product-tab-panel.active{display:block;}
 #detailDescription:empty::before{content:'Descrição em breve — fale com a gente pelo WhatsApp se tiver dúvidas sobre este produto.';color:var(--text-muted);font-style:italic;}
 .specs-list{display:flex;flex-direction:column;gap:10px;}
@@ -789,7 +789,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .frete-result.ok{color:var(--green);}
 .payment-icons-produto{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);}
 .payment-icons-produto img{max-width:270px;width:100%;height:auto;display:block;}
-.detail-summary{color:var(--text-muted);font-size:.86rem;line-height:1.6;margin-bottom:8px;}
+.detail-summary{color:var(--text-muted);font-size:1rem;line-height:1.6;margin-bottom:16px;}
 .detail-summary:empty{display:none;}
 
 .descricao-produto{color:var(--text-muted);font-size:.96rem;line-height:1.8;max-width:70ch;}
@@ -812,8 +812,8 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 
 .price-block{margin-bottom:26px;}
 .price-block .item .value.old{font-size:1.05rem;color:var(--text-muted);text-decoration:line-through;font-weight:400;margin-bottom:4px;}
-.price-block .item .value{font-size:1.9rem;font-weight:700;color:var(--green);line-height:1.15;}
-.price-block .item .value-installment{font-size:.85rem;color:var(--text-muted);margin-top:6px;}
+.price-block .item .value{font-size:1.5rem;font-weight:700;color:var(--text);line-height:1.2;}
+.price-block .item .value-installment{font-size:1.05rem;color:var(--text);font-weight:400;margin-top:8px;}
 .stock-pill{display:inline-block;padding:5px 14px;border-radius:20px;font-size:.7rem;}
 .stock-pill.disponivel{background:rgba(120,200,120,.15);color:#8fd68f;}
 .stock-pill.sob_encomenda{background:rgba(217,189,110,.15);color:var(--gold-light);}
