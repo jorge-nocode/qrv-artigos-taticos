@@ -500,15 +500,20 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .category-mosaic{display:grid;grid-template-columns:1fr 1fr 2fr;gap:22px;align-items:stretch;}
 .mosaic-tile{
   position:relative;height:288px;border-radius:25px;overflow:hidden;
-  display:block;background-color:#FFFFFF;
-  background-size:contain;background-position:center;background-repeat:no-repeat;
+  display:flex;align-items:flex-end;
+  background-image:linear-gradient(90deg, rgba(6,7,4,.9) 0%, rgba(6,7,4,.5) 48%, rgba(6,7,4,.1) 100%), var(--tile-bg);
+  background-size:cover;background-position:right center;background-repeat:no-repeat;
   color:#fff;transition:transform .3s ease;
 }
-/* As artes já trazem o card arredondado + sombra desenhados sobre fundo
-   branco (não são full-bleed) — por isso usamos 'contain' em vez de 'cover':
-   assim a arte inteira aparece dentro do tile, sem cortar o texto
-   ("MOCHILAS", "CUTELARIA" etc.) nas bordas, e sem esticar a imagem. */
 .mosaic-tile:hover{transform:translateY(-4px);}
+.mosaic-tile-content{position:relative;z-index:2;padding:30px;max-width:80%;}
+.mosaic-eyebrow{display:block;font-size:.85rem;font-weight:500;color:rgba(255,255,255,.85);margin-bottom:2px;}
+.mosaic-title{font-size:1.9rem;font-weight:800;color:#fff;margin-bottom:18px;text-transform:uppercase;letter-spacing:.5px;line-height:1.1;}
+.mosaic-conferir{
+  display:inline-block;background:#fff;color:var(--red);font-weight:700;font-size:.82rem;
+  padding:9px 22px;border-radius:30px;transition:transform .2s ease, background .2s ease, color .2s ease;
+}
+.mosaic-tile:hover .mosaic-conferir{background:var(--red);color:#fff;}
 @media (max-width:760px){
   .category-mosaic{grid-template-columns:1fr;}
   .mosaic-tile{height:220px;}
