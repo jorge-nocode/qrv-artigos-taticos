@@ -618,7 +618,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
      nova, e zera o padding-left extra que quebrava o texto no meio. */
   .newsletter-card{
     padding:34px 26px;border-radius:16px;aspect-ratio:4/5;min-height:0;
-    flex-direction:column;text-align:center;justify-content:flex-end;
+    flex-direction:column;text-align:center;justify-content:flex-start;
     background-image:url('banner-militar-mobile.png');
   }
   .newsletter-card-text{padding-left:0;max-width:100%;}
@@ -630,8 +630,16 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   .newsletter-card-text h3 .desktop-only-br{display:none;}
   /* max-width:380px do formulário era mais largo que o espaço real dentro
      do card no mobile (~280px), fazendo o botão "Inscreva-se" vazar pra
-     fora e ser cortado pelo overflow:hidden do card. */
-  .newsletter-card .newsletter{margin:0 auto;max-width:100%;width:100%;}
+     fora e ser cortado pelo overflow:hidden do card. Em vez de espremer
+     tudo numa linha só, empilha o campo de e-mail e o botão. */
+  .newsletter-card .newsletter{
+    margin:0 auto;max-width:100%;width:100%;
+    flex-direction:column;border-radius:16px;
+  }
+  .newsletter-card .newsletter input{width:100%;text-align:center;}
+  .newsletter-card .newsletter button{
+    width:100%;padding:14px 20px;border-radius:0;margin:0;font-size:.9rem;
+  }
 }
 
 .instagram-band{padding:60px 0 0;text-align:center;}
