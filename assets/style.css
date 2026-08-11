@@ -134,6 +134,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .mega-col a:hover{color:var(--gold-light);}
 
 /* Busca / conta / carrinho no header */
+/* Barra de busca sempre visível no header, estilo Feel (pílula cinza claro) */
 .header-search-box{
   display:flex;align-items:center;gap:0;
   background:var(--bg-alt);border:1px solid var(--border);border-radius:30px;
@@ -195,6 +196,10 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 }
 
 /* Page header (inner pages) */
+/* Essa faixa fica vazia em todas as páginas internas (só o container, sem
+   título) — antes tinha um respiro enorme (150px) pensado pra um header bem
+   mais baixo; com o header maior de hoje isso virou um vão gigante entre o
+   menu e o conteúdo. Reduzido pra um respiro discreto. */
 .page-header{padding:28px 0;background:var(--bg);}
 .breadcrumb{font-size:.75rem;color:var(--text-muted);margin-bottom:10px;}
 .breadcrumb a{color:var(--text-muted);}
@@ -249,7 +254,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 }
 .cat-pill.active, .cat-pill:hover{background:var(--olive);border-color:var(--olive-light);color:var(--text);}
 
-/* ---------- Loja: layout com filtros em barra lateral ---------- */
+/* ---------- Loja: layout com filtros em barra lateral (padrão de referência) ---------- */
 .shop-layout{display:grid;grid-template-columns:250px 1fr;gap:40px;align-items:start;}
 .shop-sidebar{position:sticky;top:170px;display:flex;flex-direction:column;gap:28px;}
 .sidebar-block h4{
@@ -294,7 +299,8 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   .cat-pills-vertical .cat-pill{border:1px solid var(--border);border-radius:30px;padding:7px 16px;}
 }
 
-/* Product grid */
+/* Product grid — sem "cartão": nada de fundo, borda ou sombra ao redor, só a
+   foto cheia (sem cantos cortados), nome e preço, igual à loja de referência. */
 .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 40px;align-items:stretch;}
 .product-card{
   background:transparent;border:none;border-radius:0;box-shadow:none;
@@ -302,6 +308,11 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   display:flex;flex-direction:column;height:100%;
 }
 .product-card:hover{transform:none;box-shadow:none;border-color:transparent;}
+/* Card inteiro em flex-column: o link cresce (flex:1) pra ocupar o espaço
+   disponível e o corpo do card (título/preço) também é flex-column com
+   justify-content:space-between, então o botão "Comprar" — que fica logo
+   depois do link, como último filho do card — sempre gruda na mesma linha
+   embaixo (margin-top:auto), não importa se o título tem 1 ou 3 linhas. */
 .product-card > a{display:flex;flex-direction:column;flex:1;color:inherit;}
 .product-photo{
   position:relative;height:auto;aspect-ratio:1/1;overflow:hidden;background:#FFFFFF;
@@ -333,7 +344,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .hidden{display:none !important;}
 .center-btn{text-align:center;margin-top:50px;}
 
-/* Botão verde nos cards de produto */
+/* Botão verde nos cards de produto — mesmo padrão em toda a loja */
 .btn-add-cart{
   display:block;width:100%;margin:10px 0 0;margin-top:auto;background:var(--green);border:1px solid var(--green);
   color:#fff;padding:11px 30px;border-radius:30px;font-size:.74rem;cursor:pointer;transition:background .2s linear;font-weight:600;text-align:center;
@@ -383,7 +394,10 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .destaques-swiper .swiper-slide-active, .produtos-swiper .swiper-slide-active, .similares-swiper .swiper-slide-active{opacity:1;filter:none;}
 .destaques-swiper .product-card, .produtos-swiper .product-card, .similares-swiper .product-card{height:100%;}
 
-/* Lançamentos */
+/* Lançamentos: grade normal (sem blur/coverflow), cards no tamanho padrão do site.
+   O visual "sem cartão" (fundo/borda/sombra, foto cheia, sem badge, sem
+   estoque, botão preto) agora é o padrão em .product-card / .btn-add-cart,
+   então aqui só ficam os ajustes específicos do carrossel. */
 .lancamentos-swiper{width:100%;padding:6px 0 46px;}
 .lancamentos-swiper .swiper-slide{height:auto;opacity:1;filter:none;}
 .lancamentos-swiper .product-card{height:100%;display:flex;flex-direction:column;}
@@ -393,7 +407,11 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 #lancPagination .swiper-pagination-bullet{background:var(--border);opacity:1;width:8px;height:8px;margin:0;}
 #lancPagination .swiper-pagination-bullet-active{background:var(--gold);}
 
-/* ---------- Banner promocional / carrossel automático ---------- */
+/* ---------- Banner promocional / carrossel automático (topo da home) ----------
+   Efeito "3D": a faixa toda fica preta (--bg do tema escuro é a mesma cor de
+   fundo do site) e o banner em si fica menor, com cantos arredondados e sombra
+   — como sobra uma margem escura igual ao fundo da loja em volta da imagem,
+   o produto parece "flutuar" fora do quadro, tipo composição 3D. */
 .promo-banner{position:relative;overflow:hidden;background:#FFFFFF;padding:26px 26px 44px;}
 .promo-slides{
   position:relative;width:100%;max-width:1440px;margin:0 auto;height:550px;max-height:550px;
@@ -406,7 +424,11 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 }
 .promo-slide.active{opacity:1;z-index:2;pointer-events:auto;}
 .promo-slide .container{position:relative;z-index:2;width:100%;}
+/* Slides com arte finalizada (texto/CTA já embutidos na imagem) — imagem inteira
+   "encaixada" sem cortar (contain), igual à referência, sem gradiente escuro por cima */
 .promo-slide.image-ready{background-position:center;background-size:contain;background-repeat:no-repeat;}
+/* O banner de Bordado tem proporção mais "quadrada" que os outros dois — ancora
+   no topo pra não cortar o título, já que o resto da imagem sobra embaixo. */
 .promo-slide.image-ready[data-i="2"]{background-position:center top;}
 .promo-slide-link{position:absolute;inset:0;z-index:5;}
 .promo-content{max-width:520px;}
@@ -428,7 +450,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .promo-dots span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:background .2s, transform .2s;}
 .promo-dots span.active{background:var(--gold);transform:scale(1.2);}
 
-/* ---------- Barra de confiança ---------- */
+/* ---------- Barra de confiança (frete / parcelamento / dúvidas / segurança) ---------- */
 .trust-bar{background:#FFFFFF;border-bottom:none;}
 .trust-bar .container{
   display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:28px 0 0;
@@ -453,6 +475,8 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .category-tile span{font-size:.75rem;color:var(--gold-light);}
 .category-tile:hover h3{color:var(--gold-light);}
 
+/* Botão "conferir" real em HTML — o texto já vem gravado na imagem, mas
+   pequeno demais pra ler; este botão fica por cima, legível, no mesmo lugar. */
 .tile-conferir{
   position:relative;z-index:3;display:inline-block;
   padding:8px 18px;border:1px solid var(--gold-light);border-radius:4px;
@@ -461,14 +485,18 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 }
 .category-tile.image-ready:hover .tile-conferir{background:var(--red);border-color:var(--red);color:#fff;}
 
-/* ---------- Grade de destaques ---------- */
+/* ---------- Grade de destaques (sem carrossel) ---------- */
 .destaques-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:stretch;}
 
+/* "Produtos Recentes" — fileira única de 4 cards, igual à Feel */
 .product-grid-4{grid-template-columns:repeat(4,1fr);}
 @media (max-width:900px){ .product-grid-4{grid-template-columns:repeat(2,1fr);} }
 @media (max-width:520px){ .product-grid-4{grid-template-columns:1fr;} }
 
-/* ---------- Mosaico de categorias ---------- */
+/* ---------- Mosaico de categorias (3 cards: escuro / amarelo / vermelho) ----------
+   Réplica do mosaico da Feel ("Ouça mais com AirPods" / "Novos Relógios Watch" /
+   "Mais Performance MacBook"): duas colunas estreitas à esquerda + uma larga à
+   direita, todas na mesma altura, cantos arredondados. */
 .category-mosaic{display:grid;grid-template-columns:1fr 1fr 2fr;gap:22px;align-items:stretch;}
 .mosaic-tile{
   position:relative;height:288px;border-radius:25px;overflow:hidden;
@@ -486,7 +514,13 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   padding:9px 22px;border-radius:30px;transition:transform .2s ease, background .2s ease, color .2s ease;
 }
 .mosaic-tile:hover .mosaic-conferir{background:var(--red);color:#fff;}
+/* A coluna larga (Mochilas) revela mais da lateral esquerda da foto, onde
+   fotos antigas ainda tinham texto gravado — zoom extra + posição bem à
+   direita evita mostrar esse texto residual até as artes serem trocadas. */
 .mosaic-tile-wide{background-size:cover, 165% auto;background-position:center, 88% center;}
+/* Card "Calçados" usa uma arte própria já finalizada — sem gradiente/overlay
+   escurecendo por cima, sem cor de fundo preta gerando barras no topo/base;
+   contain garante que a imagem inteira apareça, sem cortar. */
 .mosaic-tile-contain{
   background-color:#ffffff;
   background-image:var(--tile-bg);
@@ -513,7 +547,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .blog-card-body p{color:var(--text-muted);font-size:.865rem;line-height:1.5;}
 @media (max-width:900px){.blog-grid{grid-template-columns:1fr;}}
 
-/* ---------- Newsletter (Banner "Receba todas as Novidades" - CORRIGIDO) ---------- */
+/* ---------- Newsletter (card com foto arredondada, no padrão de referência) ---------- */
 .newsletter-band{padding:70px 0;}
 .newsletter-card{
   position:relative;overflow:hidden;border-radius:24px;
@@ -521,12 +555,11 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   background-image:url('banner-militar.jpg.png');
   background-repeat:no-repeat;
   background-position:center;
-  /* background-size: cover garante que a imagem preencha a altura toda sem fatiar no topo/base */
-  background-size:cover;
-  min-height:360px;
+  background-size:contain;
+  aspect-ratio:2.34/1;
   gap:40px;flex-wrap:wrap;
 }
-.newsletter-card-text{max-width:420px;padding-left:0px;}
+.newsletter-card-text{max-width:420px;padding-left:60px;}
 .newsletter-card-text h3{font-size:clamp(1.7rem,3.4vw,2.4rem);color:#fff;line-height:1.15;margin-bottom:14px;font-weight:700;text-shadow:0 2px 14px rgba(0,0,0,.5);}
 .newsletter-card-text p{color:rgba(255,255,255,.85);font-size:.92rem;text-shadow:0 2px 10px rgba(0,0,0,.5);}
 .newsletter-card .newsletter{
@@ -541,21 +574,22 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   text-transform:none;
 }
 @media (max-width:640px){
-  .newsletter-card{padding:34px 26px;border-radius:16px;min-height:auto;}
+  .newsletter-card{padding:34px 26px;border-radius:16px;}
 }
 
-/* ---------- Banner "Siga nosso Instagram" (CORRIGIDO) ---------- */
-.instagram-band{padding:60px 0 0;text-align:center;width:100%;}
+.instagram-band{padding:60px 0 0;text-align:center;}
 .instagram-band .ig-handle{display:inline-flex;align-items:center;gap:8px;color:var(--gold-light);font-size:.9rem;margin-bottom:26px;}
 .instagram-band .ig-handle svg{width:20px;height:20px;}
 
+/* Faixa "Siga nosso Instagram" — foto de fundo em largura total, com o
+   print real do perfil (esmaecido) se mesclando do lado esquerdo, texto
+   grande em cima e botão branco "Seguir", no padrão de referência. */
 .instagram-cta{
   position:relative;overflow:hidden;
   min-height:340px;
   display:flex;align-items:center;
   width:100%;
-  /* background-size: cover faz a imagem da bota ocupar 100% da tela sem bordas cinzas laterais */
-  background:linear-gradient(100deg, rgba(11,12,9,.4) 0%, rgba(11,12,9,.75) 45%, rgba(75,83,32,.55) 100%), url('banner-categoria-calcados.jpg.png') center/cover no-repeat;
+  background:linear-gradient(100deg, rgba(11,12,9,.4) 0%, rgba(11,12,9,.75) 45%, rgba(75,83,32,.55) 100%), url('banner-categoria-calcados.jpg.png') center/contain no-repeat;
 }
 .instagram-preview{
   position:absolute;top:0;left:0;height:100%;width:52%;object-fit:cover;object-position:top left;
@@ -640,7 +674,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .detail-section-title:first-of-type{margin-top:0;}
 .detail-description{margin-bottom:34px;}
 
-/* Abas Descrição / Informações Adicionais / Avaliações */
+/* Abas Descrição / Informações Adicionais / Avaliações (página de produto) */
 .product-tabs{margin-top:38px;}
 .product-tabs-nav{display:flex;gap:28px;border-bottom:1px solid var(--border);margin-bottom:24px;}
 .product-tabs-nav .tab-btn{
@@ -655,7 +689,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .specs-list li{font-size:.88rem;color:var(--text-muted);}
 .specs-list li strong{color:var(--text);}
 
-/* Calculadora de frete por CEP */
+/* Calculadora de frete por CEP (card de compra) */
 .frete-calc{margin-bottom:18px;padding-top:14px;border-top:1px solid var(--border);}
 .frete-calc label{display:block;font-size:.78rem;color:var(--text-muted);margin-bottom:10px;}
 .frete-calc-row{display:flex;gap:8px;}
@@ -720,7 +754,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .contact-card .btn-gold{margin-bottom:12px;width:100%;}
 
-/* Tabela de preços */
+/* Tabela de preços (página de Bordado) */
 .price-table{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:20px;}
 .price-table th, .price-table td{padding:14px 18px;text-align:left;font-size:.9rem;border-bottom:1px solid var(--border);}
 .price-table th{color:var(--gold-light);font-size:.7rem;background:#141410;}
@@ -733,14 +767,23 @@ footer .footer-grid ul a, footer .footer-about p{color:var(--text-muted);}
 footer h4{color:var(--text);font-weight:700;font-size:.865rem;font-family:'Poppins',sans-serif;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr 1.3fr;gap:32px;margin-bottom:36px;}
 .footer-grid-4{grid-template-columns:1fr 1fr 1.75fr 1.25fr;}
+/* Formas de pagamento — uma única imagem com as bandeiras (Visa, Elo, Aura,
+   Hipercard, Mastercard, Amex, Diners, JCB, Pix, Boleto), sem grid de cards
+   individuais. */
 .payment-icons{max-width:300px;margin-top:16px;}
 .payment-icons img{width:100%;height:auto;display:block;border-radius:8px;}
 @media (max-width:420px){.payment-icons{max-width:240px;}}
 
+/* Selos de segurança — imagens reais dos selos (Loja Protegida + SSL Secure
+   Connection), lado a lado. */
 .security-badges{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px;}
 .security-badges img.sec-badge-img{height:42px;width:auto;display:block;}
 .footer-contact-info{font-size:12.5px;line-height:1.6;color:var(--text-muted);margin-top:12px;}
 .footer-contact-info strong{color:var(--text);font-weight:700;}
+/* Lista "Atendimento ao Cliente" (cart/checkout/contato) — fonte reduzida
+   para ficar discreta, no padrão do resto do rodapé. Usamos px fixo (em vez
+   de rem) porque o site tem html{font-size:18.5px}, o que faria um valor em
+   rem renderizar bem maior que o esperado. */
 .footer-grid ul.contact-details li{font-size:12.5px;line-height:1.6;color:var(--text-muted);}
 .footer-grid ul.contact-details li strong{color:var(--text);font-weight:700;}
 .footer-grid h4{font-size:.82rem;color:var(--text);font-weight:700;margin-bottom:18px;}
@@ -866,7 +909,9 @@ footer h4{color:var(--text);font-weight:700;font-size:.865rem;font-family:'Poppi
 }
 
 /* =====================================================================
-   Atendente Virtual Tático — "Recruta QRV"
+   Atendente Virtual Tático — "Recruta QRV" (widget de chat com Gemini)
+   Visual fixo em dark mode (independe do tema claro/escuro do site),
+   conforme especificação: fundo #121212, bordas douradas/oliva.
    ===================================================================== */
 .qrv-chat-fab{
   position:fixed;right:26px;bottom:96px;z-index:400;
