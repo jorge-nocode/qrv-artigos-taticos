@@ -518,6 +518,10 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
    fotos antigas ainda tinham texto gravado — zoom extra + posição bem à
    direita evita mostrar esse texto residual até as artes serem trocadas. */
 .mosaic-tile-wide{background-size:cover, 165% auto;background-position:center, 88% center;}
+/* Card "Calçados" usa uma arte vertical própria (já finalizada, com fundo
+   claro) — contain garante que a imagem inteira apareça, sem cortar topo
+   nem base, com a cor de fundo preenchendo as laterais. */
+.mosaic-tile-contain{background-color:#12130f;background-size:cover, contain;background-position:center, center;}
 @media (max-width:760px){
   .category-mosaic{grid-template-columns:1fr;}
   .mosaic-tile{height:220px;}
