@@ -67,10 +67,10 @@ body{
   line-height:1.6;
   transition:background .25s ease, color .25s ease;
 }
-h1,h2,h3,.stencil{font-weight:700;color:var(--text);}
+h1,h2,h3,.stencil{font-weight:700;color:var(--text);font-family:'Poppins',sans-serif;}
 a{text-decoration:none;color:inherit;}
 img{max-width:100%;display:block;}
-.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.container{max-width:1140px;margin:0 auto;padding:0 28px;}
 ul{list-style:none;}
 
 /* Top bar — tamanho fixo em px (não usa rem) pra não crescer junto com o
@@ -301,7 +301,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 
 /* Product grid — sem "cartão": nada de fundo, borda ou sombra ao redor, só a
    foto cheia (sem cantos cortados), nome e preço, igual à loja de referência. */
-.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:stretch;}
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 40px;align-items:stretch;}
 .product-card{
   background:transparent;border:none;border-radius:0;box-shadow:none;
   transition:opacity .25s ease;
@@ -347,7 +347,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 /* Botão verde nos cards de produto — mesmo padrão em toda a loja */
 .btn-add-cart{
   display:block;width:100%;margin:10px 0 0;margin-top:auto;background:var(--green);border:1px solid var(--green);
-  color:#fff;padding:11px 14px;border-radius:30px;font-size:.74rem;cursor:pointer;transition:all .2s;font-weight:600;
+  color:#fff;padding:11px 30px;border-radius:30px;font-size:.74rem;cursor:pointer;transition:background .2s linear;font-weight:600;text-align:center;
 }
 .btn-add-cart:hover{background:var(--green-dark);border-color:var(--green-dark);color:#fff;}
 .btn-add-cart.added{background:var(--olive-light);border-color:var(--olive-light);color:#fff;}
@@ -414,18 +414,19 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
    o produto parece "flutuar" fora do quadro, tipo composição 3D. */
 .promo-banner{position:relative;overflow:hidden;background:#FFFFFF;padding:26px 26px 44px;}
 .promo-slides{
-  position:relative;width:100%;max-width:1440px;margin:0 auto;aspect-ratio:2.34/1;max-height:760px;
-  border-radius:20px;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.12);
+  position:relative;width:100%;max-width:1440px;margin:0 auto;height:550px;max-height:550px;
+  border-radius:20px;overflow:hidden;background:#FFFFFF;
 }
 .promo-slide{
   position:absolute;inset:0;display:flex;align-items:center;opacity:0;z-index:1;
   background:linear-gradient(115deg, rgba(6,7,4,.88) 30%, rgba(6,7,4,.35) 75%), var(--slide-bg, url('hero-tatico.jpg')) center/cover no-repeat;
-  transition:opacity 1s ease;pointer-events:none;
+  transition:opacity .5s ease;pointer-events:none;
 }
 .promo-slide.active{opacity:1;z-index:2;pointer-events:auto;}
 .promo-slide .container{position:relative;z-index:2;width:100%;}
-/* Slides com arte finalizada (texto/CTA já embutidos na imagem) — sem gradiente escuro por cima */
-.promo-slide.image-ready{background-position:center;background-size:cover;background-repeat:no-repeat;}
+/* Slides com arte finalizada (texto/CTA já embutidos na imagem) — imagem inteira
+   "encaixada" sem cortar (contain), igual à referência, sem gradiente escuro por cima */
+.promo-slide.image-ready{background-position:center;background-size:contain;background-repeat:no-repeat;}
 /* O banner de Bordado tem proporção mais "quadrada" que os outros dois — ancora
    no topo pra não cortar o título, já que o resto da imagem sobra embaixo. */
 .promo-slide.image-ready[data-i="2"]{background-position:center top;}
@@ -440,10 +441,10 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .promo-highlight .value{font-size:4.2rem;font-weight:700;color:var(--text);line-height:1;}
 .promo-highlight .value small{font-size:1.6rem;vertical-align:top;}
 .promo-highlight .label{font-size:.95rem;color:var(--text-muted);max-width:180px;line-height:1.4;}
-.promo-dots{position:absolute;bottom:66px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:5;}
+.promo-dots{display:none;}
 @media (max-width:640px){
   .promo-banner{padding:14px 14px 30px;}
-  .promo-slides{border-radius:14px;}
+  .promo-slides{border-radius:14px;height:220px;max-height:220px;}
   .promo-dots{bottom:44px;}
 }
 .promo-dots span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:background .2s, transform .2s;}
@@ -452,12 +453,12 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 /* ---------- Barra de confiança (frete / parcelamento / dúvidas / segurança) ---------- */
 .trust-bar{background:#FFFFFF;border-bottom:none;}
 .trust-bar .container{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:34px 24px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:28px 0 0;
 }
 .trust-item{display:flex;align-items:center;gap:16px;}
 .trust-item svg{width:34px;height:34px;color:var(--red);flex:0 0 auto;}
-.trust-item strong{display:block;font-size:.82rem;}
-.trust-item span{display:block;font-size:.74rem;color:var(--text-muted);}
+.trust-item strong{display:block;font-size:.865rem;font-weight:700;font-family:'Poppins',sans-serif;margin-bottom:5px;}
+.trust-item span{display:block;font-size:.81rem;color:#aaaaaa;line-height:1.27;}
 
 /* ---------- Banners de categoria (tiles) ---------- */
 .category-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
@@ -496,9 +497,9 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
    Réplica do mosaico da Feel ("Ouça mais com AirPods" / "Novos Relógios Watch" /
    "Mais Performance MacBook"): duas colunas estreitas à esquerda + uma larga à
    direita, todas na mesma altura, cantos arredondados. */
-.category-mosaic{display:grid;grid-template-columns:1fr 1fr 1.5fr;gap:22px;align-items:stretch;}
+.category-mosaic{display:grid;grid-template-columns:1fr 1fr 2fr;gap:22px;align-items:stretch;}
 .mosaic-tile{
-  position:relative;height:280px;border-radius:20px;overflow:hidden;
+  position:relative;height:288px;border-radius:25px;overflow:hidden;
   display:block;background-color:#FFFFFF;
   background-size:contain;background-position:center;background-repeat:no-repeat;
   color:#fff;transition:transform .3s ease;
@@ -521,18 +522,21 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   margin-bottom:18px;border:1px solid var(--border);
 }
 .blog-card-date{font-size:.72rem;color:var(--gold-light);}
-.blog-card-body h3{font-size:1.1rem;font-weight:700;margin:8px 0 10px;line-height:1.35;}
+.blog-card-body h3{font-size:1.08rem;font-weight:700;margin:8px 0 10px;line-height:1.3;}
 .blog-card-body h3 a{color:var(--text);}
 .blog-card-body h3 a:hover{color:var(--gold-light);}
-.blog-card-body p{color:var(--text-muted);font-size:.87rem;line-height:1.5;}
+.blog-card-body p{color:var(--text-muted);font-size:.865rem;line-height:1.5;}
 @media (max-width:900px){.blog-grid{grid-template-columns:1fr;}}
 
 /* ---------- Newsletter (card com foto arredondada, no padrão de referência) ---------- */
 .newsletter-band{padding:70px 0;}
 .newsletter-card{
-  position:relative;overflow:hidden;border-radius:24px;min-height:360px;
+  position:relative;overflow:hidden;border-radius:24px;min-height:440px;
   display:flex;align-items:center;padding:50px 60px;
-  background:linear-gradient(100deg, rgba(6,7,4,.72) 0%, rgba(6,7,4,.4) 42%, transparent 68%), url('newsletter-photo.jpg') center/cover no-repeat, url('hero-tatico.jpg') center/cover no-repeat;
+  background-image:linear-gradient(100deg, rgba(6,7,4,.72) 0%, rgba(6,7,4,.4) 42%, transparent 68%), url('newsletter-photo.jpg'), url('hero-tatico.jpg');
+  background-repeat:no-repeat;
+  background-position:center, center 30%, center;
+  background-size:cover, cover, cover;
   gap:40px;flex-wrap:wrap;
 }
 .newsletter-card-text{max-width:420px;}
@@ -540,12 +544,12 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .newsletter-card-text p{color:rgba(255,255,255,.85);font-size:.92rem;text-shadow:0 2px 10px rgba(0,0,0,.5);}
 .newsletter-card .newsletter{
   max-width:380px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);
-  border-radius:30px;backdrop-filter:blur(3px);
+  border-radius:50px;backdrop-filter:blur(3px);
 }
 .newsletter-card .newsletter input{color:#fff;padding:12px 20px;}
 .newsletter-card .newsletter input::placeholder{color:rgba(255,255,255,.7);}
 .newsletter-card .newsletter button{
-  background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#141210;font-weight:700;
+  background:var(--red);color:#fff;font-weight:700;
   padding:0 26px;border-radius:30px;margin:2px;font-size:.82rem;
   text-transform:none;
 }
@@ -737,11 +741,11 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .price-table td:last-child{color:var(--gold-light);font-weight:600;text-align:right;}
 
 /* Footer */
-footer{background:var(--footer-bg);border-top:none;padding:56px 0 24px;color:var(--text);}
+footer{background:var(--footer-bg);border-top:none;padding:64px 0 25px;color:var(--text);}
 footer .footer-grid ul a, footer .footer-about p{color:var(--text-muted);}
-footer h4{color:var(--text);font-weight:700;}
+footer h4{color:var(--text);font-weight:700;font-size:.865rem;font-family:'Poppins',sans-serif;}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr 1.3fr;gap:32px;margin-bottom:36px;}
-.footer-grid-4{grid-template-columns:1.3fr 1fr 1.3fr 1.1fr;}
+.footer-grid-4{grid-template-columns:1fr 1fr 1.75fr 1.25fr;}
 /* Formas de pagamento — uma única imagem com as bandeiras (Visa, Elo, Aura,
    Hipercard, Mastercard, Amex, Diners, JCB, Pix, Boleto), sem grid de cards
    individuais. */
