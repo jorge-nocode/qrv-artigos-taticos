@@ -12,7 +12,7 @@
 <title>Produto | QRV Artigos Táticos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=5">
+<link rel="stylesheet" href="assets/style.css?v=6">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
 </head>
@@ -112,10 +112,10 @@
         <!-- Coluna de compra -->
         <div class="detail-buy-col">
 
-          <div class="detail-code" id="detailCode">Código: QRV-0001</div>
-          <div class="detail-purpose" id="detailPurpose">Categoria: Calçados Militares · Geral</div>
+          <div class="detail-code hidden" id="detailCode">Código: QRV-0001</div>
+          <div class="detail-purpose hidden" id="detailPurpose">Categoria: Calçados Militares · Geral</div>
           <h1 class="detail-title" id="detailTitle">Coturno Tático Couro/Cordura c/ Zíper</h1>
-          <p class="detail-location" id="detailStockLine"><span class="stock-pill disponivel" id="detailStock">Disponível</span></p>
+          <p class="detail-location hidden" id="detailStockLine"><span class="stock-pill disponivel" id="detailStock">Disponível</span></p>
 
           <div class="variant-group" id="variantTamanhos" style="display:none;">
             <label>Tamanho</label>
@@ -128,9 +128,9 @@
 
           <div class="price-block">
             <div class="item">
-              <h4>Preço</h4>
-              <div class="value" id="priceValor">R$ 349,90</div>
               <div class="value old hidden" id="priceOld"></div>
+              <div class="value" id="priceValor">R$ 349,90</div>
+              <div class="value-installment" id="priceInstallment">ou 3x de R$ 116,63 sem juros</div>
             </div>
           </div>
 
@@ -165,6 +165,8 @@
           <div class="payment-icons payment-icons-produto">
             <img src="assets/pagamento-bandeiras.png" alt="Formas de pagamento aceitas: Visa, Elo, Aura, Hipercard, Mastercard, Amex, Diners Club, JCB, Pix e Boleto">
           </div>
+
+          <p class="detail-summary" id="detailSummary"></p>
 
           <details class="produto-contact-details">
             <summary>Prefere falar com a gente antes? Envie uma mensagem</summary>
@@ -467,15 +469,25 @@
     document.getElementById('specCodigo').textContent = produto.codigo;
 
     const stockEl = document.getElementById('detailStock');
+    const stockLine = document.getElementById('detailStockLine');
     const stockLabels = { disponivel: 'Disponível', sob_encomenda: 'Sob Encomenda', esgotado: 'Esgotado' };
     stockEl.textContent = stockLabels[produto.estoque_status] || 'Disponível';
     stockEl.className = `stock-pill ${produto.estoque_status}`;
+    // Igual à referência "Feel", o selo de estoque fica escondido — só aparece
+    // quando o produto não está disponível de pronta entrega, pra avisar o cliente.
+    stockLine.classList.toggle('hidden', produto.estoque_status !== 'esgotado' && produto.estoque_status !== 'sob_encomenda');
 
     const temPromo = produto.preco_promocional && Number(produto.preco_promocional) < Number(produto.preco);
-    document.getElementById('priceValor').textContent = formatBRL(temPromo ? produto.preco_promocional : produto.preco);
+    const precoFinal = Number(temPromo ? produto.preco_promocional : produto.preco);
+    document.getElementById('priceValor').textContent = formatBRL(precoFinal);
     const oldEl = document.getElementById('priceOld');
     if (temPromo) { oldEl.textContent = formatBRL(produto.preco); oldEl.classList.remove('hidden'); }
     else oldEl.classList.add('hidden');
+    document.getElementById('priceInstallment').textContent = `ou 3x de ${formatBRL(precoFinal / 3)} sem juros`;
+
+    const textoPlano = (produto.descricao || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    const resumo = textoPlano.length > 180 ? textoPlano.slice(0, 177).trim() + '…' : textoPlano;
+    document.getElementById('detailSummary').textContent = resumo;
 
     if (Array.isArray(produto.tamanhos) && produto.tamanhos.length > 0) {
       document.getElementById('variantTamanhos').style.display = '';
@@ -511,6 +523,8 @@
   // e o carrinho usa os dados de exemplo já exibidos na página
   if (!codigo) {
     document.getElementById('whatsappBuyBtn').href = whatsappLink();
+    document.getElementById('priceInstallment').textContent = `ou 3x de ${formatBRL(349.90 / 3)} sem juros`;
+    document.getElementById('detailSummary').textContent = document.getElementById('detailDescription').textContent.trim().slice(0, 177);
     produtoAtual = {
       codigo: document.getElementById('detailCode').textContent.replace('Código: ', ''),
       titulo: document.getElementById('detailTitle').textContent,
