@@ -589,7 +589,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   min-height:340px;
   display:flex;align-items:center;
   width:100%;
-  background:linear-gradient(100deg, rgba(11,12,9,.4) 0%, rgba(11,12,9,.75) 45%, rgba(75,83,32,.55) 100%), url('banner-categoria-calcados.jpg.png') center/contain no-repeat;
+  background:linear-gradient(100deg, rgba(11,12,9,.4) 0%, rgba(11,12,9,.75) 45%, rgba(75,83,32,.55) 100%), url('banner-categoria-calcados.jpg.png') center 30%/cover no-repeat;
 }
 .instagram-preview{
   position:absolute;top:0;left:0;height:100%;width:52%;object-fit:cover;object-position:top left;
