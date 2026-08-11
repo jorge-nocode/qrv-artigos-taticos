@@ -503,9 +503,14 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 /* ---------- Grade de destaques (sem carrossel) ---------- */
 .destaques-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;align-items:stretch;}
 
-/* "Produtos Recentes" — fileira única de 4 cards, igual à Feel */
+/* "Produtos Recentes" — fileira única de 4 cards, igual à Feel.
+   Seletor com as duas classes juntas (.product-grid.product-grid-4) de
+   propósito: essa combinação tem especificidade maior que a regra genérica
+   ".product-grid{grid-template-columns:1fr}" lá embaixo (usada só pra
+   outras grades de produto no site) e sempre vence, não importa a ordem no
+   arquivo — sem isso, a regra genérica derrubava pra 1 coluna no mobile. */
 .product-grid-4{grid-template-columns:repeat(4,1fr);}
-@media (max-width:900px){ .product-grid-4{grid-template-columns:repeat(2,1fr);gap:16px;} }
+@media (max-width:900px){ .product-grid.product-grid-4{grid-template-columns:repeat(2,1fr);gap:16px;} }
 
 /* ---------- Mosaico de categorias (3 cards: escuro / amarelo / vermelho) ----------
    Réplica do mosaico da Feel ("Ouça mais com AirPods" / "Novos Relógios Watch" /
@@ -623,7 +628,10 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
      gente ignora o <br> e deixa quebrar sozinho, do tamanho que couber. */
   .newsletter-card-text h3{font-size:1.6rem;}
   .newsletter-card-text h3 .desktop-only-br{display:none;}
-  .newsletter-card .newsletter{margin:0 auto;}
+  /* max-width:380px do formulário era mais largo que o espaço real dentro
+     do card no mobile (~280px), fazendo o botão "Inscreva-se" vazar pra
+     fora e ser cortado pelo overflow:hidden do card. */
+  .newsletter-card .newsletter{margin:0 auto;max-width:100%;width:100%;}
 }
 
 .instagram-band{padding:60px 0 0;text-align:center;}
