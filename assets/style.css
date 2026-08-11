@@ -60,6 +60,12 @@
    então subir a base aumenta proporcionalmente o texto inteiro da loja. */
 html{font-size:18.5px;}
 *{margin:0;padding:0;box-sizing:border-box;}
+/* overflow-x:hidden é essencial aqui: a técnica "full-bleed" (width:100vw +
+   margem negativa) usada no banner do Instagram estica alguns pixels além da
+   largura visível, porque 100vw conta a faixa da barra de rolagem e a página
+   não. Sem travar isso, a página ganha uma rolagem horizontal fantasma que
+   pode deslocar o banner e abrir frestas brancas nas laterais. */
+html,body{overflow-x:hidden;}
 body{
   font-family:'Inter',sans-serif;
   background:var(--bg);
