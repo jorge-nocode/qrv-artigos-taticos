@@ -507,7 +507,10 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .mosaic-tile{
   position:relative;height:288px;border-radius:25px;overflow:hidden;
   display:flex;align-items:flex-end;
-  background-image:linear-gradient(90deg, rgba(6,7,4,.9) 0%, rgba(6,7,4,.5) 48%, rgba(6,7,4,.1) 100%), var(--tile-bg);
+  /* Sombreado bem leve, só embaixo, o suficiente pra ler o texto branco —
+     as artes novas já são escuras por conta própria, não precisa mais do
+     filtro escuro cobrindo a imagem inteira. */
+  background-image:linear-gradient(0deg, rgba(6,7,4,.55) 0%, rgba(6,7,4,0) 42%), var(--tile-bg);
   background-size:cover;background-position:right center;background-repeat:no-repeat;
   color:#fff;transition:transform .3s ease;
 }
