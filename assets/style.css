@@ -444,7 +444,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .promo-dots{display:none;}
 @media (max-width:640px){
   .promo-banner{padding:14px 14px 30px;}
-  .promo-slides{border-radius:14px;height:220px;max-height:220px;}
+  .promo-slides{border-radius:14px;height:270px;max-height:270px;}
   .promo-dots{bottom:44px;}
 }
 .promo-dots span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer;transition:background .2s, transform .2s;}
@@ -627,7 +627,9 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   .promo-highlight .value{font-size:3rem;}
 }
 @media (max-width:640px){
-  .trust-bar .container{grid-template-columns:1fr;}
+  .trust-bar .container{grid-template-columns:1fr 1fr;gap:22px 14px;padding:22px 0 4px;}
+  .trust-item{flex-direction:column;align-items:center;text-align:center;gap:8px;}
+  .trust-item svg{width:28px;height:28px;}
   .destaques-grid{grid-template-columns:1fr;}
   .newsletter-band .container{flex-direction:column;text-align:center;}
 }
