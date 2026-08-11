@@ -518,10 +518,16 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
    fotos antigas ainda tinham texto gravado — zoom extra + posição bem à
    direita evita mostrar esse texto residual até as artes serem trocadas. */
 .mosaic-tile-wide{background-size:cover, 165% auto;background-position:center, 88% center;}
-/* Card "Calçados" usa uma arte vertical própria (já finalizada, com fundo
-   claro) — contain garante que a imagem inteira apareça, sem cortar topo
-   nem base, com a cor de fundo preenchendo as laterais. */
-.mosaic-tile-contain{background-color:#12130f;background-size:cover, contain;background-position:center, center;}
+/* Card "Calçados" usa uma arte própria já finalizada — sem gradiente/overlay
+   escurecendo por cima, sem cor de fundo preta gerando barras no topo/base;
+   contain garante que a imagem inteira apareça, sem cortar. */
+.mosaic-tile-contain{
+  background-color:#ffffff;
+  background-image:var(--tile-bg);
+  background-size:contain;
+  background-position:center;
+  background-repeat:no-repeat;
+}
 @media (max-width:760px){
   .category-mosaic{grid-template-columns:1fr;}
   .mosaic-tile{height:220px;}
@@ -546,11 +552,10 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .newsletter-card{
   position:relative;overflow:hidden;border-radius:24px;min-height:440px;
   display:flex;align-items:center;padding:50px 60px;
-  background-color:#15130f;
-  background-image:linear-gradient(100deg, rgba(6,7,4,.72) 0%, rgba(6,7,4,.35) 55%, transparent 78%), url('newsletter-photo.jpg');
-  background-repeat:no-repeat, no-repeat;
-  background-position:center, right center;
-  background-size:cover, contain;
+  background-image:url('banner-militar.jpg');
+  background-repeat:no-repeat;
+  background-position:right center;
+  background-size:contain;
   gap:40px;flex-wrap:wrap;
 }
 .newsletter-card-text{max-width:420px;}
