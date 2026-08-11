@@ -505,8 +505,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 
 /* "Produtos Recentes" — fileira única de 4 cards, igual à Feel */
 .product-grid-4{grid-template-columns:repeat(4,1fr);}
-@media (max-width:900px){ .product-grid-4{grid-template-columns:repeat(2,1fr);} }
-@media (max-width:520px){ .product-grid-4{grid-template-columns:1fr;} }
+@media (max-width:900px){ .product-grid-4{grid-template-columns:repeat(2,1fr);gap:16px;} }
 
 /* ---------- Mosaico de categorias (3 cards: escuro / amarelo / vermelho) ----------
    Réplica do mosaico da Feel ("Ouça mais com AirPods" / "Novos Relógios Watch" /
@@ -618,6 +617,12 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
     background-image:url('banner-militar-mobile.png');
   }
   .newsletter-card-text{padding-left:0;max-width:100%;}
+  /* O <br> que força "Receba Todas" / "as Novidades" em duas linhas fixas
+     foi pensado pro desktop — no mobile a fonte mínima do clamp() já é
+     larga demais pra caber cada linha inteira, cortando o texto. Aqui a
+     gente ignora o <br> e deixa quebrar sozinho, do tamanho que couber. */
+  .newsletter-card-text h3{font-size:1.6rem;}
+  .newsletter-card-text h3 .desktop-only-br{display:none;}
   .newsletter-card .newsletter{margin:0 auto;}
 }
 
