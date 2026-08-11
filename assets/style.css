@@ -788,6 +788,10 @@ footer h4{color:var(--text);font-weight:700;font-size:.865rem;font-family:'Poppi
    rem renderizar bem maior que o esperado. */
 .footer-grid ul.contact-details li{font-size:12.5px;line-height:1.6;color:var(--text-muted);}
 .footer-grid ul.contact-details li strong{color:var(--text);font-weight:700;}
+/* .footer-grid ul a (regra genérica) mira direto no <a> com font-size maior
+   e vence a herança do <li> acima — por isso precisa desta regra extra,
+   mais específica, direto no link, pra realmente igualar o tamanho. */
+.footer-grid ul.contact-details li a{font-size:12.5px;color:var(--text-muted);}
 .footer-grid h4{font-size:.82rem;color:var(--text);font-weight:700;margin-bottom:18px;}
 .footer-grid ul li{margin-bottom:11px;}
 .footer-grid ul a{color:var(--text-muted);font-size:.86rem;transition:color .2s;}
