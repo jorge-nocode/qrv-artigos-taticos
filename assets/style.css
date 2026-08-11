@@ -550,16 +550,15 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 /* ---------- Newsletter (card com foto arredondada, no padrão de referência) ---------- */
 .newsletter-band{padding:70px 0;}
 .newsletter-card{
-  position:relative;overflow:hidden;border-radius:24px;min-height:440px;
-  display:flex;align-items:center;padding:50px 70px 50px 60px;
-  background-color:#0b0c09;
+  position:relative;overflow:hidden;border-radius:24px;min-height:360px;
+  display:flex;align-items:center;padding:50px 60px;
   background-image:url('banner-militar.jpg.png');
   background-repeat:no-repeat;
-  background-position:right center;
-  background-size:contain;
+  background-position:center;
+  background-size:cover;
   gap:40px;flex-wrap:wrap;
 }
-.newsletter-card-text{max-width:420px;flex:0 1 auto;}
+.newsletter-card-text{max-width:420px;padding-left:60px;}
 .newsletter-card-text h3{font-size:clamp(1.7rem,3.4vw,2.4rem);color:#fff;line-height:1.15;margin-bottom:14px;font-weight:700;text-shadow:0 2px 14px rgba(0,0,0,.5);}
 .newsletter-card-text p{color:rgba(255,255,255,.85);font-size:.92rem;text-shadow:0 2px 10px rgba(0,0,0,.5);}
 .newsletter-card .newsletter{
@@ -588,7 +587,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   position:relative;overflow:hidden;
   min-height:340px;
   display:flex;align-items:center;
-  background:linear-gradient(100deg, rgba(11,12,9,.35) 0%, rgba(11,12,9,.4) 45%, rgba(11,12,9,.15) 100%), url('banner-categoria-calcados.jpg') center 30%/cover no-repeat;
+  background:linear-gradient(100deg, rgba(11,12,9,.4) 0%, rgba(11,12,9,.75) 45%, rgba(75,83,32,.55) 100%), url('banner-categoria-calcados.jpg.png') center 30%/cover no-repeat;
 }
 .instagram-preview{
   position:absolute;top:0;left:0;height:100%;width:52%;object-fit:cover;object-position:top left;
