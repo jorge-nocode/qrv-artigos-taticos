@@ -587,28 +587,16 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .instagram-band .ig-handle{display:inline-flex;align-items:center;gap:8px;color:var(--gold-light);font-size:.9rem;margin-bottom:26px;}
 .instagram-band .ig-handle svg{width:20px;height:20px;}
 
-/* Faixa "Siga nosso Instagram" — foto de fundo em largura total, com o
-   print real do perfil (esmaecido) se mesclando do lado esquerdo, texto
-   grande em cima e botão branco "Seguir", no padrão de referência. */
+/* Faixa "Siga nosso Instagram" — mesmo padrão do banner do topo: arte
+   pronta (Instagram + bota já compostos numa imagem só), contida no
+   container normal, cantos arredondados. Nada de largura total/vw aqui —
+   assim não tem como sobrar fresta nenhuma nas laterais. */
 .instagram-cta{
   position:relative;overflow:hidden;
   min-height:340px;
+  border-radius:20px;
   display:flex;align-items:center;
-  /* Full-bleed simples: esta section não tem nenhum ancestral com padding
-     ou max-width (fica direto dentro do <body>), então basta 100% de
-     largura e margem zero — sem depender de "100vw", que no Chrome pode
-     ficar com valor desatualizado depois que a janela é redimensionada
-     sem reload completo, causando frestas brancas nas laterais. */
-  width:100%;
-  margin-left:0;
-  margin-right:0;
-  background:linear-gradient(100deg, rgba(11,12,9,.4) 0%, rgba(11,12,9,.75) 45%, rgba(75,83,32,.55) 100%), url('banner-categoria-calcados.jpg.png') center 30%/cover no-repeat;
-}
-.instagram-preview{
-  position:absolute;top:0;left:0;height:100%;width:52%;object-fit:cover;object-position:top left;
-  opacity:.5;filter:grayscale(.15) contrast(1.05);
-  -webkit-mask-image:linear-gradient(90deg,#000 55%,transparent 100%);
-  mask-image:linear-gradient(90deg,#000 55%,transparent 100%);
+  background:linear-gradient(100deg, rgba(11,12,9,.35) 0%, rgba(11,12,9,.6) 55%, rgba(11,12,9,.35) 100%), url('banner-instagram-composto.png') center/cover no-repeat;
 }
 .instagram-cta-overlay{
   position:relative;z-index:2;width:100%;text-align:center;padding:32px 24px;
@@ -624,8 +612,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 }
 .btn-ig-seguir:hover{background:var(--gold-light);transform:translateY(-2px);}
 @media (max-width:768px){
-  .instagram-preview{width:100%;opacity:.35;-webkit-mask-image:linear-gradient(180deg,#000 40%,transparent 90%);mask-image:linear-gradient(180deg,#000 40%,transparent 90%);}
-  .instagram-cta{min-height:300px;}
+  .instagram-cta{min-height:300px;border-radius:14px;}
 }
 
 @media (max-width:960px){
