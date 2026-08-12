@@ -12,7 +12,7 @@
 <title>QRV Artigos Táticos | Equipando você para o combate</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=19">
+<link rel="stylesheet" href="assets/style.css?v=21">
 </head>
 <body>
 
@@ -86,19 +86,21 @@
 
   <!-- Banner promocional / carrossel automático -->
   <section class="promo-banner">
-    <div class="promo-slides" id="promoSlides">
-      <div class="promo-slide image-ready active" data-i="0" style="background-image:url('assets/banners/hero-artigos-taticos.png');">
-        <a href="produtos.html" class="promo-slide-link" aria-label="Confira nossos artigos táticos"></a>
+    <div class="container">
+      <div class="promo-slides" id="promoSlides">
+        <div class="promo-slide image-ready active" data-i="0" style="background-image:url('assets/banners/hero-artigos-taticos.png');">
+          <a href="produtos.html" class="promo-slide-link" aria-label="Confira nossos artigos táticos"></a>
+        </div>
+        <div class="promo-slide image-ready" data-i="1" style="background-image:url('assets/banners/hero-protecao-defesa.png');">
+          <a href="produtos.html?categoria=protecao" class="promo-slide-link" aria-label="Equipamentos de proteção e defesa"></a>
+        </div>
+        <div class="promo-slide image-ready" data-i="2" style="background-image:url('assets/banners/hero-bordado.png');">
+          <a href="bordados.html" class="promo-slide-link" aria-label="Bordado 100% personalizado"></a>
+        </div>
       </div>
-      <div class="promo-slide image-ready" data-i="1" style="background-image:url('assets/banners/hero-protecao-defesa.png');">
-        <a href="produtos.html?categoria=protecao" class="promo-slide-link" aria-label="Equipamentos de proteção e defesa"></a>
+      <div class="promo-dots" id="promoDots">
+        <span class="active" data-i="0"></span><span data-i="1"></span><span data-i="2"></span>
       </div>
-      <div class="promo-slide image-ready" data-i="2" style="background-image:url('assets/banners/hero-bordado.png');">
-        <a href="bordados.html" class="promo-slide-link" aria-label="Bordado 100% personalizado"></a>
-      </div>
-    </div>
-    <div class="promo-dots" id="promoDots">
-      <span class="active" data-i="0"></span><span data-i="1"></span><span data-i="2"></span>
     </div>
   </section>
 

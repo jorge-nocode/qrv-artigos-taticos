@@ -458,13 +458,17 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
    fundo do site) e o banner em si fica menor, com cantos arredondados e sombra
    — como sobra uma margem escura igual ao fundo da loja em volta da imagem,
    o produto parece "flutuar" fora do quadro, tipo composição 3D. */
-.promo-banner{position:relative;overflow:hidden;background:#FFFFFF;padding:16px 16px 28px;}
-/* Altura ligada à viewport (min de 42vh e 420px) em vez de altura fixa de
-   550px — essa altura fixa era o principal motivo do banner ficar cortado
-   na primeira dobra em notebooks/monitores comuns (1366×768, 1440×900). */
+.promo-banner{position:relative;overflow:hidden;background:#FFFFFF;padding:16px 0 28px;}
+/* Mesma largura máxima (container de 1140px) e o mesmo raio de borda do
+   card "Receba Todas as Novidades" mais abaixo na página, pra os dois
+   banners terem a mesma proporção visual. Altura por aspect-ratio (2.34/1,
+   igual à proporção real das artes hero-*.png) em vez de altura fixa em vh
+   — isso elimina as barras/margens laterais que apareciam quando a caixa
+   tinha uma proporção mais "achatada" que a imagem (background-size:contain
+   sobrava espaço nas laterais). */
 .promo-slides{
-  position:relative;width:100%;max-width:1440px;margin:0 auto;height:min(42vh,420px);max-height:420px;min-height:280px;
-  border-radius:20px;overflow:hidden;background:#FFFFFF;
+  position:relative;width:100%;aspect-ratio:2.34/1;max-height:420px;
+  border-radius:24px;overflow:hidden;background:#FFFFFF;
 }
 .promo-slide{
   position:absolute;inset:0;display:flex;align-items:center;opacity:0;z-index:1;
@@ -473,9 +477,11 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 }
 .promo-slide.active{opacity:1;z-index:2;pointer-events:auto;}
 .promo-slide .container{position:relative;z-index:2;width:100%;}
-/* Slides com arte finalizada (texto/CTA já embutidos na imagem) — imagem inteira
-   "encaixada" sem cortar (contain), igual à referência, sem gradiente escuro por cima */
-.promo-slide.image-ready{background-position:center;background-size:contain;background-repeat:no-repeat;}
+/* Slides com arte finalizada (texto/CTA já embutidos na imagem) — a caixa
+   agora usa a mesma proporção (2.34/1) da imagem original, então
+   background-size:cover preenche 100% da largura/altura sem sobrar margem
+   lateral e sem distorcer nem cortar o conteúdo. */
+.promo-slide.image-ready{background-position:center;background-size:cover;background-repeat:no-repeat;}
 /* O banner de Bordado tem proporção mais "quadrada" que os outros dois — ancora
    no topo pra não cortar o título, já que o resto da imagem sobra embaixo. */
 .promo-slide.image-ready[data-i="2"]{background-position:center top;}
@@ -492,7 +498,12 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .promo-highlight .label{font-size:.95rem;color:var(--text-muted);max-width:180px;line-height:1.4;}
 .promo-dots{display:none;}
 @media (max-width:640px){
-  .promo-banner{padding:14px 14px 30px;}
+  /* Sem margem lateral nenhuma no mobile: nem o padding do .promo-banner
+     nem o padding de 24px do .container (herdado do resto do site) sobram
+     aqui — a imagem usa 100% da largura da tela, de ponta a ponta, em vez
+     de sobrar uma faixa branca dos dois lados que empurrava/cortava a arte. */
+  .promo-banner{padding:14px 0 30px;}
+  .promo-banner .container{padding:0;max-width:100%;}
   /* Artes próprias pro mobile (1:1), redesenhadas do zero — por isso a
      altura fixa vira aspect-ratio quadrado, acompanhando a proporção real
      dessas imagens em vez da altura estreita usada nas artes do desktop. */
