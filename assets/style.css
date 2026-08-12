@@ -59,9 +59,12 @@
 }
 :root[data-theme="light"] .badge.op{color:var(--text);border-color:rgba(24,24,27,.2);background:rgba(255,255,255,.75);}
 
-/* Fonte base maior em todo o site — a maioria dos tamanhos abaixo usa rem,
-   então subir a base aumenta proporcionalmente o texto inteiro da loja. */
-html{font-size:18.5px;}
+/* Fonte base do site — usa rem na maioria dos tamanhos, então essa linha
+   escala o texto inteiro da loja proporcionalmente. Reduzida de 18.5px pra
+   16px (padrão do navegador): o valor maior deixava cabeçalho, hero e
+   seções desproporcionalmente grandes em notebooks/monitores comuns,
+   empurrando o banner principal pra fora da primeira dobra. */
+html{font-size:16px;}
 *{margin:0;padding:0;box-sizing:border-box;}
 /* overflow-x:hidden é essencial aqui: a técnica "full-bleed" (width:100vw +
    margem negativa) usada no banner do Instagram estica alguns pixels além da
@@ -79,14 +82,14 @@ body{
 h1,h2,h3,.stencil{font-weight:700;color:var(--text);font-family:'Poppins',sans-serif;}
 a{text-decoration:none;color:inherit;}
 img{max-width:100%;display:block;}
-.container{max-width:1140px;margin:0 auto;padding:0 28px;}
+.container{max-width:1140px;margin:0 auto;padding:0 24px;}
 ul{list-style:none;}
 
 /* Top bar — tamanho fixo em px (não usa rem) pra não crescer junto com o
    aumento geral da fonte do site; essa linha continua compacta e numa
    linha só, como era antes. */
 .topbar{background:var(--topbar-bg);border-bottom:1px solid var(--border);font-size:12.8px;color:var(--text-muted);}
-.topbar .container{display:flex;justify-content:space-between;align-items:center;height:42px;flex-wrap:nowrap;}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;height:32px;flex-wrap:nowrap;}
 .topbar .left{display:flex;gap:24px;}
 .topbar .left span{display:flex;align-items:center;gap:6px;}
 .topbar .right{display:flex;gap:18px;align-items:center;}
@@ -110,17 +113,17 @@ header.main{
   position:sticky;top:0;z-index:50;
   transition:background .25s ease;
 }
-header.main .container{display:flex;align-items:center;justify-content:space-between;height:150px;gap:28px;}
+header.main .container{display:flex;align-items:center;justify-content:space-between;height:76px;gap:28px;}
 .header-left{display:flex;align-items:center;gap:12px;flex:0 0 auto;margin-right:8px;}
 .mini-logo{display:flex;align-items:center;white-space:nowrap;}
-.mini-logo img{height:116px;width:116px;border-radius:50%;object-fit:cover;display:block;}
+.mini-logo img{height:56px;width:56px;border-radius:50%;object-fit:cover;display:block;}
 .logo{font-size:1.5rem;font-weight:600;color:var(--text);}
 .logo span{color:var(--gold);}
 .logo small{display:block;font-family:'Inter',sans-serif;font-size:.55rem;color:var(--text-muted);font-weight:400;}
 .header-actions{flex:0 0 auto;display:flex;align-items:center;gap:20px;min-width:0;margin-left:8px;}
 nav.primary{min-width:0;flex:1;display:flex;justify-content:center;overflow:hidden;}
 nav.primary ul{display:flex;gap:clamp(8px,1.1vw,20px);flex-wrap:nowrap;white-space:nowrap;align-items:center;}
-nav.primary a{font-size:.92rem;color:var(--text-muted);transition:color .2s;white-space:nowrap;}
+nav.primary a{font-size:.85rem;color:var(--text-muted);transition:color .2s;white-space:nowrap;}
 nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:6px;}
 .menu-toggle span{width:26px;height:2px;background:var(--gold);}
@@ -149,11 +152,11 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   background:var(--bg-alt);border:1px solid var(--border);border-radius:30px;
 }
 .header-search-box input{
-  background:none;border:none;color:var(--text);font-size:.82rem;padding:9px 4px 9px 16px;width:clamp(110px,10vw,170px);
+  background:none;border:none;color:var(--text);font-size:.78rem;padding:7px 4px 7px 14px;width:clamp(100px,9vw,150px);
   font-family:'Inter',sans-serif;
 }
 .header-search-box input:focus{outline:none;}
-.header-search-box button{background:none;border:none;color:var(--text-muted);padding:9px 12px;cursor:pointer;display:flex;}
+.header-search-box button{background:none;border:none;color:var(--text-muted);padding:7px 10px;cursor:pointer;display:flex;}
 .header-search-box button:hover{color:var(--gold-light);}
 .account-link{display:flex;align-items:center;justify-content:center;color:var(--text-muted);flex:0 0 auto;transition:color .2s;}
 .account-link:hover{color:var(--gold-light);}
@@ -258,8 +261,8 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .btn-whatsapp:hover{filter:brightness(1.08);}
 
 /* Section titles */
-.section{padding:90px 0;}
-.section.tight{padding:56px 0;}
+.section{padding:56px 0;}
+.section.tight{padding:36px 0;}
 .section-title{text-align:center;margin-bottom:12px;font-size:2.2rem;font-weight:700;}
 .section-title.left{text-align:left;}
 .section-title.related-title{text-align:left;font-size:1.7rem;margin-bottom:26px;}
@@ -455,9 +458,12 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
    fundo do site) e o banner em si fica menor, com cantos arredondados e sombra
    — como sobra uma margem escura igual ao fundo da loja em volta da imagem,
    o produto parece "flutuar" fora do quadro, tipo composição 3D. */
-.promo-banner{position:relative;overflow:hidden;background:#FFFFFF;padding:26px 26px 44px;}
+.promo-banner{position:relative;overflow:hidden;background:#FFFFFF;padding:16px 16px 28px;}
+/* Altura ligada à viewport (min de 42vh e 420px) em vez de altura fixa de
+   550px — essa altura fixa era o principal motivo do banner ficar cortado
+   na primeira dobra em notebooks/monitores comuns (1366×768, 1440×900). */
 .promo-slides{
-  position:relative;width:100%;max-width:1440px;margin:0 auto;height:550px;max-height:550px;
+  position:relative;width:100%;max-width:1440px;margin:0 auto;height:min(42vh,420px);max-height:420px;min-height:280px;
   border-radius:20px;overflow:hidden;background:#FFFFFF;
 }
 .promo-slide{
@@ -505,7 +511,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 /* ---------- Barra de confiança (frete / parcelamento / dúvidas / segurança) ---------- */
 .trust-bar{background:#FFFFFF;border-bottom:none;}
 .trust-bar .container{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:28px 0 0;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:18px 0 0;
 }
 .trust-item{display:flex;align-items:center;gap:16px;}
 .trust-item svg{width:34px;height:34px;color:var(--red);flex:0 0 auto;}
@@ -1012,9 +1018,9 @@ footer h4{color:var(--text);font-weight:700;font-size:.865rem;font-family:'Poppi
   .topbar .left{display:none;}
   .topbar .right{width:100%;justify-content:center;flex-wrap:wrap;gap:10px 14px;padding:6px 0;}
   .topbar .right a{font-size:.7rem;}
-  .logo-img{height:48px;}
-  header.main .container{height:112px;}
-  .mini-logo img{height:88px;width:88px;}
+  .logo-img{height:40px;}
+  header.main .container{height:68px;}
+  .mini-logo img{height:48px;width:48px;}
   .car-btn{width:38px;height:38px;font-size:1rem;}
   .carousel-nav{padding:0 2px;}
 
