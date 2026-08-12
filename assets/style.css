@@ -804,14 +804,14 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 
 /* Calculadora de frete por CEP (card de compra) */
 .frete-calc{margin-bottom:24px;padding-top:12px;border-top:1px solid var(--border);}
-.frete-calc label{display:block;font-size:.76rem;color:var(--text-muted);margin-bottom:8px;}
-.frete-calc-row{display:flex;gap:8px;align-items:center;height:38px;}
+.frete-calc label{display:block;font-size:.76rem;color:var(--text-muted);margin-bottom:8px;padding-bottom:2px;}
+.frete-calc-row{display:flex;gap:8px;align-items:center;height:42px;}
 .frete-calc-row input{
   flex:1;background:var(--bg);border:1px solid var(--border);color:var(--text);
-  padding:0 12px;border-radius:4px;font-family:'Inter',sans-serif;font-size:.78rem;line-height:38px;height:38px;box-sizing:border-box;
+  padding:0 12px;border-radius:4px;font-family:'Inter',sans-serif;font-size:.78rem;line-height:42px;height:42px;box-sizing:border-box;
 }
 .frete-calc-row button{
-  background:var(--text);color:var(--bg);border:none;padding:0 14px;border-radius:4px;height:38px;
+  background:var(--text);color:var(--bg);border:none;padding:0 32px;border-radius:2px;height:42px;width:140px;
   font-weight:600;font-size:.74rem;cursor:pointer;white-space:nowrap;box-sizing:border-box;
 }
 .frete-calc-row button:hover{opacity:.85;}
