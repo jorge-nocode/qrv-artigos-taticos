@@ -221,7 +221,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   backdrop-filter:blur(8px);box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
 .search-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px 22px;margin-bottom:20px;}
-.field label{display:block;font-size:.68rem;color:var(--gold-light);margin-bottom:8px;}
+.field label{display:block;font-size:.68rem;color:rgba(255,255,255,.6);margin-bottom:8px;}
 .field select, .field input, .field textarea{
   width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;
   padding:11px 12px;border-radius:4px;font-family:'Inter',sans-serif;font-size:.85rem;
@@ -230,6 +230,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .field input::placeholder, .field textarea::placeholder{color:rgba(255,255,255,.45);}
 .field select{color:#fff;}
 .field select option{color:#1D1D1F;}
+.search-panel h2, .search-panel h3, .search-panel h4{color:#fff;}
 .field textarea{resize:vertical;min-height:90px;}
 .search-footer{display:flex;justify-content:flex-end;}
 
