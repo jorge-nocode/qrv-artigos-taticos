@@ -12,8 +12,7 @@
 <title>Produto | QRV Artigos Táticos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=7">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="assets/style.css?v=8">
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
 </head>
 <body>
@@ -216,50 +215,30 @@
 
   <section class="section">
     <div class="container">
-      <div class="gold-rule"></div>
-      <h2 class="section-title">Produtos Relacionados</h2>
+      <h2 class="section-title related-title">Produtos Relacionados</h2>
 
-      <div class="destaques-wrap">
-        <div class="swiper similares-swiper">
-          <div class="swiper-wrapper" id="similarTrack">
-            <div class="swiper-slide example-card">
-              <article class="product-card">
-                <div class="product-photo"><span class="badge">Vestuário</span><img src="assets/produto-camiseta.jpg" alt="Combat Shirt Ripstop UV50+" loading="lazy"></div>
-                <div class="product-body">
-                  <h3>Combat Shirt Ripstop UV50+</h3>
-                  <p class="loc">Geral</p>
-                  <div class="product-price">R$ 189,90</div>
-                </div>
-              </article>
-            </div>
-            <div class="swiper-slide example-card">
-              <article class="product-card">
-                <div class="product-photo"><span class="badge">Mochilas</span><div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div></div>
-                <div class="product-body">
-                  <h3>Mochila Militar Paraquedista 55L</h3>
-                  <p class="loc">Exército Brasileiro</p>
-                  <div class="product-price">R$ 429,00</div>
-                </div>
-              </article>
-            </div>
-            <div class="swiper-slide example-card">
-              <article class="product-card">
-                <div class="product-photo"><span class="badge">Kits</span>
-                  <div class="ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg>Foto em breve</div>
-                </div>
-                <div class="product-body">
-                  <h3>Kit Recrutamento PMESP Completo</h3>
-                  <p class="loc">PMESP</p>
-                  <div class="product-price">R$ 890,00</div>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-        <div class="carousel-nav">
-          <button class="car-btn" id="simPrev">&#8592;</button>
-          <button class="car-btn" id="simNext">&#8594;</button>
-        </div>
+      <div class="related-grid" id="similarTrack">
+        <a href="#" class="related-card">
+          <div class="related-card-img"><img src="assets/produto-camiseta.jpg" alt="Combat Shirt Ripstop UV50+" loading="lazy"></div>
+          <h3 class="related-card-title">Combat Shirt Ripstop UV50+</h3>
+          <div class="related-card-price">R$ 189,90</div>
+          <div class="related-card-installment">ou 3x de R$ 63,30 sem juros</div>
+          <span class="related-card-btn">Comprar</span>
+        </a>
+        <a href="#" class="related-card">
+          <div class="related-card-img ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
+          <h3 class="related-card-title">Mochila Militar Paraquedista 55L</h3>
+          <div class="related-card-price">R$ 429,00</div>
+          <div class="related-card-installment">ou 3x de R$ 143,00 sem juros</div>
+          <span class="related-card-btn">Comprar</span>
+        </a>
+        <a href="#" class="related-card">
+          <div class="related-card-img ph-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/></svg></div>
+          <h3 class="related-card-title">Kit Recrutamento PMESP Completo</h3>
+          <div class="related-card-price">R$ 890,00</div>
+          <div class="related-card-installment">ou 3x de R$ 296,67 sem juros</div>
+          <span class="related-card-btn">Comprar</span>
+        </a>
       </div>
 
       <div class="center-btn">
@@ -324,29 +303,8 @@
 <script type="module" src="assets/chatbot.js"></script>
 <script type="module" src="assets/theme.js"></script>
 <script type="module" src="assets/cart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-  let similaresSwiper;
-  function initSimilaresSwiper() {
-    if (similaresSwiper) similaresSwiper.destroy(true, true);
-    const slideCount = document.querySelectorAll('#similarTrack .swiper-slide').length;
-    similaresSwiper = new Swiper('.similares-swiper', {
-      effect: 'coverflow',
-      grabCursor: true,
-      centeredSlides: true,
-      loop: slideCount > 2,
-      slidesPerView: 'auto',
-      spaceBetween: 20,
-      coverflowEffect: { rotate: 0, stretch: 0, depth: 160, modifier: 1.1, slideShadows: false },
-      autoplay: { delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true },
-      navigation: { nextEl: '#simNext', prevEl: '#simPrev' },
-    });
-  }
-  window.initSimilaresSwiper = initSimilaresSwiper;
-  initSimilaresSwiper();
-</script>
 <script type="module">
-  import { fetchProdutoByCodigo, fetchProdutos, formatBRL, productCardHTML, descricaoToHTML, sanitizeDescricao, placeholderPhoto, whatsappLink, labelCategoria, submitMensagemContato } from './assets/supabase-client.js';
+  import { fetchProdutoByCodigo, fetchProdutos, formatBRL, descricaoToHTML, sanitizeDescricao, placeholderPhoto, whatsappLink, labelCategoria, submitMensagemContato } from './assets/supabase-client.js';
   import { addToCart } from './assets/cart.js';
 
   const params = new URLSearchParams(window.location.search);
@@ -510,13 +468,25 @@
     document.querySelectorAll('.variant-chip').forEach(c => c.addEventListener('click', updateWhatsappLink));
     document.getElementById('personalizacaoInput')?.addEventListener('input', updateWhatsappLink);
 
-    // Produtos relacionados (mesma categoria, excluindo o atual)
-    const relacionados = (await fetchProdutos({ categoria: produto.categoria, limit: 6 })).filter(p => p.codigo !== produto.codigo).slice(0, 3);
+    // Produtos relacionados (mesma categoria, excluindo o atual) — grade estática (ref. Feel)
+    const relacionados = (await fetchProdutos({ categoria: produto.categoria, limit: 6 })).filter(p => p.codigo !== produto.codigo).slice(0, 4);
     if (relacionados.length > 0) {
       const track = document.getElementById('similarTrack');
-      track.innerHTML = relacionados.map(p => `<div class="swiper-slide">${productCardHTML(p)}</div>`).join('');
-      window.initSimilaresSwiper();
+      track.innerHTML = relacionados.map(relatedCardHTML).join('');
     }
+  }
+
+  function relatedCardHTML(p) {
+    const preco = Number(p.preco_promocional && Number(p.preco_promocional) < Number(p.preco) ? p.preco_promocional : p.preco);
+    const foto = Array.isArray(p.fotos) && p.fotos.length > 0 ? p.fotos[0] : placeholderPhoto(p.titulo);
+    const url = `produto.html?codigo=${encodeURIComponent(p.codigo)}`;
+    return `<a href="${url}" class="related-card">
+      <div class="related-card-img"><img src="${foto}" alt="${p.titulo}" loading="lazy"></div>
+      <h3 class="related-card-title">${p.titulo}</h3>
+      <div class="related-card-price">${formatBRL(preco)}</div>
+      <div class="related-card-installment">ou 3x de ${formatBRL(preco / 3)} sem juros</div>
+      <span class="related-card-btn">Comprar</span>
+    </a>`;
   }
 
   // Fallback: sem ?codigo= na URL (ex: link de exemplo), o botão de WhatsApp usa uma mensagem genérica
