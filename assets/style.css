@@ -827,6 +827,10 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 }
 .payment-icons-mono::-webkit-scrollbar{display:none;}
 .pay-icon{flex:0 0 auto;border-radius:4px;}
+@media (max-width:480px){
+  .payment-icons-mono{flex-wrap:wrap;overflow-x:visible;row-gap:8px;}
+  .frete-calc-row button{width:auto;padding:0 18px;}
+}
 .detail-summary{color:var(--text-muted);font-size:.88rem;line-height:1.6;margin-bottom:14px;}
 .detail-summary:empty{display:none;}
 
