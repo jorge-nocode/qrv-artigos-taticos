@@ -12,7 +12,7 @@
 <title>Produto | QRV Artigos Táticos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=9">
+<link rel="stylesheet" href="assets/style.css?v=10">
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
 </head>
 <body>
@@ -85,7 +85,7 @@
     </nav>
   </div>
 
-  <section class="section tight" style="padding-top:104px;">
+  <section class="section tight">
     <div class="container">
 
       <div class="breadcrumb" id="detailBreadcrumb"><a href="index.html">Home</a> / <a href="produtos.html" id="breadcrumbCategoria">Loja</a> / <span id="breadcrumbTitulo"></span></div>
@@ -146,7 +146,7 @@
               </div>
             </div>
           </div>
-          <button type="button" id="addToCartBtn" class="btn-add-cart" style="width:100%;margin-bottom:18px;">Adicionar ao Carrinho</button>
+          <button type="button" id="addToCartBtn" class="btn-add-cart" style="margin-bottom:18px;">Adicionar ao Carrinho</button>
 
           <div class="frete-calc">
             <label for="freteCep">Consulte o frete e o prazo de entrega:</label>
@@ -154,11 +154,20 @@
               <input type="text" id="freteCep" placeholder="Digite seu CEP" maxlength="9">
               <button type="button" id="freteConsultarBtn">Consultar</button>
             </div>
+            <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener" class="frete-cep-help">Não sei meu CEP</a>
             <div class="frete-result" id="freteResult"></div>
           </div>
 
-          <div class="payment-icons payment-icons-produto">
-            <img src="assets/pagamento-bandeiras.png" alt="Formas de pagamento aceitas: Visa, Elo, Aura, Hipercard, Mastercard, Amex, Diners Club, JCB, Pix e Boleto">
+          <div class="payment-icons-mono" aria-label="Formas de pagamento aceitas: Visa, Mastercard, Amex, Elo, Hipercard, Diners, JCB, Pix e Boleto">
+            <span class="pay-badge">Visa</span>
+            <span class="pay-badge">Master</span>
+            <span class="pay-badge">Amex</span>
+            <span class="pay-badge">Elo</span>
+            <span class="pay-badge">Hiper</span>
+            <span class="pay-badge">Diners</span>
+            <span class="pay-badge">JCB</span>
+            <span class="pay-badge">Pix</span>
+            <span class="pay-badge">Boleto</span>
           </div>
 
           <p class="detail-summary" id="detailSummary"></p>
