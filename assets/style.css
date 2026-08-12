@@ -37,8 +37,11 @@
   box-shadow:var(--card-shadow);
 }
 :root[data-theme="light"] .product-photo, :root[data-theme="light"] .ph-wrap{background:linear-gradient(135deg,#f1f1ec,#e6e6df);}
-:root[data-theme="light"] .field select, :root[data-theme="light"] .field input, :root[data-theme="light"] .field textarea{background:#fafaf7;}
-:root[data-theme="light"] .search-panel{background:rgba(255,255,255,.92);}
+/* .search-panel e os campos .field dentro dele são intencionalmente um
+   card escuro (usado no filtro da home, no formulário de bordado e no
+   Fale Conosco) — removido o override que tentava clarear o fundo dos
+   campos só no tema "light", porque ele deixava o texto digitado
+   (branco, definido abaixo) ilegível sobre fundo quase branco. */
 :root[data-theme="light"] .promo-banner{background-blend-mode:normal;}
 :root[data-theme="light"] .trust-bar{background:#FFFFFF;}
 :root[data-theme="light"] .quote-band{background:linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.96)), url('hero-tatico.jpg') center 20% / cover no-repeat;color:var(--text);}
@@ -220,10 +223,13 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .search-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px 22px;margin-bottom:20px;}
 .field label{display:block;font-size:.68rem;color:var(--gold-light);margin-bottom:8px;}
 .field select, .field input, .field textarea{
-  width:100%;background:#0f100c;border:1px solid var(--border);color:var(--text);
+  width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#fff;
   padding:11px 12px;border-radius:4px;font-family:'Inter',sans-serif;font-size:.85rem;
 }
 .field select:focus, .field input:focus, .field textarea:focus{outline:none;border-color:var(--gold);}
+.field input::placeholder, .field textarea::placeholder{color:rgba(255,255,255,.45);}
+.field select{color:#fff;}
+.field select option{color:#1D1D1F;}
 .field textarea{resize:vertical;min-height:90px;}
 .search-footer{display:flex;justify-content:flex-end;}
 
