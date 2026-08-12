@@ -260,7 +260,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 /* Produtos Relacionados (página de produto) — grade estática igual à referência,
    sem carrossel: imagem, título, preço, parcelamento e botão "Comprar". */
 .related-grid{display:grid;grid-template-columns:repeat(auto-fill,170px);gap:24px 20px;justify-content:start;margin-bottom:28px;}
-.related-card{display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;color:inherit;}
+.related-card{display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:space-between;height:100%;text-decoration:none;color:inherit;}
 .related-card-img{width:100%;border-radius:14px;overflow:hidden;aspect-ratio:4/3;margin-bottom:10px;background:var(--bg-alt,#f2f2ef);border:1px solid var(--border);}
 .related-card-img img{width:100%;height:100%;object-fit:cover;display:block;}
 .related-card-img.ph-wrap{display:flex;align-items:center;justify-content:center;color:var(--text-muted);}
@@ -270,9 +270,9 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .related-card-price{font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:700;color:var(--green);margin-bottom:2px;}
 .related-card-installment{font-family:'Poppins',sans-serif;font-size:.72rem;font-weight:400;color:var(--text-muted);margin-bottom:10px;line-height:1.4;}
 .related-card-btn{
-  align-self:center;display:inline-flex;align-items:center;justify-content:center;background:var(--green);color:#fff;
-  font-family:'Inter',sans-serif;font-size:.8125rem;font-weight:500;padding:6px 18px;border-radius:20px;
-  width:fit-content;max-width:100%;flex:0 0 auto;transition:filter .2s;box-sizing:border-box;
+  align-self:center;margin-top:12px;display:inline-flex;align-items:center;justify-content:center;background:var(--green);color:#fff;
+  font-family:'Inter',sans-serif;font-size:13px;font-weight:600;padding:8px 20px;border-radius:20px;
+  width:auto;max-width:100%;flex:0 0 auto;transition:filter .2s;box-sizing:border-box;
 }
 .related-card-btn:hover{filter:brightness(1.08);}
 @media (max-width:640px){
@@ -803,9 +803,9 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .specs-list li strong{color:var(--text);}
 
 /* Calculadora de frete por CEP (card de compra) */
-.frete-calc{margin-bottom:14px;padding-top:12px;border-top:1px solid var(--border);}
+.frete-calc{margin-bottom:24px;padding-top:12px;border-top:1px solid var(--border);}
 .frete-calc label{display:block;font-size:.76rem;color:var(--text-muted);margin-bottom:8px;}
-.frete-calc-row{display:flex;gap:8px;height:38px;}
+.frete-calc-row{display:flex;gap:8px;align-items:center;height:38px;}
 .frete-calc-row input{
   flex:1;background:var(--bg);border:1px solid var(--border);color:var(--text);
   padding:0 12px;border-radius:4px;font-family:'Inter',sans-serif;font-size:.78rem;line-height:38px;height:38px;box-sizing:border-box;
@@ -815,7 +815,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
   font-weight:600;font-size:.74rem;cursor:pointer;white-space:nowrap;box-sizing:border-box;
 }
 .frete-calc-row button:hover{opacity:.85;}
-.frete-cep-help{display:inline-block;font-size:.74rem;color:var(--gold-light);margin-top:8px;text-decoration:underline;text-underline-offset:2px;}
+.frete-cep-help{display:block;font-size:11px;color:#3b82f6;margin-top:6px;text-decoration:underline;text-underline-offset:2px;}
 .frete-result{font-size:.8rem;color:var(--text-muted);margin-top:8px;}
 .frete-result.ok{color:var(--green);}
 
