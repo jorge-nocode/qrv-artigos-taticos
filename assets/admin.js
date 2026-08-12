@@ -1,5 +1,5 @@
 import { supabase, FOTOS_BUCKET, formatBRL, descricaoToHTML, sanitizeDescricao, labelCategoria, getSiteConfig, setSiteConfig } from './supabase-client.js';
-import { getGeminiKey, setGeminiKey, generateProdutoFromText } from './gemini-ai.js';
+import { generateProdutoFromText } from './gemini-ai.js';
 import { PRODUTOS_CATALOGO_SEED } from './produtos-catalogo-seed.js';
 
 // ---------- Elementos ----------
@@ -62,25 +62,38 @@ document.querySelectorAll('.editor-toolbar button').forEach(btn => {
 });
 
 // ---------- IA: Preenchimento automático (Google Gemini) ----------
-function refreshApiKeyStatus() {
-  const key = getGeminiKey();
-  geminiApiKeyInput.value = key;
-  apiKeyStatus.textContent = key ? 'Chave salva ✓' : '';
+// Igual à chave do chat "Recruta QRV" logo abaixo: fica salva na tabela
+// site_config do Supabase (chave "produtos_gemini_key"), não mais no
+// localStorage do navegador. Assim qualquer admin que logar em qualquer
+// computador já encontra a chave pronta, sem precisar colar de novo.
+// Requer ter rodado supabase-admin-gemini-key.sql uma vez no Supabase.
+async function refreshApiKeyStatus() {
+  try {
+    const key = await getSiteConfig('produtos_gemini_key');
+    geminiApiKeyInput.value = key || '';
+    apiKeyStatus.textContent = key ? 'Chave salva ✓' : '';
+  } catch {
+    apiKeyStatus.textContent = '';
+  }
 }
 
-saveApiKeyBtn.addEventListener('click', () => {
+saveApiKeyBtn.addEventListener('click', async () => {
   const key = geminiApiKeyInput.value.trim();
   if (!key) {
     showToast('Cole uma chave válida antes de salvar.', true);
     return;
   }
-  setGeminiKey(key);
-  refreshApiKeyStatus();
-  showToast('Chave da API salva neste navegador.');
+  const { error } = await setSiteConfig('produtos_gemini_key', key);
+  if (error) {
+    showToast('Erro ao salvar (rode supabase-admin-gemini-key.sql no Supabase se ainda não rodou): ' + error.message, true);
+    return;
+  }
+  await refreshApiKeyStatus();
+  showToast('Chave da API salva! Já vale para todos os administradores.');
 });
 
 async function generateWithAI() {
-  const apiKey = getGeminiKey();
+  const apiKey = await getSiteConfig('produtos_gemini_key');
   if (!apiKey) {
     showToast('Cole e salve sua chave da API Gemini primeiro.', true);
     return;
