@@ -12,7 +12,7 @@
 <title>Produto | QRV Artigos Táticos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=8">
+<link rel="stylesheet" href="assets/style.css?v=9">
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
 </head>
 <body>
@@ -85,7 +85,7 @@
     </nav>
   </div>
 
-  <section class="section tight" style="padding-top:130px;">
+  <section class="section tight" style="padding-top:104px;">
     <div class="container">
 
       <div class="breadcrumb" id="detailBreadcrumb"><a href="index.html">Home</a> / <a href="produtos.html" id="breadcrumbCategoria">Loja</a> / <span id="breadcrumbTitulo"></span></div>
@@ -146,11 +146,7 @@
               </div>
             </div>
           </div>
-          <button type="button" id="addToCartBtn" class="btn-gold" style="width:100%;margin-bottom:12px;">Adicionar ao Carrinho</button>
-          <a href="#" id="whatsappBuyBtn" target="_blank" rel="noopener" class="btn-whatsapp" style="margin-bottom:18px;">
-            <svg viewBox="0 0 32 32" width="18" height="18" fill="currentColor"><path d="M16.02 3C9.4 3 4 8.38 4 15c0 2.36.7 4.55 1.9 6.4L4 29l7.8-1.85A11.9 11.9 0 0 0 16.02 27C22.65 27 28 21.62 28 15S22.65 3 16.02 3zm0 21.7c-1.98 0-3.83-.55-5.4-1.5l-.39-.23-4.63 1.1 1.1-4.5-.25-.4A9.63 9.63 0 0 1 5 15c0-6.07 5-11 11.02-11S27 8.93 27 15s-4.98 9.7-10.98 9.7z"/></svg>
-            Tirar Dúvidas via WhatsApp
-          </a>
+          <button type="button" id="addToCartBtn" class="btn-add-cart" style="width:100%;margin-bottom:18px;">Adicionar ao Carrinho</button>
 
           <div class="frete-calc">
             <label for="freteCep">Consulte o frete e o prazo de entrega:</label>
@@ -213,7 +209,7 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section tight">
     <div class="container">
       <h2 class="section-title related-title">Produtos Relacionados</h2>
 
@@ -243,6 +239,21 @@
 
       <div class="center-btn">
         <a href="produtos.html" class="btn-outline">Ver Todos os Produtos →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter-band">
+    <div class="container">
+      <div class="newsletter-card">
+        <div class="newsletter-card-text">
+          <h3>Receba Todas<br class="desktop-only-br"> as Novidades</h3>
+          <p>Cadastre-se para receber ofertas exclusivas e lançamentos em primeira mão.</p>
+        </div>
+        <form class="newsletter" id="newsletterForm">
+          <input type="email" placeholder="Digite seu e-mail" required>
+          <button type="submit">Inscreva-se</button>
+        </form>
       </div>
     </div>
   </section>
@@ -304,7 +315,7 @@
 <script type="module" src="assets/theme.js"></script>
 <script type="module" src="assets/cart.js"></script>
 <script type="module">
-  import { fetchProdutoByCodigo, fetchProdutos, formatBRL, descricaoToHTML, sanitizeDescricao, placeholderPhoto, whatsappLink, labelCategoria, submitMensagemContato } from './assets/supabase-client.js';
+  import { fetchProdutoByCodigo, fetchProdutos, formatBRL, descricaoToHTML, sanitizeDescricao, placeholderPhoto, labelCategoria, submitMensagemContato } from './assets/supabase-client.js';
   import { addToCart } from './assets/cart.js';
 
   const params = new URLSearchParams(window.location.search);
@@ -395,19 +406,6 @@
     });
   }
 
-  function updateWhatsappLink() {
-    const btn = document.getElementById('whatsappBuyBtn');
-    if (!produtoAtual) return;
-    const tamanho = document.querySelector('#variantTamanhosOptions .variant-chip.selected')?.textContent;
-    const cor = document.querySelector('#variantCoresOptions .variant-chip.selected')?.textContent;
-    const personalizacao = document.getElementById('personalizacaoInput')?.value;
-    let texto = `Olá! Tenho interesse no produto *${produtoAtual.titulo}* (código ${produtoAtual.codigo}) que vi no site da QRV Artigos Táticos.`;
-    if (tamanho) texto += ` Tamanho: ${tamanho}.`;
-    if (cor) texto += ` Cor: ${cor}.`;
-    if (personalizacao) texto += ` Personalização: ${personalizacao}.`;
-    btn.href = `https://wa.me/5511993217675?text=${encodeURIComponent(texto)}`;
-  }
-
   async function loadProdutoReal() {
     if (!codigo) return;
     const produto = await fetchProdutoByCodigo(codigo);
@@ -464,10 +462,6 @@
       renderGallery(produto.fotos);
     }
 
-    updateWhatsappLink();
-    document.querySelectorAll('.variant-chip').forEach(c => c.addEventListener('click', updateWhatsappLink));
-    document.getElementById('personalizacaoInput')?.addEventListener('input', updateWhatsappLink);
-
     // Produtos relacionados (mesma categoria, excluindo o atual) — grade estática (ref. Feel)
     const relacionados = (await fetchProdutos({ categoria: produto.categoria, limit: 6 })).filter(p => p.codigo !== produto.codigo).slice(0, 4);
     if (relacionados.length > 0) {
@@ -489,10 +483,8 @@
     </a>`;
   }
 
-  // Fallback: sem ?codigo= na URL (ex: link de exemplo), o botão de WhatsApp usa uma mensagem genérica
-  // e o carrinho usa os dados de exemplo já exibidos na página
+  // Fallback: sem ?codigo= na URL (ex: link de exemplo), o carrinho usa os dados de exemplo já exibidos na página
   if (!codigo) {
-    document.getElementById('whatsappBuyBtn').href = whatsappLink();
     document.getElementById('priceInstallment').textContent = `ou 3x de ${formatBRL(349.90 / 3)} sem juros`;
     document.getElementById('detailSummary').textContent = document.getElementById('detailDescription').textContent.trim().slice(0, 177);
     produtoAtual = {
