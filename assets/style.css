@@ -59,6 +59,76 @@
 }
 :root[data-theme="light"] .badge.op{color:var(--text);border-color:rgba(24,24,27,.2);background:rgba(255,255,255,.75);}
 
+/* ---------- Tema Escuro (Dark Mode), ativado via botão no topbar ----------
+   Alternância controlada por data-theme="dark" na tag <html>, salva em
+   localStorage (chave "qrv_theme", já lida por um script inline no <head>
+   de cada página antes do CSS carregar — evita o "flash" de tema errado).
+   Fundo preto, texto branco, e os botões de ação ficam com a cor invertida
+   (fundo branco / texto preto) em vez do vermelho usado no tema claro. */
+:root[data-theme="dark"]{
+  --bg:#0a0a0a;
+  --bg-alt:#141414;
+  --panel:#141414;
+  --olive:#e5e5e0;
+  --olive-light:#c9c9c2;
+  --gold:#ffffff;
+  --gold-light:#d8d8d2;
+  --text:#ffffff;
+  --text-muted:#a8a8a2;
+  --border:rgba(255,255,255,.14);
+  --red:#ffffff;
+  --green:#00E676;
+  --green-dark:#00C853;
+  --card-shadow:0 14px 34px rgba(0,0,0,.5);
+  --topbar-bg:#0a0a0a;
+  --header-bg:#0a0a0a;
+  --footer-bg:#0a0a0a;
+}
+:root[data-theme="dark"] nav.primary a{color:var(--text);}
+:root[data-theme="dark"] .product-photo, :root[data-theme="dark"] .ph-wrap{background:linear-gradient(135deg,#1c1c1a,#141412);}
+:root[data-theme="dark"] .price-old{color:var(--text-muted);}
+:root[data-theme="dark"] .product-body .loc{color:var(--text-muted);}
+:root[data-theme="dark"] .badge:not(.op):not(.esgotado):not(.frete){background:#fff;color:#000;}
+:root[data-theme="dark"] .badge.op{color:#fff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08);}
+/* --red virou branco acima pra inverter os botões de ação (.btn-gold usa
+   var(--red) como fundo) — mas isso também clarearia textos/ícones que
+   usam --red só como cor de destaque (não como fundo de botão), então
+   esses casos específicos são corrigidos de volta pra um vermelho legível
+   sobre fundo preto. */
+:root[data-theme="dark"] .promo-content h1 em,
+:root[data-theme="dark"] .status-pill.arquivado{color:#ff6b60;}
+:root[data-theme="dark"] .btn-gold,
+:root[data-theme="dark"] .add-to-cart-btn,
+:root[data-theme="dark"] .btn-add-cart-detail,
+:root[data-theme="dark"] .related-card-btn,
+:root[data-theme="dark"] .newsletter-card .newsletter button{
+  background:#ffffff;color:#000000;
+}
+:root[data-theme="dark"] .btn-gold:hover,
+:root[data-theme="dark"] .add-to-cart-btn:hover,
+:root[data-theme="dark"] .btn-add-cart-detail:hover,
+:root[data-theme="dark"] .related-card-btn:hover{
+  background:#e5e5e5;color:#000000;box-shadow:0 10px 24px rgba(255,255,255,.15);
+}
+:root[data-theme="dark"] .btn-outline{color:#fff;border-color:#fff;}
+:root[data-theme="dark"] .btn-outline:hover{background:#fff;color:#000;}
+:root[data-theme="dark"] .search-panel{background:#111;}
+:root[data-theme="dark"] .whatsapp-float{background:#25D366;}
+:root[data-theme="dark"] .lightbox{background:#0a0a0a;}
+:root[data-theme="dark"] .quote-band{background:linear-gradient(180deg, rgba(0,0,0,.82), rgba(0,0,0,.92)), url('hero-tatico.jpg') center 20% / cover no-repeat;color:#fff;}
+
+/* Botão de alternância de tema (ícone sol/lua) no topbar */
+.theme-toggle{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:26px;height:26px;border-radius:50%;border:1px solid var(--border);
+  background:transparent;color:var(--text-muted);cursor:pointer;padding:0;
+  transition:border-color .2s, color .2s;
+}
+.theme-toggle:hover{border-color:var(--gold);color:var(--gold-light);}
+.theme-toggle .icon-moon{display:none;}
+:root[data-theme="dark"] .theme-toggle .icon-sun{display:none;}
+:root[data-theme="dark"] .theme-toggle .icon-moon{display:block;}
+
 /* Fonte base do site — usa rem na maioria dos tamanhos, então essa linha
    escala o texto inteiro da loja proporcionalmente. Reduzida de 18.5px pra
    16px (padrão do navegador): o valor maior deixava cabeçalho, hero e
