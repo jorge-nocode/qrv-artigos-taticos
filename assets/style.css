@@ -59,75 +59,10 @@
 }
 :root[data-theme="light"] .badge.op{color:var(--text);border-color:rgba(24,24,27,.2);background:rgba(255,255,255,.75);}
 
-/* ---------- Tema Escuro (Dark Mode), ativado via botão no topbar ----------
-   Alternância controlada por data-theme="dark" na tag <html>, salva em
-   localStorage (chave "qrv_theme", já lida por um script inline no <head>
-   de cada página antes do CSS carregar — evita o "flash" de tema errado).
-   Fundo preto, texto branco, e os botões de ação ficam com a cor invertida
-   (fundo branco / texto preto) em vez do vermelho usado no tema claro. */
-:root[data-theme="dark"]{
-  --bg:#0a0a0a;
-  --bg-alt:#141414;
-  --panel:#141414;
-  --olive:#e5e5e0;
-  --olive-light:#c9c9c2;
-  --gold:#ffffff;
-  --gold-light:#d8d8d2;
-  --text:#ffffff;
-  --text-muted:#a8a8a2;
-  --border:rgba(255,255,255,.14);
-  --red:#ffffff;
-  --green:#00E676;
-  --green-dark:#00C853;
-  --card-shadow:0 14px 34px rgba(0,0,0,.5);
-  --topbar-bg:#0a0a0a;
-  --header-bg:#0a0a0a;
-  --footer-bg:#0a0a0a;
-}
-:root[data-theme="dark"] nav.primary a{color:var(--text);}
-:root[data-theme="dark"] .product-photo, :root[data-theme="dark"] .ph-wrap{background:linear-gradient(135deg,#1c1c1a,#141412);}
-:root[data-theme="dark"] .price-old{color:var(--text-muted);}
-:root[data-theme="dark"] .product-body .loc{color:var(--text-muted);}
-:root[data-theme="dark"] .badge:not(.op):not(.esgotado):not(.frete){background:#fff;color:#000;}
-:root[data-theme="dark"] .badge.op{color:#fff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.08);}
-/* --red virou branco acima pra inverter os botões de ação (.btn-gold usa
-   var(--red) como fundo) — mas isso também clarearia textos/ícones que
-   usam --red só como cor de destaque (não como fundo de botão), então
-   esses casos específicos são corrigidos de volta pra um vermelho legível
-   sobre fundo preto. */
-:root[data-theme="dark"] .promo-content h1 em,
-:root[data-theme="dark"] .status-pill.arquivado{color:#ff6b60;}
-:root[data-theme="dark"] .btn-gold,
-:root[data-theme="dark"] .add-to-cart-btn,
-:root[data-theme="dark"] .btn-add-cart-detail,
-:root[data-theme="dark"] .related-card-btn,
-:root[data-theme="dark"] .newsletter-card .newsletter button{
-  background:#ffffff;color:#000000;
-}
-:root[data-theme="dark"] .btn-gold:hover,
-:root[data-theme="dark"] .add-to-cart-btn:hover,
-:root[data-theme="dark"] .btn-add-cart-detail:hover,
-:root[data-theme="dark"] .related-card-btn:hover{
-  background:#e5e5e5;color:#000000;box-shadow:0 10px 24px rgba(255,255,255,.15);
-}
-:root[data-theme="dark"] .btn-outline{color:#fff;border-color:#fff;}
-:root[data-theme="dark"] .btn-outline:hover{background:#fff;color:#000;}
-:root[data-theme="dark"] .search-panel{background:#111;}
-:root[data-theme="dark"] .whatsapp-float{background:#25D366;}
-:root[data-theme="dark"] .lightbox{background:#0a0a0a;}
-:root[data-theme="dark"] .quote-band{background:linear-gradient(180deg, rgba(0,0,0,.82), rgba(0,0,0,.92)), url('hero-tatico.jpg') center 20% / cover no-repeat;color:#fff;}
-
-/* Botão de alternância de tema (ícone sol/lua) no topbar */
-.theme-toggle{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:26px;height:26px;border-radius:50%;border:1px solid var(--border);
-  background:transparent;color:var(--text-muted);cursor:pointer;padding:0;
-  transition:border-color .2s, color .2s;
-}
-.theme-toggle:hover{border-color:var(--gold);color:var(--gold-light);}
-.theme-toggle .icon-moon{display:none;}
-:root[data-theme="dark"] .theme-toggle .icon-sun{display:none;}
-:root[data-theme="dark"] .theme-toggle .icon-moon{display:block;}
+/* Tema Escuro (Dark Mode) removido a pedido — o site fica fixo no tema
+   claro padrão. O botão de alternância no topbar, o script inline no
+   <head> que lia data-theme do localStorage e o assets/theme.js foram
+   removidos/desativados (ver admin.html e as demais páginas). */
 
 /* Fonte base do site — usa rem na maioria dos tamanhos, então essa linha
    escala o texto inteiro da loja proporcionalmente. Reduzida de 18.5px pra
@@ -183,10 +118,10 @@ header.main{
   position:sticky;top:0;z-index:50;
   transition:background .25s ease;
 }
-header.main .container{display:flex;align-items:center;justify-content:space-between;height:76px;gap:28px;}
+header.main .container{display:flex;align-items:center;justify-content:space-between;height:132px;gap:28px;}
 .header-left{display:flex;align-items:center;gap:12px;flex:0 0 auto;margin-right:8px;}
 .mini-logo{display:flex;align-items:center;white-space:nowrap;}
-.mini-logo img{height:56px;width:56px;border-radius:50%;object-fit:cover;display:block;}
+.mini-logo img{height:112px;width:112px;border-radius:50%;object-fit:cover;display:block;}
 .logo{font-size:1.5rem;font-weight:600;color:var(--text);}
 .logo span{color:var(--gold);}
 .logo small{display:block;font-family:'Inter',sans-serif;font-size:.55rem;color:var(--text-muted);font-weight:400;}
@@ -372,7 +307,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 
 /* ---------- Loja: layout com filtros em barra lateral (padrão de referência) ---------- */
 .shop-layout{display:grid;grid-template-columns:250px 1fr;gap:40px;align-items:start;}
-.shop-sidebar{position:sticky;top:170px;display:flex;flex-direction:column;gap:28px;}
+.shop-sidebar{position:sticky;top:226px;display:flex;flex-direction:column;gap:28px;}
 .sidebar-block h4{
   font-size:.78rem;color:var(--text);margin-bottom:14px;
   font-weight:600;padding-bottom:8px;border-bottom:1px solid var(--border);
@@ -858,7 +793,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
    lado a lado (igual ao site de referência), abas de descrição embaixo,
    ocupando a largura toda. */
 .detail-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:44px;align-items:start;margin-bottom:10px;}
-.detail-gallery-col{position:sticky;top:110px;}
+.detail-gallery-col{position:sticky;top:166px;}
 .detail-buy-col{padding-top:2px;}
 .detail-code{color:var(--gold-light);font-size:.78rem;margin-bottom:8px;}
 .detail-purpose{color:var(--text-muted);font-size:.85rem;margin-bottom:6px;}
@@ -969,7 +904,7 @@ nav.primary a:hover, nav.primary a.active{color:var(--gold-light);}
 .map-box iframe{width:100%;height:340px;border:0;filter:grayscale(.15) contrast(1.05);}
 
 /* Contact / order card (usado no cart.html/checkout.html) */
-.contact-card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:26px;position:sticky;top:110px;}
+.contact-card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:26px;position:sticky;top:166px;}
 .contact-card h4{font-size:.76rem;color:var(--gold-light);margin-bottom:4px;text-align:center;}
 .contact-card .sub{text-align:center;color:var(--text-muted);font-size:.75rem;margin-bottom:20px;}
 .form-group{margin-bottom:16px;}
@@ -1050,7 +985,7 @@ footer h4{color:var(--text);font-weight:700;font-size:.865rem;font-family:'Poppi
 .cart-empty{text-align:center;padding:80px 20px;color:var(--text-muted);}
 .cart-empty svg{width:56px;height:56px;opacity:.35;margin-bottom:18px;}
 
-.cart-summary{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:26px;position:sticky;top:110px;}
+.cart-summary{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:26px;position:sticky;top:166px;}
 .cart-summary h4{font-size:.78rem;color:var(--gold-light);margin-bottom:18px;}
 .cart-summary-row{display:flex;justify-content:space-between;font-size:.88rem;color:var(--text-muted);margin-bottom:12px;}
 .cart-summary-row.total{color:var(--text);font-weight:700;font-size:1.1rem;border-top:1px solid var(--border);padding-top:14px;margin-top:6px;}
@@ -1099,9 +1034,9 @@ footer h4{color:var(--text);font-weight:700;font-size:.865rem;font-family:'Poppi
   .topbar .left{display:none;}
   .topbar .right{width:100%;justify-content:center;flex-wrap:wrap;gap:10px 14px;padding:6px 0;}
   .topbar .right a{font-size:.7rem;}
-  .logo-img{height:40px;}
-  header.main .container{height:68px;}
-  .mini-logo img{height:48px;width:48px;}
+  .logo-img{height:80px;}
+  header.main .container{height:112px;}
+  .mini-logo img{height:96px;width:96px;}
   .car-btn{width:38px;height:38px;font-size:1rem;}
   .carousel-nav{padding:0 2px;}
 
