@@ -578,7 +578,7 @@ async function handleFiles(fileList) {
 function renderPhotoPreviews() {
   photoPreviewGrid.innerHTML = currentPhotos.map((url, idx) => `
     <div class="photo-preview">
-      <img src="${url}" alt="Foto ${idx + 1}">
+      <img src="${url}" alt="Foto ${idx + 1}" loading="lazy">
       <button type="button" class="remove-photo" data-idx="${idx}">&times;</button>
     </div>
   `).join('');
