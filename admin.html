@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="description" content="Painel administrativo da QRV Artigos Táticos — gerencie produtos, bordados, solicitações de revenda e mensagens.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
@@ -12,7 +13,7 @@
 <title>Painel Administrativo | QRV Artigos Táticos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=23">
+<link rel="stylesheet" href="assets/style.css?v=24">
 <link rel="stylesheet" href="assets/admin.css?v=3">
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js"></script>
 </head>
@@ -77,6 +78,7 @@
           <span class="ai-key-status" id="chatApiKeyStatus"></span>
         </div>
         <p class="ai-key-hint">Diferente da chave acima, esta fica salva no banco de dados e vale para TODOS os visitantes que conversarem com o chat — não precisa mexer em código nem no GitHub. Recomendo gerar uma chave dedicada só para o chat em <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>.</p>
+        <p class="ai-key-hint" style="color:#ff8a83;">⚠️ Importante — segurança: esta chave é usada direto pelo navegador do visitante (chat público), então qualquer pessoa consegue vê-la abrindo o DevTools do navegador. Para não sofrer cobrança indevida na sua conta Google: (1) no <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener">Google Cloud Console → Credenciais</a>, edite essa chave e em "Restrições de aplicativo" escolha "Referenciadores HTTP (sites)", cadastrando o domínio do site (ex: <code>https://qrv-artigos-taticos.vercel.app/*</code>); (2) em "Restrições de API", limite a chave só à "Generative Language API"; (3) defina uma cota diária baixa como trava extra. Sem isso, qualquer pessoa que copiar a chave pode usá-la fora do site.</p>
       </div>
 
       <div class="admin-tabs">

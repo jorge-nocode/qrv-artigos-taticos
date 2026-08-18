@@ -2,6 +2,23 @@ import { supabase, FOTOS_BUCKET, formatBRL, descricaoToHTML, sanitizeDescricao, 
 import { generateProdutoFromText } from './gemini-ai.js';
 import { PRODUTOS_CATALOGO_SEED } from './produtos-catalogo-seed.js';
 
+// ---------- Segurança: escape de HTML ----------
+// Os formulários públicos "Fale Conosco", "Solicitar Bordado" e "Seja
+// Revendedor" permitem que QUALQUER visitante anônimo grave texto livre
+// (nome, telefone, mensagem, observações...) direto no banco — é assim que
+// esses formulários funcionam. Esses valores nunca podem ser inseridos em
+// innerHTML sem escapar: sem isso, um visitante mal-intencionado poderia
+// preencher o campo "Nome" com um payload de script que executaria dentro
+// da sessão autenticada do admin ao abrir essa aba (XSS armazenado com
+// escalada para a conta admin). Use escapeHTML() em TODO valor vindo do
+// banco que venha de um formulário público antes de interpolar em template
+// string destinada a innerHTML.
+function escapeHTML(str) {
+  return String(str ?? '').replace(/[&<>"']/g, c => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[c]));
+}
+
 // ---------- Elementos ----------
 const loginWrap = document.getElementById('loginWrap');
 const adminMain = document.getElementById('adminMain');
@@ -590,12 +607,12 @@ async function loadBordados() {
   bordadosList.innerHTML = data.map(s => `
     <div class="message-card">
       <div class="message-card-header">
-        <strong>${s.nome}</strong>
-        <span>${new Date(s.created_at).toLocaleString('pt-BR')} · <span class="status-pill ${s.status === 'novo' ? 'pendente' : 'ativo'}">${s.status}</span></span>
+        <strong>${escapeHTML(s.nome)}</strong>
+        <span>${new Date(s.created_at).toLocaleString('pt-BR')} · <span class="status-pill ${s.status === 'novo' ? 'pendente' : 'ativo'}">${escapeHTML(s.status)}</span></span>
       </div>
-      <div class="message-card-contact"><span>${s.telefone}</span>${s.tipo_peca ? `<span>Peça: ${s.tipo_peca}</span>` : ''}</div>
-      ${s.o_que_bordar ? `<p><strong>Bordar:</strong> ${s.o_que_bordar}</p>` : ''}
-      ${s.observacoes ? `<p>${s.observacoes}</p>` : ''}
+      <div class="message-card-contact"><span>${escapeHTML(s.telefone)}</span>${s.tipo_peca ? `<span>Peça: ${escapeHTML(s.tipo_peca)}</span>` : ''}</div>
+      ${s.o_que_bordar ? `<p><strong>Bordar:</strong> ${escapeHTML(s.o_que_bordar)}</p>` : ''}
+      ${s.observacoes ? `<p>${escapeHTML(s.observacoes)}</p>` : ''}
       <div class="message-card-actions">
         ${s.status === 'novo' ? `<button class="btn-sm" data-concluir="${s.id}">Marcar como Concluído</button>` : ''}
         <button class="btn-sm btn-danger" data-delete-bordado="${s.id}">Excluir</button>
@@ -634,11 +651,11 @@ async function loadRevenda() {
   revendaList.innerHTML = data.map(s => `
     <div class="message-card">
       <div class="message-card-header">
-        <strong>${s.nome}</strong>
-        <span>${new Date(s.created_at).toLocaleString('pt-BR')} · <span class="status-pill ${s.status === 'novo' ? 'pendente' : 'ativo'}">${s.status}</span></span>
+        <strong>${escapeHTML(s.nome)}</strong>
+        <span>${new Date(s.created_at).toLocaleString('pt-BR')} · <span class="status-pill ${s.status === 'novo' ? 'pendente' : 'ativo'}">${escapeHTML(s.status)}</span></span>
       </div>
-      <div class="message-card-contact"><span>${s.telefone}</span>${s.cidade ? `<span>${s.cidade}</span>` : ''}${s.tipo_negocio ? `<span>${s.tipo_negocio}</span>` : ''}</div>
-      ${s.observacoes ? `<p>${s.observacoes}</p>` : ''}
+      <div class="message-card-contact"><span>${escapeHTML(s.telefone)}</span>${s.cidade ? `<span>${escapeHTML(s.cidade)}</span>` : ''}${s.tipo_negocio ? `<span>${escapeHTML(s.tipo_negocio)}</span>` : ''}</div>
+      ${s.observacoes ? `<p>${escapeHTML(s.observacoes)}</p>` : ''}
       <div class="message-card-actions">
         ${s.status === 'novo' ? `<button class="btn-sm" data-contatado="${s.id}">Marcar como Contatado</button>` : ''}
         <button class="btn-sm btn-danger" data-delete-revenda="${s.id}">Excluir</button>
@@ -677,14 +694,14 @@ async function loadMessages() {
   messagesList.innerHTML = data.map(msg => `
     <div class="message-card">
       <div class="message-card-header">
-        <strong>${msg.nome}</strong>
+        <strong>${escapeHTML(msg.nome)}</strong>
         <span>${new Date(msg.created_at).toLocaleString('pt-BR')}</span>
       </div>
       <div class="message-card-contact">
-        ${msg.email ? `<span>${msg.email}</span>` : ''}
-        ${msg.telefone ? `<span>${msg.telefone}</span>` : ''}
+        ${msg.email ? `<span>${escapeHTML(msg.email)}</span>` : ''}
+        ${msg.telefone ? `<span>${escapeHTML(msg.telefone)}</span>` : ''}
       </div>
-      <p>${msg.mensagem}</p>
+      <p>${escapeHTML(msg.mensagem)}</p>
       <div class="message-card-actions">
         ${!msg.lida ? `<button class="btn-sm" data-lida="${msg.id}">Marcar como Lida</button>` : ''}
         <button class="btn-sm btn-danger" data-delete-msg="${msg.id}">Excluir</button>

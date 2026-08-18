@@ -962,6 +962,19 @@ footer h4{color:var(--text);font-weight:700;font-size:.865rem;font-family:'Poppi
 .footer-social a{width:36px;height:36px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:.25s;}
 .footer-social a:hover{background:var(--red);color:#fff;border-color:var(--red);transform:translateY(-3px);}
 .footer-bottom{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.78rem;color:var(--text-muted);}
+.footer-legal-links{display:flex;gap:18px;flex-wrap:wrap;}
+
+/* Aviso de consentimento LGPD nos formulários (Fale Conosco, Bordado,
+   Revenda, Checkout) — cor explícita em vez de herdar .field label, porque
+   esse formulário aparece tanto dentro de cards escuros (.search-panel)
+   quanto de cards claros (.checkout-section), e precisa ser legível nos
+   dois sem depender do tema. */
+.consent-row{margin:14px 0 18px;}
+.consent-check{display:flex;align-items:flex-start;gap:10px;font-size:.78rem;line-height:1.5;color:var(--text-muted);cursor:pointer;}
+.consent-check input{width:auto;flex:0 0 auto;margin-top:3px;}
+.consent-check a{color:var(--gold-light);text-decoration:underline;}
+.search-panel .consent-check{color:rgba(255,255,255,.75);}
+.search-panel .consent-check a{color:#fff;}
 .footer-bottom a{color:var(--text-muted);}
 .footer-bottom a:hover{color:var(--red);}
 
