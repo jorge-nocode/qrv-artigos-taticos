@@ -1,4 +1,4 @@
-# BLUEPRINT TÉCNICO — QRV Artigos Táticos
+docs/# BLUEPRINT TÉCNICO — QRV Artigos Táticos
 ### Documento-mestre para recriar/adaptar este site em um novo projeto
 
 > Cole este documento inteiro como primeira mensagem de uma nova conversa para recriar a mesma arquitetura, visual e comportamento — trocando o conteúdo (produtos → serviços, categorias → tipos de manutenção, etc.) para o novo negócio.
